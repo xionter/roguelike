@@ -14,9 +14,12 @@ public class RoomNodeSO : ScriptableObject
     
     #region Editor Code
 #if UNITY_EDITOR
+    
     [HideInInspector] public Rect rect;
     [HideInInspector] public bool isLeftClickDragging = false;
     [HideInInspector] public bool isSelected = false; 
+    
+    
     public void Initialise(Rect rect, RoomNodeGraphSO nodeGraph, RoomNodeTypeSO roomNodeType)
     {
         this.rect = rect;
@@ -81,6 +84,16 @@ public class RoomNodeSO : ScriptableObject
         {
             ProcessLeftClickDownEvent(currentEvent);
         }
+        else if (currentEvent.button == 1) //пкм
+        {
+            ProcessRightClickDownEvent(currentEvent);
+        }
+    }
+    
+    
+    private void ProcessRightClickDownEvent(Event currentEvent)
+    {
+        roomNodeGraph.SetNodeToDrawConnectionLineFrom(this, currentEvent.mousePosition);
     }
     
     private void ProcessLeftClickDownEvent(Event currentEvent)
@@ -121,6 +134,18 @@ public class RoomNodeSO : ScriptableObject
     {
         rect.position += delta;
         EditorUtility.SetDirty(this);
+    }
+
+    public bool AddChildRoomNodeIDToRoomNode(string childID)
+    {
+        childRoomNodeIDList.Add(childID);
+        return true;
+    }
+    
+    public bool AddParentRoomNodeIDToRoomNode(string parentID)
+    {
+        parentRoomNodeIDList.Add(parentID);
+        return true;
     }
     
 #endif
