@@ -56,7 +56,7 @@ public static class ProceduralDungeonGenerator
         var startNode = CreateNode(entranceType);
         var openList  = new List<RoomNodeSO> { startNode };
         var normalCount = totalRooms - 2;
-        var chestCount  = Random.Range(1, normalCount / 4);
+        var chestCount  = Random.Range((int)(GetWeights(difficulty)["large"] / 0.2f) + 1, normalCount / 4);
         normalCount -= chestCount;
         var weights     = GetWeights(difficulty);
 
@@ -151,8 +151,8 @@ public static class ProceduralDungeonGenerator
         float xSpacing = 200f, ySpacing = 150f;
         foreach (var group in groups)
         {
-            int count = group.Count();
-            int idx   = 0;
+            var count = group.Count();
+            var idx   = 0;
             foreach (var kv in group)
             {
                 var node = graph.GetRoomNode(kv.Key);
@@ -172,7 +172,7 @@ public static class ProceduralDungeonGenerator
         {
             case Difficulty.Easy:   return new Dictionary<string, float> {{"small",0.6f},{"med",0.3f},{"large",0.1f}};
             case Difficulty.Medium: return new Dictionary<string, float> {{"small",0.3f},{"med",0.5f},{"large",0.2f}};
-            case Difficulty.Hard:   return new Dictionary<string, float> {{"small",0.1f},{"med",0.4f},{"large",0.5f}};
+            case Difficulty.Hard:   return new Dictionary<string, float> {{"small",0.1f},{"med",0.4f},{"large",0.6f}};
             default:                return new Dictionary<string, float> {{"small",0.3f},{"med",0.4f},{"large",0.3f}};
         }
     }
