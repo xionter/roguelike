@@ -107,6 +107,12 @@ public static class HelperUtilities
         var error = false;
         var count = 0;
 
+        if (enumerableObjectToCheck == null)
+        {
+            Debug.Log(fieldName + " is null in object " + thisObject.name.ToString());
+            return true;
+        }
+        
         foreach (var item in enumerableObjectToCheck)
         {
             if (item == null)
@@ -129,6 +135,7 @@ public static class HelperUtilities
     public static bool ValidateCheckPositiveValue(Object thisObject, string fieldName, int valueToCheck, bool isZeroAllowed) 
     {
         bool error = false; 
+        
         if (isZeroAllowed) 
         { 
             if (valueToCheck < 0) 
