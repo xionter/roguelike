@@ -1,16 +1,31 @@
-using UnityEngine;
-
-public class Enums : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public enum Orientation 
+{ 
+    north, 
+    east, 
+    south, 
+    west, 
+    none 
+} 
+public enum AimDirection 
+{ 
+    Up, 
+    UpRight, 
+    UpLeft, 
+    Right, 
+    Left, 
+    Down 
+}
+public enum GameState
+{ 
+    gameStarted, 
+    playingLevel, 
+    engagingEnemies, 
+    bossStage, 
+    engagingBoss, 
+    levelCompleted, 
+    gameWon, 
+    gameLost, 
+    gamePaused, 
+    dungeonOverviewMap, 
+    restartGame
 }
