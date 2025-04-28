@@ -2,8 +2,18 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - groundTilemap
+  - decoration1Tilemap
+  - grid
+  - collisionTilemap
+  - minimapTilemap
+  - decoration2Tilemap
+  - frontTilemap
+  - roomTilemap
+  - miniMapPlayer
+  - playerWeapon
   layers:
   - Default
   - TransparentFX
@@ -12,20 +22,20 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - IgnoreAmmo
+  - Camera 1
+  - Camera 2
+  - Player
+  - MiniMap
+  - Room
+  - Wall
+  - PlayerAmmo
+  - Enemy
+  - EnemyAmmo
+  - Environment
+  - PlayerWeapon
+  - EnemyWeapon
+  - Camera 3
   - 
   - 
   - 
@@ -41,3 +51,27 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 3122604755
+    locked: 0
+  - name: Ground Decoration 1
+    uniqueID: 158393229
+    locked: 0
+  - name: Ground Decoration 2
+    uniqueID: 467796939
+    locked: 0
+  - name: Instances
+    uniqueID: 370008357
+    locked: 0
+  - name: Front
+    uniqueID: 425201017
+    locked: 0
+  - name: Collision
+    uniqueID: 4019470311
+    locked: 0
+  - name: Minimap
+    uniqueID: 3621323553
+    locked: 0
+  m_RenderingLayers:
+  - Default
+  - Layer 1
