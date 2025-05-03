@@ -1,26 +1,54 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    #region Tooltip 
-        [Tooltip("The player WeaponShootPosition gameobject in the hieracrchy")] 
-    #endregion Tooltip 
+    #region Tooltip
+    [Tooltip("MovementDetailsSO scriptable object containing movement details such as speed")]
+    #endregion Tooltip
 
     [SerializeField] private Transform weaponShootPosition; 
+    [SerializeField] private MovementDetailsSO movementDetails;
 
     private Player player; 
+    private float moveSpeed;
+    private Coroutine playerRollCoroutine;
+    private WaitForFixedUpdate waitForFixedUpdate;
+    private bool isPlayerRolling = false;
+    private float playerRollCooldownTimer = 0f;
 
     private void Awake() 
     { 
         player = GetComponent<Player>(); 
+
+        moveSpeed = movementDetails.GetMoveSpeed();
     } 
+
+    private void Start()
+    {
+        // создаём waitforfixed update для использования coroutine
+        waitForFixedUpdate = new WaitForFixedUpdate();
+
+        /**
+        SetStartingWeapon();
+
+        // Set player animation speed
+        SetPlayerAnimationSpeed();*/
+
+    }
 
     private void Update() 
     { 
+        // если перекат, то нельзя двигаться
+        if (isPlayerRolling) return;
+
         // обработка movement input игрока
         MovementInput(); 
         // обработка weapon input игрока
         WeaponInput(); 
+
+        PlayerRollCooldownTimer();
     }
 
     /// <summary> 
@@ -28,8 +56,86 @@ public class PlayerControl : MonoBehaviour
     /// </summary> 
     private void MovementInput() 
     { 
-        player. idleEvent.CallIdleEvent();
+        float horizontalMovement = Input.GetAxisRaw("Horizontal");
+        float verticalMovement = Input.GetAxisRaw("Vertical");
+        bool rightMouseButtonDown = Input.GetMouseButtonDown(1);
+
+        // Вектор напрвления исходя из инпута
+        Vector2 direction = new Vector2(horizontalMovement, verticalMovement);
+
+        // Для диагонального напрвления (пифагорейское приближение)
+        if (horizontalMovement != 0f && verticalMovement != 0f)
+        {
+            direction *= 0.7f;
+        }
+
+        // Если есть движение либо движение, либо перекат
+        if (direction != Vector2.zero)
+        {
+            player.movementByVelocityEvent.CallMovementByVelocityEvent(direction, moveSpeed);
+
+            if (!rightMouseButtonDown)
+            {
+                // тригерим мувмент ивент
+                player.movementByVelocityEvent.CallMovementByVelocityEvent(direction, moveSpeed);
+            }
+            // иначе игрок делает перекат, если не в перезарядке
+            else if (playerRollCooldownTimer <= 0f)
+            {
+                PlayerRoll((Vector3)direction);
+            }
+
+        }
+        // иначе тригерим idle
+        else
+        {
+            player.idleEvent.CallIdleEvent();
+        }
     } 
+
+    private void PlayerRoll(Vector3 direction)
+    {
+        playerRollCoroutine = StartCoroutine(PlayerRollRoutine(direction));
+    }
+
+    /// <summary>
+    /// Player roll coroutine
+    /// </summary>
+    private IEnumerator PlayerRollRoutine(Vector3 direction)
+    {
+        //minDistance, чтобы решить, когда выходить из цикла
+        float minDistance = 0.2f;
+
+        isPlayerRolling = true;
+
+        Vector3 targetPosition = player.transform.position + (Vector3)direction * movementDetails.rollDistance;
+
+        while (Vector3.Distance(player.transform.position, targetPosition) > minDistance)
+        {
+            player.movementToPositionEvent.CallMovementToPositionEvent(targetPosition, player.transform.position, movementDetails.rollSpeed, direction, isPlayerRolling);
+
+            // yield and ждём fixed update
+            yield return waitForFixedUpdate;
+
+        }
+
+        isPlayerRolling = false;
+
+        // устанавливаем перезарядку для переката
+        playerRollCooldownTimer = movementDetails.rollCooldownTime;
+
+        player.transform.position = targetPosition;
+
+    }
+
+    private void PlayerRollCooldownTimer()
+    {
+        if (playerRollCooldownTimer >= 0f)
+        {
+            playerRollCooldownTimer -= Time.deltaTime;
+        }
+    }
+
     /// <summary> 
     /// weapon input игрока
     /// </summary> 
@@ -64,4 +170,17 @@ public class PlayerControl : MonoBehaviour
         // затригерить ивент направления оружия 
         player.aimWeaponEvent.CallAimWeaponEvent(playerAimDirection, playerAngleDegrees, weaponAngleDegrees, weaponDirection);
     }
+
+        #region Validation
+
+#if UNITY_EDITOR
+
+    private void OnValidate()
+    {
+        HelperUtilities.ValidateCheckNullValue(this, nameof(movementDetails), movementDetails);
+    }
+
+#endif
+
+    #endregion Validation
 }
