@@ -22,6 +22,12 @@ public static class Settings
     public static int rollRight = Animator.StringToHash("rollRight");
     public static int rollLeft = Animator.StringToHash("rollLeft");
     public static int rollDown = Animator.StringToHash("rollDown");
+    public static float baseSpeedForPlayerAnimations = 8f;
 
     #endregion
+
+    #region FIRING CONTROL
+    public const float useAimAngleDistance = 3.5f; // if the target distance is less than this then the aim angle will be used (calculated from player), else the weapon aim angle will be used (calculated from the weapon). 
+    #endregion
+
 }

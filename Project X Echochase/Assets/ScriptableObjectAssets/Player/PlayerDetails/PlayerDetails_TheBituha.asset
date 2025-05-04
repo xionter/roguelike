@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b0d12ea014cabfffb8e965adead7aad, type: 3}
-  m_Name: PlayerDetails_TheThief
+  m_Name: PlayerDetails_TheBituha
   m_EditorClassIdentifier: 
-  playerCharacterName: The Thief
-  playerPrefab: {fileID: 7221729084509917911, guid: 8dddbc17c7fd9131f866fac5a605ca5f, type: 3}
+  playerCharacterName: The Bituha
+  playerPrefab: {fileID: 4140692927711411615, guid: 88d3c0f0be4bfd048a1b94c070f4e750, type: 3}
   runtimeAnimatorController: {fileID: 0}
-  playerHealthAmount: 80
+  playerHealthAmount: 100
   startingWeapon: {fileID: 11400000, guid: d270cfa2d75ea4afeaf74f243e5bbf20, type: 2}
   startingWeaponList:
   - {fileID: 11400000, guid: d270cfa2d75ea4afeaf74f243e5bbf20, type: 2}
-  playerMiniMapIcon: {fileID: 4446427620928304674, guid: 07617cb2c5391b293bd9518f2048edd7, type: 3}
-  playerHandSprite: {fileID: -316271039987876998, guid: 8a9e4c6c7c1d5127ca35a3c2ccf66146, type: 3}
+  playerMiniMapIcon: {fileID: 0}
+  playerHandSprite: {fileID: 0}

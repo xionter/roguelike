@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomNodeTypeList: {fileID: 11400000, guid: 3f31e111c51918d43841dfe1b7a83edf, type: 2}
+  currentPlayer: {fileID: 11400000, guid: 8aafbe5132efd72668c8782e44e39180, type: 2}
