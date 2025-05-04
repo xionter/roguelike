@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 [System.Serializable]
-public class Doorway 
+public class DoorWay 
 {
     public Vector2Int position;
     public Orientation orientation;
