@@ -71,20 +71,20 @@ public class DungeonLevelSO : ScriptableObject
         bool isEntrance = false;
 
         // Loop through all room templates to check that this node type has been specified
-        /*foreach (RoomTemplateSO roomTemplateSO in roomTemplateList)
-        {
-            if (roomTemplateSO == null)
-                return;
-
-            if (roomTemplateSO.roomNodeType.isCorridorEW)
-                isEWCorridor = true;
-
-            if (roomTemplateSO.roomNodeType.isCorridorNS)
-                isNSCorridor = true;
-
-            if (roomTemplateSO.roomNodeType.isEntrance)
-                isEntrance = true;
-        }*/
+        // foreach (RoomTemplateSO roomTemplateSO in roomTemplateList)
+        // {
+        //     if (roomTemplateSO == null)
+        //         return;
+        //
+        //     if (roomTemplateSO.roomNodeType.isCorridorEW)
+        //         isEWCorridor = true;
+        //
+        //     if (roomTemplateSO.roomNodeType.isCorridorNS)
+        //         isNSCorridor = true;
+        //
+        //     if (roomTemplateSO.roomNodeType.isEntrance)
+        //         isEntrance = true;
+        // }
 
         if (isEWCorridor == false)
         {
