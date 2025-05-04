@@ -36,6 +36,7 @@ public class GenerateDungeonWindow : EditorWindow
         {
             // Запускаем генерацию и закрываем окно
             ProceduralDungeonGenerator.GenerateDungeon(graph, totalRooms, difficulty);
+            
             Close();
         }
         if (GUILayout.Button("Cancel", GUILayout.Height(30)))
