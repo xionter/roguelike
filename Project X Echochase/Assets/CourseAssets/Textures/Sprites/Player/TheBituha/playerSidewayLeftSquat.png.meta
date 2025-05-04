@@ -115,12 +115,12 @@ TextureImporter:
       name: playerSidewayLeftSquat_0
       rect:
         serializedVersion: 2
-        x: 9
+        x: 10
         y: 0
-        width: 12
+        width: 10
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -137,12 +137,12 @@ TextureImporter:
       name: playerSidewayLeftSquat_1
       rect:
         serializedVersion: 2
-        x: 41
+        x: 42
         y: 0
-        width: 12
-        height: 26
+        width: 10
+        height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -159,12 +159,12 @@ TextureImporter:
       name: playerSidewayLeftSquat_2
       rect:
         serializedVersion: 2
-        x: 74
+        x: 75
         y: 0
-        width: 12
-        height: 25
+        width: 10
+        height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -181,12 +181,12 @@ TextureImporter:
       name: playerSidewayLeftSquat_3
       rect:
         serializedVersion: 2
-        x: 105
+        x: 106
         y: 0
-        width: 12
-        height: 26
+        width: 10
+        height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -203,12 +203,12 @@ TextureImporter:
       name: playerSidewayLeftSquat_4
       rect:
         serializedVersion: 2
-        x: 137
+        x: 138
         y: 0
-        width: 12
+        width: 10
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -225,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 418223e9e1b44bd40b1a7adb6ed87440
     internalID: 0
     vertices: []
     indices: 

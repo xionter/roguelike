@@ -121,12 +121,12 @@ TextureImporter:
       name: playerPolubokomGoLeft_0
       rect:
         serializedVersion: 2
-        x: 3
+        x: 4
         y: 0
-        width: 25
-        height: 27
+        width: 23
+        height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -143,12 +143,12 @@ TextureImporter:
       name: playerPolubokomGoLeft_1
       rect:
         serializedVersion: 2
-        x: 35
+        x: 36
         y: 0
-        width: 25
-        height: 27
+        width: 23
+        height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -165,12 +165,12 @@ TextureImporter:
       name: playerPolubokomGoLeft_2
       rect:
         serializedVersion: 2
-        x: 67
+        x: 68
         y: 0
-        width: 25
-        height: 27
+        width: 23
+        height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -187,12 +187,12 @@ TextureImporter:
       name: playerPolubokomGoLeft_3
       rect:
         serializedVersion: 2
-        x: 99
+        x: 100
         y: 0
-        width: 25
-        height: 27
+        width: 23
+        height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -209,12 +209,12 @@ TextureImporter:
       name: playerPolubokomGoLeft_4
       rect:
         serializedVersion: 2
-        x: 131
+        x: 132
         y: 0
-        width: 25
-        height: 27
+        width: 23
+        height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -231,12 +231,12 @@ TextureImporter:
       name: playerPolubokomGoLeft_5
       rect:
         serializedVersion: 2
-        x: 163
+        x: 164
         y: 0
-        width: 25
-        height: 27
+        width: 23
+        height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -253,12 +253,12 @@ TextureImporter:
       name: playerPolubokomGoLeft_6
       rect:
         serializedVersion: 2
-        x: 195
+        x: 196
         y: 0
-        width: 25
-        height: 27
+        width: 23
+        height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -275,7 +275,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8a0b2439e4f2ae546b0a52fa85faa851
     internalID: 0
     vertices: []
     indices: 
