@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
-    // Start после первого кола Update
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float movSpeed;
     private float SpeedX;
     private float SpeedY;
@@ -12,7 +12,7 @@ public class PlayerCtrl : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // update колится каждый фрейм 
+    // Update is called once per frame
     void Update()
     {
         SpeedX = Input.GetAxis("Horizontal") * movSpeed;
