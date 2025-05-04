@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3723363873813979793}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WeaponAnchorPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,9 @@ GameObject:
   - component: {fileID: 5646830649445825655}
   - component: {fileID: 9045451976691388203}
   - component: {fileID: 4665053362640731931}
-  m_Layer: 0
+  - component: {fileID: 2551514032476054023}
+  - component: {fileID: 5322083119543408}
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -99,8 +101,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2157414823007768168}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -653709415
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!212 &1361788166954385495
@@ -144,8 +146,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -653709415
+  m_SortingLayer: 4
   m_SortingOrder: 2
   m_Sprite: {fileID: -892881270494569320, guid: 788b52df224c1d14594c1176892c7ab3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -157,7 +159,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &815308625970066193
 Animator:
   serializedVersion: 7
@@ -342,7 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b761fd355b9ae2918e1072135c9c919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponRotationPointTransform: {fileID: 0}
+  weaponRotationPointTransform: {fileID: 8246654727161238781}
 --- !u!114 &5542489517625524299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDetails: {fileID: 0}
   health: {fileID: 0}
+  movementByVelocityEvent: {fileID: 0}
   idleEvent: {fileID: 0}
   aimWeaponEvent: {fileID: 0}
   spriteRenderer: {fileID: 0}
@@ -385,7 +388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3302670352f89e7b5840695c0119f1cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponShootPosition: {fileID: 0}
+  weaponShootPosition: {fileID: 8219412494465006062}
+  movementDetails: {fileID: 11400000, guid: 61a00778be115ec29a68d2ac657e0d3f, type: 2}
 --- !u!114 &9045451976691388203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +414,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6736d6329240c734eadb23cddd0b5365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2551514032476054023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2157414823007768168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50378c4ceb87624e8335e6a1291550d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5322083119543408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2157414823007768168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84344190d7638f04ca342e3f561329d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2826064022218878136
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +447,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8219412494465006062}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WeaponShootPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -452,7 +480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 254430277996393206}
   - component: {fileID: 485790082422090393}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HandNoWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,7 +567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8107036029597376393}
   - component: {fileID: 2419554857579184249}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -627,7 +655,7 @@ GameObject:
   - component: {fileID: 8382154663591038218}
   - component: {fileID: 4045676673981784286}
   - component: {fileID: 7733441880709752343}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -761,7 +789,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8246654727161238781}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WeaponRotationPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -795,7 +823,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3035067655768151127}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WeaponEffectPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
