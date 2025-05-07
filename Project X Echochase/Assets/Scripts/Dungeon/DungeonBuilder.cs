@@ -56,9 +56,8 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
 
                 dungeonRebuildAttemptsForNodeGraph++;
 
-                dungeonBuildSuccessful = AttemptToBuildRandomDungeon(roomNodeGraph);
+                dungeonBuildSuccessful = !AttemptToBuildRandomDungeon(roomNodeGraph);
             }
-
 
             if (dungeonBuildSuccessful)
             {
@@ -474,7 +473,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     
     private RoomNodeGraphSO GetRandomRoomNodeGraph(RoomNodeGraphSO roomNodeGraph)
     {
-        // return dungeonLevel.roomNodeGraph;
+        return dungeonLevel.roomNodeGraph;
         roomNodeGraph = ScriptableObject.CreateInstance<RoomNodeGraphSO>();
         string path = $"Assets/ScriptableObjectAssets/Dungeon/Level_Graph.asset";
         if (string.IsNullOrEmpty(AssetDatabase.GetAssetPath(roomNodeGraph)))
