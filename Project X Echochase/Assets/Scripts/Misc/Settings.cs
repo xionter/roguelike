@@ -2,6 +2,13 @@ using UnityEngine;
 
 public static class Settings 
 {
+    #region Dungeon BUILD SETTINGS
+
+    public const int maxDungeonRebuildAttemptsForRoomGraph = 1000;
+    public const int maxDungeonBuildAttempts = 10;
+
+    #endregion
+    
     #region Room settings
 
     public const int maxChildCorridors = 3;
