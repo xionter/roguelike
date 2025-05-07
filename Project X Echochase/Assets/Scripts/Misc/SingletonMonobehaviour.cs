@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public abstract class SingletonMonobehaviour<T> : MonoBehaviour where T : MonoBehaviour
+public abstract class SingletonMonobehaviour<T> : MonoBehaviour where T: MonoBehaviour
 {
     private static T instance;
-
+    
     public static T Instance
     {
         get
@@ -11,7 +11,7 @@ public abstract class SingletonMonobehaviour<T> : MonoBehaviour where T : MonoBe
             return instance;
         }
     }
-
+    
     protected virtual void Awake()
     {
         if (instance == null)
