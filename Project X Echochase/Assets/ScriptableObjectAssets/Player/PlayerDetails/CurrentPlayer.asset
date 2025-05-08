@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4a521948fb778a2aa0aa88bbf5ad68, type: 3}
   m_Name: CurrentPlayer
   m_EditorClassIdentifier: 
-  playerDetails: {fileID: 0}
-  playerName: 
+  playerDetails: {fileID: 11400000, guid: 1c883ba5e61eeba678d8aaacb28e8abc, type: 2}
+  playerName: Bituha
