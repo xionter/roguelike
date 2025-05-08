@@ -110,7 +110,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: -653709415
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_SortAtRoot: 0
 --- !u!212 &1361788166954385495
 SpriteRenderer:
