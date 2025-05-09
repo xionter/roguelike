@@ -74,4 +74,22 @@ public class InstantiatedRoom : MonoBehaviour
     {
         collisionTilemap.gameObject.GetComponent<TilemapRenderer>().enabled = false;
     }
+
+    public void DisableRoomCollider()
+    {
+        boxCollider2D.enabled = false;
+    }
+
+    public void LockDoors()
+    {
+        Door[] doorArray = GetComponentsInChildren<Door>();
+
+        foreach (Door door in doorArray)
+        {
+            door.LockDoor();
+        }
+
+        DisableRoomCollider();
+    }
+
 }

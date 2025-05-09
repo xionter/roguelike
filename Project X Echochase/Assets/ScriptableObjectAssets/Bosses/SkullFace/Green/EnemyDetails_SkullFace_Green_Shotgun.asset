@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: SkullFace Green
   enemyPrefab: {fileID: 3758058488491148191, guid: f131ecea92ad59f43b96761d386889d0, type: 3}
+

@@ -37,4 +37,17 @@ public static class Settings
     public const float useAimAngleDistance = 3.5f; // if the target distance is less than this then the aim angle will be used (calculated from player), else the weapon aim angle will be used (calculated from the weapon). 
     #endregion
 
+    #region GAMEOBJECT TAGS
+    public const string playerTag = "Player";
+    public const string playerWeapon = "playerWeapon";
+    #endregion
+
+    // анимации для врагов
+    public static float baseSpeedForEnemyAnimations = 3f;
+
+
+    // Параметры для дверей
+    public static int open = Animator.StringToHash("open");
+
+
 }

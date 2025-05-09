@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: SlimeBlockKing Red
   enemyPrefab: {fileID: 7319223158551244009, guid: fdd442992e79132499c80b1a9cfb7fed, type: 3}
+

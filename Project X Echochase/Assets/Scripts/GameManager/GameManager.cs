@@ -33,6 +33,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     #endregion Tooltip
 */
     [SerializeField] private DungeonLevelSO dungeonLevelList;
+//  [SerializeField] private List<DungeonLevelSO> dungeonLevelList;
 
     #region Tooltip
 
@@ -46,7 +47,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     private Player player;
 
     [HideInInspector] public GameState gameState;
-    //[HideInInspector] public GameState previousGameState;
+    [HideInInspector] public GameState previousGameState;
     //private long gameScore;
     //private int scoreMultiplier;
  //   private InstantiatedRoom bossRoom;
@@ -69,8 +70,17 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
+        previousGameState = GameState.gameStarted;
         gameState = GameState.gameStarted;
+
+        //gameScore = 0;
+
+        //scoreMultiplier = 1;
+
+        // Set screen to black
+        //StartCoroutine(Fade(0f, 1f, 0f, Color.black));
     }
+
 
         /// <summary>
     /// Create player in scene at position
@@ -100,7 +110,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         switch (gameState)
         {
             case GameState.gameStarted:
-                PlayDungeonLevel();
+                PlayDungeonLevel(currentDungeonLevelListIndex);
                 
                 gameState = GameState.playingLevel;
 
@@ -108,28 +118,38 @@ public class GameManager : SingletonMonobehaviour<GameManager>
             
         }
     }
-
-    private void PlayDungeonLevel()
+    /*
+    private void StaticEventHandler_OnRoomChanged(RoomChangedEventArgs roomChangedEventArgs)
     {
-        // Build dungeon for level
-        var dungeonBuiltSucessfully = DungeonBuilder.Instance.GenerateDungeon(dungeonLevelList);
+        SetCurrentRoom(roomChangedEventArgs.room);
+    }*/
+
+
+    private void PlayDungeonLevel(int dungeonLevelListIndex)
+    {
+        bool dungeonBuiltSucessfully = DungeonBuilder.Instance.GenerateDungeon(dungeonLevelList);
+        //bool dungeonBuiltSucessfully = DungeonBuilder.Instance.GenerateDungeon(dungeonLevelList[dungeonLevelListIndex]);
 
         if (!dungeonBuiltSucessfully)
         {
             Debug.LogError("Couldn't build dungeon from specified rooms and node graphs");
         }
 
+    /*
         // Call static event that room has changed.
-        //StaticEventHandler.CallRoomChangedEvent(currentRoom);
+        StaticEventHandler.CallRoomChangedEvent(currentRoom);
 
         // Set player roughly mid-room
-//        player.gameObject.transform.position = new Vector3((currentRoom.lowerBounds.x + currentRoom.upperBounds.x) / 2f, (currentRoom.lowerBounds.y + currentRoom.upperBounds.y) / 2f, 0f);
+        //player.gameObject.transform.position = new Vector3((currentRoom.lowerBounds.x + currentRoom.upperBounds.x) / 2f, (currentRoom.lowerBounds.y + currentRoom.upperBounds.y) / 2f, 0f);
 
         // Get nearest spawn point in room nearest to player
         //player.gameObject.transform.position = HelperUtilities.GetSpawnPositionNearestToPlayer(player.gameObject.transform.position);
 
+        // Display Dungeon Level Text
+        StartCoroutine(DisplayDungeonLevelText());
+
         //// ** Demo code
-        //RoomEnemiesDefeated();
+        //RoomEnemiesDefeated();*/
     }
 
     public Player GetPlayer()
@@ -137,8 +157,18 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         return player;
     }
 
+    public Room GetCurrentRoom()
+    {
+        return currentRoom;
+    }
 
 
+
+    public DungeonLevelSO GetCurrentDungeonLevel()
+    {
+        return dungeonLevelList;
+        //return dungeonLevelList[currentDungeonLevelListIndex];
+    }
 
     #region Validation
 #if UNITY_EDITOR
