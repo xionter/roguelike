@@ -14,12 +14,15 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private MovementDetailsSO movementDetails;
 
     private Player player; 
+    private bool leftMouseDownPreviousFrame = false;
     private float moveSpeed;
     private int currentWeaponIndex = 1;
     private Coroutine playerRollCoroutine;
     private WaitForFixedUpdate waitForFixedUpdate;
     private bool isPlayerRolling = false;
     private float playerRollCooldownTimer = 0f;
+    private bool isPlayerMovementDisabled = false;
+
 
     private void Awake() 
     { 
@@ -63,6 +66,8 @@ public class PlayerControl : MonoBehaviour
 
     private void Update() 
     { 
+        if (isPlayerMovementDisabled)
+            return;
         // если перекат, то нельзя двигаться
         if (isPlayerRolling) return;
 
@@ -151,6 +156,25 @@ public class PlayerControl : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        StopPlayerRollRoutine();
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        StopPlayerRollRoutine();
+    }
+
+    private void StopPlayerRollRoutine()
+    {
+        if (playerRollCoroutine != null)
+        {
+            StopCoroutine(playerRollCoroutine);
+
+            isPlayerRolling = false;
+        }
+    }
     private void PlayerRollCooldownTimer()
     {
         if (playerRollCooldownTimer >= 0f)
@@ -177,7 +201,7 @@ public class PlayerControl : MonoBehaviour
         //SwitchWeaponInput();
 
         // перезарядить оружие
-        //ReloadWeaponInput();
+        ReloadWeaponInput();
 
     } 
 
@@ -210,12 +234,12 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             // тригер fireWeaponEvent
-            player.fireWeaponEvent.CallFireWeaponEvent(true, /*leftMouseDownPreviousFrame,*/ playerAimDirection, playerAngleDegrees, weaponAngleDegrees, weaponDirection);
-            //leftMouseDownPreviousFrame = true;
+            player.fireWeaponEvent.CallFireWeaponEvent(true, leftMouseDownPreviousFrame, playerAimDirection, playerAngleDegrees, weaponAngleDegrees, weaponDirection);
+            leftMouseDownPreviousFrame = true;
         }
         else
         {
-            //leftMouseDownPreviousFrame = false;
+            leftMouseDownPreviousFrame = false;
         }
     }
 
@@ -226,6 +250,23 @@ public class PlayerControl : MonoBehaviour
             currentWeaponIndex = weaponIndex;
             player.setActiveWeaponEvent.CallSetActiveWeaponEvent(player.weaponList[weaponIndex - 1]);
         }
+    }
+
+    private void ReloadWeaponInput()
+    {
+        Weapon currentWeapon = player.activeWeapon.GetCurrentWeapon();
+
+        if (currentWeapon.isWeaponReloading) return;
+
+        if (currentWeapon.weaponRemainingAmmo < currentWeapon.weaponDetails.weaponClipAmmoCapacity && !currentWeapon.weaponDetails.hasInfiniteAmmo) return;
+
+        if (currentWeapon.weaponClipRemainingAmmo == currentWeapon.weaponDetails.weaponClipAmmoCapacity) return;
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            player.reloadWeaponEvent.CallReloadWeaponEvent(player.activeWeapon.GetCurrentWeapon(), 0);
+        }
+
     }
 
 

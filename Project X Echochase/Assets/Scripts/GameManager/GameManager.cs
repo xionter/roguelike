@@ -101,8 +101,11 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     private void Update()
     {
         HandleGameState();
-        if (Input.GetKeyDown(KeyCode.R))
+        //тестирование
+        /*
+        if (Input.GetKeyDown(KeyCode.P))
             gameState = GameState.gameStarted;
+        */
     }
 
     private void HandleGameState()

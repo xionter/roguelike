@@ -64,6 +64,9 @@ GameObject:
   - component: {fileID: 5273481735452337913}
   - component: {fileID: 1799048370881372070}
   - component: {fileID: 7529762106163924904}
+  - component: {fileID: 5301369924317975913}
+  - component: {fileID: -945982398104060143}
+  - component: {fileID: -7089175497538897719}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -375,6 +378,8 @@ MonoBehaviour:
   setActiveWeaponEvent: {fileID: 0}
   activeWeapon: {fileID: 0}
   weaponFiredEvent: {fileID: 0}
+  reloadWeaponEvent: {fileID: 0}
+  weaponReloadedEvent: {fileID: 0}
   spriteRenderer: {fileID: 0}
   animator: {fileID: 0}
 --- !u!114 &5358370203006891376
@@ -536,6 +541,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d00c4a42e78ef53e892f8cbd8249fa55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5301369924317975913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2157414823007768168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a8861942ee3862eab1478aaa8968ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-945982398104060143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2157414823007768168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f48b5516b588aa6b3bc1b5cfa5639e06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-7089175497538897719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2157414823007768168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5bb3efe99268c88c9084ccc7c19ecf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2826064022218878136

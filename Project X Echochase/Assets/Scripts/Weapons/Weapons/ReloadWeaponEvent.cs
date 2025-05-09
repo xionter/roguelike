@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using System;
+using UnityEngine;
+
+[DisallowMultipleComponent]
+public class ReloadWeaponEvent : MonoBehaviour
+{
+    public event Action<ReloadWeaponEvent, ReloadWeaponEventArgs> OnReloadWeapon;
+
+    /// <summary>
+    /// Если число патронов тоже надо увеличить, то указать topUpAmmoPercent
+    /// </summary>
+    public void CallReloadWeaponEvent(Weapon weapon, int topUpAmmoPercent)
+    {
+        OnReloadWeapon?.Invoke(this, new ReloadWeaponEventArgs() { weapon = weapon, topUpAmmoPercent = topUpAmmoPercent });
+    }
+}
+
+
+public class ReloadWeaponEventArgs : EventArgs
+{
+    public Weapon weapon;
+    public int topUpAmmoPercent;
+}

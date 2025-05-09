@@ -25,9 +25,9 @@ using UnityEngine.Rendering;
 [RequireComponent(typeof(SetActiveWeaponEvent))]
 [RequireComponent(typeof(ActiveWeapon))]
 [RequireComponent(typeof(WeaponFiredEvent))]
-//[RequireComponent(typeof(ReloadWeaponEvent))]
-//[RequireComponent(typeof(ReloadWeapon))]
-//[RequireComponent(typeof(WeaponReloadedEvent))]
+[RequireComponent(typeof(ReloadWeaponEvent))]
+[RequireComponent(typeof(ReloadWeapon))]
+[RequireComponent(typeof(WeaponReloadedEvent))]
 [RequireComponent(typeof(AnimatePlayer))]
 [RequireComponent(typeof(SortingGroup))]
 [RequireComponent(typeof(SpriteRenderer))]
@@ -55,8 +55,8 @@ public class Player : MonoBehaviour
     [HideInInspector] public SetActiveWeaponEvent setActiveWeaponEvent;
     [HideInInspector] public ActiveWeapon activeWeapon;
     [HideInInspector] public WeaponFiredEvent weaponFiredEvent;
-   // [HideInInspector] public ReloadWeaponEvent reloadWeaponEvent;
-   // [HideInInspector] public WeaponReloadedEvent weaponReloadedEvent;
+    [HideInInspector] public ReloadWeaponEvent reloadWeaponEvent;
+    [HideInInspector] public WeaponReloadedEvent weaponReloadedEvent;
     [HideInInspector] public SpriteRenderer spriteRenderer;
     [HideInInspector] public Animator animator;
 
@@ -77,46 +77,37 @@ public class Player : MonoBehaviour
         setActiveWeaponEvent = GetComponent<SetActiveWeaponEvent>();
         activeWeapon = GetComponent<ActiveWeapon>();
         weaponFiredEvent = GetComponent<WeaponFiredEvent>();
-        //reloadWeaponEvent = GetComponent<ReloadWeaponEvent>();
-       // weaponReloadedEvent = GetComponent<WeaponReloadedEvent>();
+        reloadWeaponEvent = GetComponent<ReloadWeaponEvent>();
+        weaponReloadedEvent = GetComponent<WeaponReloadedEvent>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
 
-
-    /// <summary>
-    /// Initialize the player
-    /// </summary>
     public void Initialize(PlayerDetailsSO playerDetails)
     {
         this.playerDetails = playerDetails;
 
-        //Create player starting weapons
         CreatePlayerStartingWeapons();
 
-
-        // Set player starting health
         SetPlayerHealth();
     }
 
     private void OnEnable()
     {
-        // Subscribe to player health event
         //healthEvent.OnHealthChanged += HealthEvent_OnHealthChanged;
     }
 
     private void OnDisable()
     {
-        // Unsubscribe from player health event
         //healthEvent.OnHealthChanged -= HealthEvent_OnHealthChanged;
     }
 
     /// <summary>
-    /// Handle health changed event
+    /// обработка изменения хп
     /// </summary>
     /*private void HealthEvent_OnHealthChanged(HealthEvent healthEvent, HealthEventArgs healthEventArgs)
     {
-        // If player has died
+        // если игрок умер
         if (healthEventArgs.healthAmount <= 0f)
         {
             destroyedEvent.CallDestroyedEvent(true, 0);
@@ -125,63 +116,43 @@ public class Player : MonoBehaviour
     }
 */
 
-    /// <summary>
-    /// Set the player starting weapon
-    /// </summary>
     private void CreatePlayerStartingWeapons()
     {
-        // Clear list
         weaponList.Clear();
 
-        // Populate weapon list from starting weapons
         foreach (WeaponDetailsSO weaponDetails in playerDetails.startingWeaponList)
         {
-            // Add weapon to player
             AddWeaponToPlayer(weaponDetails);
         }
     }
 
-    /// <summary>
-    /// Set player health from playerDetails SO
-    /// </summary>
     private void SetPlayerHealth()
     {
         health.SetStartingHealth(playerDetails.playerHealthAmount);
     }
 
-    /// <summary>
-    /// Returns the player position
-    /// </summary>
     public Vector3 GetPlayerPosition()
     {
         return transform.position;
     }
 
-
-    /// <summary>
-    /// Add a weapon to the player weapon dictionary
-    /// </summary>
     public Weapon AddWeaponToPlayer(WeaponDetailsSO weaponDetails)
     {
         Weapon weapon = new Weapon() { weaponDetails = weaponDetails, weaponReloadTimer = 0f, weaponClipRemainingAmmo = weaponDetails.weaponClipAmmoCapacity, weaponRemainingAmmo = weaponDetails.weaponAmmoCapacity, isWeaponReloading = false };
 
-        // Add the weapon to the list
+        // добавление оружия в список
         weaponList.Add(weapon);
 
-        // Set weapon position in list
+        // установка положения оружия
         weapon.weaponListPosition = weaponList.Count;
 
-        // Set the added weapon as active
+        // добавленное оружие стало активно
         setActiveWeaponEvent.CallSetActiveWeaponEvent(weapon);
 
         return weapon;
 
     }
 
-
-    /// <summary>
-    /// Returns true if the weapon is held by the player - otherwise returns false
-    /// </summary>
     public bool IsWeaponHeldByPlayer(WeaponDetailsSO weaponDetails)
     {
 

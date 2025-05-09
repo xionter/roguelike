@@ -3,16 +3,16 @@ using UnityEngine;
 
 [RequireComponent(typeof(ActiveWeapon))]
 [RequireComponent(typeof(FireWeaponEvent))]
-//[RequireComponent(typeof(ReloadWeaponEvent))]
+[RequireComponent(typeof(ReloadWeaponEvent))]
 [RequireComponent(typeof(WeaponFiredEvent))]
 [DisallowMultipleComponent]
 public class FireWeapon : MonoBehaviour
 {
-    //private float firePreChargeTimer = 0f;
+    private float firePreChargeTimer = 0f;
     private float fireRateCoolDownTimer = 0f;
     private ActiveWeapon activeWeapon;
     private FireWeaponEvent fireWeaponEvent;
-    //private ReloadWeaponEvent reloadWeaponEvent;
+    private ReloadWeaponEvent reloadWeaponEvent;
     private WeaponFiredEvent weaponFiredEvent;
 
     private void Awake()
@@ -20,7 +20,7 @@ public class FireWeapon : MonoBehaviour
         // подгрузить компоненты
         activeWeapon = GetComponent<ActiveWeapon>();
         fireWeaponEvent = GetComponent<FireWeaponEvent>();
-        //reloadWeaponEvent = GetComponent<ReloadWeaponEvent>();
+        reloadWeaponEvent = GetComponent<ReloadWeaponEvent>();
         weaponFiredEvent = GetComponent<WeaponFiredEvent>();
     }
 
@@ -56,7 +56,7 @@ public class FireWeapon : MonoBehaviour
     /// </summary>
     private void WeaponFire(FireWeaponEventArgs fireWeaponEventArgs)
     {
-        //WeaponPreCharge(fireWeaponEventArgs);
+        WeaponPreCharge(fireWeaponEventArgs);
 
         if (fireWeaponEventArgs.fire)
         {
@@ -67,30 +67,27 @@ public class FireWeapon : MonoBehaviour
 
                 ResetCoolDownTimer();
 
-                //ResetPrechargeTimer();
+                ResetPrechargeTimer();
             }
         }
     }
 
-    /*
+    
     /// <summary>
-    /// Handle weapon precharge.
+    /// Обработка зарядки оружия
     /// </summary>
     private void WeaponPreCharge(FireWeaponEventArgs fireWeaponEventArgs)
     {
-        // Weapon precharge.
         if (fireWeaponEventArgs.firePreviousFrame)
         {
-            // Decrease precharge timer if fire button held previous frame.
             firePreChargeTimer -= Time.deltaTime;
         }
         else
         {
-            // else reset the precharge timer.
             ResetPrechargeTimer();
         }
     }
-    */
+    
     /// <summary>
     /// Проверка, может ли оружие выстрелить
     /// </summary>
@@ -110,14 +107,14 @@ public class FireWeapon : MonoBehaviour
             return false;
 
         // 
-        if (/*firePreChargeTimer > 0f ||*/ fireRateCoolDownTimer > 0f)
+        if (firePreChargeTimer > 0f || fireRateCoolDownTimer > 0f)
             return false;
 
-        // если нет партнов в барабане и не стоит бесконечные патроны
+        // если нет партнов и не стоят бесконечные патроны
         if (!activeWeapon.GetCurrentWeapon().weaponDetails.hasInfiniteClipCapacity && activeWeapon.GetCurrentWeapon().weaponClipRemainingAmmo <= 0)
         {
             // тригерим перезарядку
-            //reloadWeaponEvent.CallReloadWeaponEvent(activeWeapon.GetCurrentWeapon(), 0);
+            reloadWeaponEvent.CallReloadWeaponEvent(activeWeapon.GetCurrentWeapon(), 0);
 
             return false;
         }
@@ -240,14 +237,13 @@ public class FireWeapon : MonoBehaviour
     }
 
     /// <summary>
-    /// Reset precharge timers
+    /// Обновить таймер precharge
     /// </summary>
-    /*private void ResetPrechargeTimer()
+    private void ResetPrechargeTimer()
     {
-        // Reset precharge timer
         firePreChargeTimer = activeWeapon.GetCurrentWeapon().weaponDetails.weaponPrechargeTime;
     }
-    */
+    
 
     /*
     /// <summary>
@@ -255,17 +251,13 @@ public class FireWeapon : MonoBehaviour
     /// </summary>
     private void WeaponShootEffect(float aimAngle)
     {
-        // Process if there is a shoot effect & prefab
         if (activeWeapon.GetCurrentWeapon().weaponDetails.weaponShootEffect != null && activeWeapon.GetCurrentWeapon().weaponDetails.weaponShootEffect.weaponShootEffectPrefab != null)
         {
-            // Get weapon shoot effect gameobject from the pool with particle system component
             WeaponShootEffect weaponShootEffect = (WeaponShootEffect)PoolManager.Instance.ReuseComponent(activeWeapon.GetCurrentWeapon().weaponDetails.weaponShootEffect.weaponShootEffectPrefab, activeWeapon.GetShootEffectPosition(), Quaternion.identity);
 
-            // Set shoot effect
             weaponShootEffect.SetShootEffect(activeWeapon.GetCurrentWeapon().weaponDetails.weaponShootEffect, aimAngle);
 
-            // Set gameobject active (the particle system is set to automatically disable the
-            // gameobject once finished)
+            // установка gameobject(система частиц всегда по дефолту отключает gameobject при завершении)
             weaponShootEffect.gameObject.SetActive(true);
         }
     }

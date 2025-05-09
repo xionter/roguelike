@@ -24,17 +24,13 @@ public class WeaponDetailsSO : ScriptableObject
     [Tooltip("Weapon Shoot Position - the offset position for the end of the weapon from the sprite pivot pont")]
     #endregion Tooltip
     public Vector3 weaponShootPosition;
-    
     #region Tooltip
     [Tooltip("Weapon current ammo")]
     #endregion Tooltip
     public AmmoDetailsSO weaponCurrentAmmo;
-    #region Tooltip
+    /*#region Tooltip
     [Tooltip("Weapon shoot effect SO - contains particle effecct parameters to be used in conjunction with the weaponShootEffectPrefab ")]
     #endregion Tooltip
-    #region Header WEAPON OPERATING VALUES
-    /**
-    
     public WeaponShootEffectSO weaponShootEffect;
     #region Tooltip
     [Tooltip("The firing sound effect SO for the weapon")]
@@ -43,13 +39,13 @@ public class WeaponDetailsSO : ScriptableObject
     #region Tooltip
     [Tooltip("The reloading sound effect SO for the weapon")]
     #endregion Tooltip
-    public SoundEffectSO weaponReloadingSoundEffect;
-    */
+    public SoundEffectSO weaponReloadingSoundEffect;*/
+    #region Header WEAPON OPERATING VALUES
     [Space(10)]
     [Header("WEAPON OPERATING VALUES")]
     #endregion Header WEAPON OPERATING VALUES
     #region Tooltip
-    //[Tooltip("Select if the weapon has infinite ammo")]
+    [Tooltip("Select if the weapon has infinite ammo")]
     #endregion Tooltip
     public bool hasInfiniteAmmo = false;
     #region Tooltip
@@ -76,6 +72,7 @@ public class WeaponDetailsSO : ScriptableObject
     [Tooltip("This is the weapon reload time in seconds")]
     #endregion Tooltip
     public float weaponReloadTime = 0f;
+
 
     #region Validation
 #if UNITY_EDITOR
