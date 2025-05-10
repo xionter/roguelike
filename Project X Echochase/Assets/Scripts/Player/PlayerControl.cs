@@ -198,7 +198,7 @@ public class PlayerControl : MonoBehaviour
         FireWeaponInput(weaponDirection, weaponAngleDegrees, playerAngleDegrees, playerAimDirection);
 
         // поменять оружие
-        //SwitchWeaponInput();
+        SwitchWeaponInput();
 
         // перезарядить оружие
         ReloadWeaponInput();
@@ -243,6 +243,28 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    private void SwitchWeaponInput()
+{
+    // переключение по колёсику мыши
+    float scrollDelta = Input.mouseScrollDelta.y;
+    if (scrollDelta < 0f) PreviousWeapon();
+    if (scrollDelta > 0f) NextWeapon();
+
+    // переключение по цифрам (1-9)
+    for (var i = 0; i < 9; ++i)
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+        {
+            SetWeaponByIndex(i + 1);
+        }
+    }
+
+    // особые случаи
+    if (Input.GetKeyDown(KeyCode.Alpha0)) SetWeaponByIndex(10);
+    if (Input.GetKeyDown(KeyCode.Minus)) SetCurrentWeaponToFirstInTheList();
+}
+
+
     private void SetWeaponByIndex(int weaponIndex)
     {
         if (weaponIndex - 1 < player.weaponList.Count)
@@ -251,6 +273,25 @@ public class PlayerControl : MonoBehaviour
             player.setActiveWeaponEvent.CallSetActiveWeaponEvent(player.weaponList[weaponIndex - 1]);
         }
     }
+
+    private void NextWeapon()
+    {
+        currentWeaponIndex++;
+        if (currentWeaponIndex > player.weaponList.Count)
+            currentWeaponIndex = 1;
+
+        SetWeaponByIndex(currentWeaponIndex);
+    }
+
+    private void PreviousWeapon()
+    {
+        currentWeaponIndex--;
+        if (currentWeaponIndex < 1)
+            currentWeaponIndex = player.weaponList.Count;
+    
+        SetWeaponByIndex(currentWeaponIndex);
+    }
+
 
     private void ReloadWeaponInput()
     {
@@ -267,6 +308,32 @@ public class PlayerControl : MonoBehaviour
             player.reloadWeaponEvent.CallReloadWeaponEvent(player.activeWeapon.GetCurrentWeapon(), 0);
         }
 
+    }
+
+    private void SetCurrentWeaponToFirstInTheList()
+    {
+        List<Weapon> tempWeaponList = new List<Weapon>();
+
+        Weapon currentWeapon = player.weaponList[currentWeaponIndex - 1];
+        currentWeapon.weaponListPosition = 1;
+        tempWeaponList.Add(currentWeapon);
+
+        int index = 2;
+
+        foreach (Weapon weapon in player.weaponList)
+        {
+            if (weapon == currentWeapon) continue;
+
+            tempWeaponList.Add(weapon);
+            weapon.weaponListPosition = index;
+            index++;
+        }
+
+        player.weaponList = tempWeaponList;
+
+        currentWeaponIndex = 1;
+
+        SetWeaponByIndex(currentWeaponIndex);
     }
 
 

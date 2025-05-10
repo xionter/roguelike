@@ -145,7 +145,7 @@ public class GameResources : MonoBehaviour
     [Tooltip("Preferred path tile for enemy navigation")]
     #endregion Tooltip
     public TileBase preferredEnemyPathTile;
-/*
+
     #region Header UI
     [Space(10)]
     [Header("UI")]
@@ -162,7 +162,7 @@ public class GameResources : MonoBehaviour
     [Tooltip("The score prefab")]
     #endregion
     public GameObject scorePrefab;
-*/
+
     #region Header CHESTS
     [Space(10)]
     [Header("CHESTS")]
@@ -220,11 +220,11 @@ public class GameResources : MonoBehaviour
         //HelperUtilities.ValidateCheckNullValue(this, nameof(musicLowSnapshot), musicLowSnapshot);
         //HelperUtilities.ValidateCheckNullValue(this, nameof(musicOffSnapshot), musicOffSnapshot); 
         //HelperUtilities.ValidateCheckNullValue(this, nameof(heartPrefab), heartPrefab);
-        //HelperUtilities.ValidateCheckNullValue(this, nameof(ammoIconPrefab), ammoIconPrefab);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(ammoIconPrefab), ammoIconPrefab);
         //HelperUtilities.ValidateCheckNullValue(this, nameof(scorePrefab), scorePrefab);
         //HelperUtilities.ValidateCheckNullValue(this, nameof(chestItemPrefab), chestItemPrefab);
         //HelperUtilities.ValidateCheckNullValue(this, nameof(heartIcon), heartIcon);
-       // HelperUtilities.ValidateCheckNullValue(this, nameof(bulletIcon), bulletIcon);
+        //HelperUtilities.ValidateCheckNullValue(this, nameof(bulletIcon), bulletIcon);
         //HelperUtilities.ValidateCheckNullValue(this, nameof(minimapSkullPrefab), minimapSkullPrefab);
     }
 

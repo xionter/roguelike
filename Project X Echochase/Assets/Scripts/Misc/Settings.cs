@@ -34,13 +34,20 @@ public static class Settings
     #endregion
 
     #region FIRING CONTROL
-    public const float useAimAngleDistance = 3.5f; // if the target distance is less than this then the aim angle will be used (calculated from player), else the weapon aim angle will be used (calculated from the weapon). 
+    public const float useAimAngleDistance = 3.5f; // если расстояние до цели меньше этого параметра, то
+    // считаем угол от игрока. Если больше, то угол от оружия
     #endregion
 
     #region GAMEOBJECT TAGS
     public const string playerTag = "Player";
     public const string playerWeapon = "playerWeapon";
     #endregion
+
+    #region UI PARAMETERS
+    public const float uiHeartSpacing = 16f;
+    public const float uiAmmoIconSpacing = 4f;
+    #endregion
+
 
     // анимации для врагов
     public static float baseSpeedForEnemyAnimations = 3f;
