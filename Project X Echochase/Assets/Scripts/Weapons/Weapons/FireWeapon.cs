@@ -127,41 +127,6 @@ public class FireWeapon : MonoBehaviour
     /// </summary>
     private void FireAmmo(float aimAngle, float weaponAimAngle, Vector3 weaponAimDirectionVector)
     {
-        // получить патроны из текущего оружия
-        AmmoDetailsSO currentAmmo = activeWeapon.GetCurrentAmmo();
-        
-        if (currentAmmo != null)
-        {
-            // рандомный ammo prefab
-            GameObject ammoPrefab = currentAmmo.ammoPrefabArray[Random.Range(0, currentAmmo.ammoPrefabArray.Length)];
-            
-            // рандомная скорость
-            float ammoSpeed = Random.Range(currentAmmo.ammoSpeedMin, currentAmmo.ammoSpeedMax);
-            
-            // получить GameObject с компонентом IFireable из pool
-            IFireable ammo = (IFireable)PoolManager.Instance.ReuseComponent(
-                ammoPrefab, 
-                activeWeapon.GetShootPosition(), 
-                Quaternion.identity);
-            
-            // инит патронов
-            ammo.InitialiseAmmo(currentAmmo, aimAngle, weaponAimAngle, ammoSpeed, weaponAimDirectionVector);
-            
-            // уменьшить число патронов
-            if (!activeWeapon.GetCurrentWeapon().weaponDetails.hasInfiniteClipCapacity)
-            {
-                activeWeapon.GetCurrentWeapon().weaponClipRemainingAmmo--;
-            }
-            
-            activeWeapon.GetCurrentWeapon().weaponRemainingAmmo--;
-            
-            // вызвать ивент
-            weaponFiredEvent.CallWeaponFiredEvent(activeWeapon.GetCurrentWeapon());
-        }
-    }
-    /*
-    private void FireAmmo(float aimAngle, float weaponAimAngle, Vector3 weaponAimDirectionVector)
-    {
         AmmoDetailsSO currentAmmo = activeWeapon.GetCurrentAmmo();
 
         if (currentAmmo != null)
@@ -199,10 +164,8 @@ public class FireWeapon : MonoBehaviour
             // подгрузить ammoPrefab из массива
             GameObject ammoPrefab = currentAmmo.ammoPrefabArray[Random.Range(0, currentAmmo.ammoPrefabArray.Length)];
 
-            // Получить рандомную скорость
             float ammoSpeed = Random.Range(currentAmmo.ammoSpeedMin, currentAmmo.ammoSpeedMax);
 
-            // Получить Gameobject с компонентом IFireable
             IFireable ammo = (IFireable)PoolManager.Instance.ReuseComponent(ammoPrefab, activeWeapon.GetShootPosition(), Quaternion.identity);
 
             ammo.InitialiseAmmo(currentAmmo, aimAngle, weaponAimAngle, ammoSpeed, weaponAimDirectionVector);
@@ -221,13 +184,13 @@ public class FireWeapon : MonoBehaviour
         // Вызвать ивент weapon fired
         weaponFiredEvent.CallWeaponFiredEvent(activeWeapon.GetCurrentWeapon());
 
-        // Display weapon shoot effect
+        // визуальные эффекты
         //WeaponShootEffect(aimAngle);
 
-        // Weapon fired sound effect
+        // звуковые эффекты
         //WeaponSoundEffect();
     }
-    */
+    
     /// <summary>
     /// Перезагрузка перезарядки
     /// </summary>
