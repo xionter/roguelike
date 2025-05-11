@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoName: PlasmaBlaster Ammo
   isPlayerAmmo: 1
-  ammoSprite: {fileID: 21300000, guid: 4df9cc7131cd27f4288bca5e76c82034, type: 3}
+  ammoSprite: {fileID: 21300000, guid: 1050718172c6e7f448da41e09f7108b5, type: 3}
   ammoPrefabArray:
   - {fileID: 5201712444714649251, guid: 82fbfe1a122653c809d066fcfd5b487d, type: 3}
   ammoMaterial: {fileID: 2100000, guid: c64696a09f1cb1a4d9766d1fe9778ca5, type: 2}

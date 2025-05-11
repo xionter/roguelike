@@ -3,11 +3,12 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 #region REQUIRE COMPONENTS
-/*[RequireComponent(typeof(HealthEvent))]
+[RequireComponent(typeof(HealthEvent))]
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(DealContactDamage))]
 [RequireComponent(typeof(DestroyedEvent))]
 [RequireComponent(typeof(Destroyed))]
+/*
 [RequireComponent(typeof(EnemyWeaponAI))]
 [RequireComponent(typeof(AimWeaponEvent))]
 [RequireComponent(typeof(AimWeapon))]
@@ -38,8 +39,9 @@ using UnityEngine.Rendering;
 public class Enemy : MonoBehaviour
 {
     [HideInInspector] public EnemyDetailsSO enemyDetails;
-    /*private HealthEvent healthEvent;
+    private HealthEvent healthEvent;
     private Health health;
+    /*
     [HideInInspector] public AimWeaponEvent aimWeaponEvent;
     [HideInInspector] public FireWeaponEvent fireWeaponEvent;
     private FireWeapon fireWeapon;
@@ -55,8 +57,9 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        /*healthEvent = GetComponent<HealthEvent>();
+        healthEvent = GetComponent<HealthEvent>();
         health = GetComponent<Health>();
+        /*
         aimWeaponEvent = GetComponent<AimWeaponEvent>();
         fireWeaponEvent = GetComponent<FireWeaponEvent>();
         fireWeapon = GetComponent<FireWeapon>();
@@ -70,7 +73,7 @@ public class Enemy : MonoBehaviour
         spriteRendererArray = GetComponentsInChildren<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
-/*
+
     private void OnEnable()
     {
         healthEvent.OnHealthChanged += HealthEvent_OnHealthLost;
@@ -81,9 +84,6 @@ public class Enemy : MonoBehaviour
         healthEvent.OnHealthChanged -= HealthEvent_OnHealthLost;
     }
 
-    /// <summary>
-    /// Handle health lost event
-    /// </summary>
     private void HealthEvent_OnHealthLost(HealthEvent healthEvent, HealthEventArgs healthEventArgs)
     {
         if (healthEventArgs.healthAmount <= 0)
@@ -92,15 +92,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Enemy destroyed
-    /// </summary>
     private void EnemyDestroyed()
     {
         DestroyedEvent destroyedEvent = GetComponent<DestroyedEvent>();
         destroyedEvent.CallDestroyedEvent(false, health.GetStartingHealth());
     }
-*/
 
     public void EnemyInitialization(EnemyDetailsSO enemyDetails, int enemySpawnNumber, DungeonLevelSO dungeonLevel)
     {
@@ -117,15 +113,13 @@ public class Enemy : MonoBehaviour
         //StartCoroutine(MaterializeEnemy());
     }
 /*
-    /// <summary>
-    /// Set enemy movement update frame
-    /// </summary>
+
     private void SetEnemyMovementUpdateFrame(int enemySpawnNumber)
     {
-        // Set frame number that enemy should process it's updates
+        // через какое число кадров враг обрабатывает обновления
         enemyMovementAI.SetUpdateFrameNumber(enemySpawnNumber % Settings.targetFrameRateToSpreadPathfindingOver);
     }
-
+*/
     private void SetEnemyStartingHealth(DungeonLevelSO dungeonLevel)
     {
         foreach (EnemyHealthDetails enemyHealthDetails in enemyDetails.enemyHealthDetailsArray)
@@ -137,9 +131,9 @@ public class Enemy : MonoBehaviour
             }
         }
         health.SetStartingHealth(Settings.defaultEnemyHealth);
-    }*/
-/*
+    }
 
+/*
     private void SetEnemyStartingWeapon()
     {
         if (enemyDetails.enemyWeapon != null)
@@ -159,16 +153,14 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator MaterializeEnemy()
     {
-        // Disable collider, Movement AI and Weapon AI
         EnemyEnable(false);
 
         yield return StartCoroutine(materializeEffect.MaterializeRoutine(enemyDetails.enemyMaterializeShader, enemyDetails.enemyMaterializeColor, enemyDetails.enemyMaterializeTime, spriteRendererArray, enemyDetails.enemyStandardMaterial));
 
-        // Enable collider, Movement AI and Weapon AI
         EnemyEnable(true);
 
     }
-*/
+
     private void EnemyEnable(bool isEnabled)
     {
         // Enable/Disable colliders
@@ -181,4 +173,5 @@ public class Enemy : MonoBehaviour
         // Enable / Disable Fire Weapon
         //fireWeapon.enabled = isEnabled;
     }
+    */
 }

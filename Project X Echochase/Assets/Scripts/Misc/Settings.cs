@@ -12,6 +12,8 @@ public static class Settings
     #region Room settings
 
     public const int maxChildCorridors = 3;
+    public const float fadeInTime = 0.5f;
+    public const float doorUnlockDelay = 1f;
 
     #endregion
 
@@ -46,6 +48,14 @@ public static class Settings
     #region UI PARAMETERS
     public const float uiHeartSpacing = 16f;
     public const float uiAmmoIconSpacing = 4f;
+    #endregion
+
+    #region ENEMY PARAMETERS
+    public const int defaultEnemyHealth = 20;
+    #endregion
+    
+    #region CONTACT DAMAGE PARAMETERS
+    public const float contactDamageCollisionResetDelay = 0.5f;
     #endregion
 
 

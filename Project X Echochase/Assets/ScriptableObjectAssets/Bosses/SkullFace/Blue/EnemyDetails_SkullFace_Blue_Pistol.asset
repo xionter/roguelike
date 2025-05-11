@@ -14,4 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: SkullFace Blue
   enemyPrefab: {fileID: 3758058488491148191, guid: 9ee461d9166ee9647951745d34cacf33, type: 3}
-
+  enemyWeapon: {fileID: 0}
+  firingIntervalMin: 1
+  firingIntervalMax: 3
+  firingDurationMin: 8
+  firingDurationMax: 10
+  firingLineOfSightRequired: 0
+  enemyHealthDetailsArray:
+  - dungeonLevel: {fileID: 0}
+    enemyHealthAmount: 0
+  - dungeonLevel: {fileID: 0}
+    enemyHealthAmount: 0
+  - dungeonLevel: {fileID: 0}
+    enemyHealthAmount: 0
+  - dungeonLevel: {fileID: 0}
+    enemyHealthAmount: 0
+  - dungeonLevel: {fileID: 0}
+    enemyHealthAmount: 0
+  - dungeonLevel: {fileID: 0}
+    enemyHealthAmount: 0
+  - dungeonLevel: {fileID: 0}
+    enemyHealthAmount: 0
+  isImmuneAfterHit: 0
+  hitImmunityTime: 0
+  isHealthBarDisplayed: 0

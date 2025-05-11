@@ -19,11 +19,11 @@ public class PlayerControl : MonoBehaviour
     private int currentWeaponIndex = 1;
     private Coroutine playerRollCoroutine;
     private WaitForFixedUpdate waitForFixedUpdate;
-    private bool isPlayerRolling = false;
     private float playerRollCooldownTimer = 0f;
     private bool isPlayerMovementDisabled = false;
 
-
+    [HideInInspector] public bool isPlayerRolling = false;
+    
     private void Awake() 
     { 
         player = GetComponent<Player>(); 

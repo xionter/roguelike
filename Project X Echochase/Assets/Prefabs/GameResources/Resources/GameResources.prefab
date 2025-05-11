@@ -54,7 +54,7 @@ MonoBehaviour:
   materializeShader: {fileID: 0}
   enemyUnwalkableCollisionTilesArray: []
   preferredEnemyPathTile: {fileID: 0}
-  heartPrefab: {fileID: 0}
+  heartPrefab: {fileID: 3382433886380462954, guid: d1fd4f5171736494295acbe88514c3b7, type: 3}
   ammoIconPrefab: {fileID: 3382433886380462954, guid: b7ffc10fdcd06e963b2a7fd5a8845d5c, type: 3}
   scorePrefab: {fileID: 0}
   chestItemPrefab: {fileID: 0}
