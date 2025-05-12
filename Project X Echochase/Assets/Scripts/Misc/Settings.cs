@@ -2,6 +2,11 @@ using UnityEngine;
 
 public static class Settings 
 {
+    #region UNITS
+    public const float pixelPerUnit = 16f;
+    public const float tileSizePixel = 16f;
+    #endregion
+
     #region Room settings
 
     public const int maxChildCorridors = 3;
