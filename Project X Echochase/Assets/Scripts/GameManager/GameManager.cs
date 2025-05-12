@@ -32,15 +32,14 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     #endregion Tooltip
 */
-    [SerializeField] private DungeonLevelSO dungeonLevelList;
-//  [SerializeField] private List<DungeonLevelSO> dungeonLevelList;
+    [SerializeField] private DungeonLevelSO dungeonLevel;
+
 
     #region Tooltip
 
     [Tooltip("Populate with the starting dungeon level for testing , first level = 0")]
 
     #endregion Tooltip
-    [SerializeField] private int currentDungeonLevelListIndex = 0;
     private Room currentRoom;
     private Room previousRoom;
     private PlayerDetailsSO playerDetails;
@@ -102,10 +101,8 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     {
         HandleGameState();
         //тестирование
-        /*
         if (Input.GetKeyDown(KeyCode.P))
             gameState = GameState.gameStarted;
-        */
     }
 
     private void HandleGameState()
@@ -113,7 +110,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         switch (gameState)
         {
             case GameState.gameStarted:
-                PlayDungeonLevel(currentDungeonLevelListIndex);
+                PlayDungeonLevel();
                 
                 gameState = GameState.playingLevel;
 
@@ -128,10 +125,9 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     }*/
 
 
-    private void PlayDungeonLevel(int dungeonLevelListIndex)
+    private void PlayDungeonLevel()
     {
-        bool dungeonBuiltSucessfully = DungeonBuilder.Instance.GenerateDungeon(dungeonLevelList);
-        //bool dungeonBuiltSucessfully = DungeonBuilder.Instance.GenerateDungeon(dungeonLevelList[dungeonLevelListIndex]);
+        bool dungeonBuiltSucessfully = DungeonBuilder.Instance.GenerateDungeon(dungeonLevel);
 
         if (!dungeonBuiltSucessfully)
         {
@@ -169,8 +165,8 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     public DungeonLevelSO GetCurrentDungeonLevel()
     {
-        return dungeonLevelList;
-        //return dungeonLevelList[currentDungeonLevelListIndex];
+        return dungeonLevel;
+        //return dungeonLevel[currentdungeonLevelIndex];
     }
 
     #region Validation
@@ -178,7 +174,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     private void OnValidate()
     {
-        //HelperUtilities.ValidateCheckEnumerableValues(this, nameof(dungeonLevelList), dungeonLevelList);
+        //HelperUtilities.ValidateCheckEnumerableValues(this, nameof(dungeonLevel), dungeonLevel);
     }
 #endif
     #endregion

@@ -17,6 +17,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     [SerializeField] private RoomTemplateSO defaultRoomTemplate;
 
     private DungeonLevelSO dungeonLevel;
+    
     protected override void Awake()
     {
         base.Awake();
