@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "PlayerDetails_", menuName = "Scriptable Objects/Player/Player Details")]
 public class PlayerDetailsSO : ScriptableObject
@@ -33,6 +34,20 @@ public class PlayerDetailsSO : ScriptableObject
     public int playerHealthAmount;
 
 
+    #region Header WEAPON
+    [Space(10)]
+    [Header("WEAPON")]
+    #endregion
+    #region Tooltip
+    [Tooltip("Player  initial starting weapon")]
+    #endregion
+    public WeaponDetailsSO startingWeapon;
+    #region Tooltip
+    [Tooltip("Populate with the list of starting weapons")]
+    #endregion
+    public List<WeaponDetailsSO> startingWeaponList;
+
+
     #region Header OTHER 
     [Space(10)] 
     [Header("OTHER")] 
@@ -52,12 +67,19 @@ public class PlayerDetailsSO : ScriptableObject
 #if UNITY_EDITOR 
     private void OnValidate() 
     { 
-        HelperUtilities. ValidateCheckEmptyString(this, nameof(playerCharacterName), playerCharacterName); 
-        HelperUtilities. ValidateCheckNullValue(this, nameof (playerPrefab), playerPrefab); 
-        HelperUtilities. ValidateCheckPositiveValue(this, nameof(playerHealthAmount), playerHealthAmount, false); 
-        HelperUtilities. ValidateCheckNullValue(this, nameof (playerMiniMapIcon), playerMiniMapIcon); 
-        HelperUtilities.ValidateCheckNullValue(this, nameof(playerHandSprite), playerHandSprite); 
-        HelperUtilities. ValidateCheckNullValue(this, nameof(runtimeAnimatorController), runtimeAnimatorController); 
+        HelperUtilities.ValidateCheckEmptyString(this, nameof(playerCharacterName), playerCharacterName);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(playerPrefab), playerPrefab);
+        HelperUtilities.ValidateCheckPositiveValue(this, nameof(playerHealthAmount), playerHealthAmount, false);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(startingWeapon), startingWeapon);
+        //HelperUtilities.ValidateCheckNullValue(this, nameof(playerMiniMapIcon), playerMiniMapIcon);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(playerHandSprite), playerHandSprite);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(runtimeAnimatorController), runtimeAnimatorController);
+        HelperUtilities.ValidateCheckEnumerableValues(this, nameof(startingWeaponList), startingWeaponList);
+
+        /*if (isImmuneAfterHit)
+        {
+            HelperUtilities.ValidateCheckPositiveValue(this, nameof(hitImmunityTime), hitImmunityTime, false);
+        }*/
     } 
 #endif 
     #endregion

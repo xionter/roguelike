@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Player))]
+[DisallowMultipleComponent]
+
 public class PlayerControl : MonoBehaviour
 {
     #region Tooltip
     [Tooltip("MovementDetailsSO scriptable object containing movement details such as speed")]
     #endregion Tooltip
 
-    [SerializeField] private Transform weaponShootPosition; 
     [SerializeField] private MovementDetailsSO movementDetails;
 
     private Player player; 
     private float moveSpeed;
+    private int currentWeaponIndex = 1;
     private Coroutine playerRollCoroutine;
     private WaitForFixedUpdate waitForFixedUpdate;
     private bool isPlayerRolling = false;
@@ -30,13 +33,33 @@ public class PlayerControl : MonoBehaviour
         // создаём waitforfixed update для использования coroutine
         waitForFixedUpdate = new WaitForFixedUpdate();
 
-        /**
+        
         SetStartingWeapon();
 
-        // Set player animation speed
-        SetPlayerAnimationSpeed();*/
-
+        SetPlayerAnimationSpeed();
     }
+
+    private void SetPlayerAnimationSpeed()
+    {
+        // чтобы скорость анимации соответствовала скорости игрока
+        player.animator.speed = moveSpeed / Settings.baseSpeedForPlayerAnimations;
+    }
+
+    private void SetStartingWeapon()
+    {
+        int index = 1;
+
+        foreach (Weapon weapon in player.weaponList)
+        {
+            if (weapon.weaponDetails == player.playerDetails.startingWeapon)
+            {
+                SetWeaponByIndex(index);
+                break;
+            }
+            index++;
+        }
+    }
+
 
     private void Update() 
     { 
@@ -146,6 +169,16 @@ public class PlayerControl : MonoBehaviour
         AimDirection playerAimDirection; 
         // направить оружие 
         AimWeaponInput(out weaponDirection, out weaponAngleDegrees, out playerAngleDegrees, out playerAimDirection); 
+
+        // выстрелить из оружия
+        FireWeaponInput(weaponDirection, weaponAngleDegrees, playerAngleDegrees, playerAimDirection);
+
+        // поменять оружие
+        //SwitchWeaponInput();
+
+        // перезарядить оружие
+        //ReloadWeaponInput();
+
     } 
 
     private void AimWeaponInput(out Vector3 weaponDirection, out float weaponAngleDegrees, out float playerAngleDegrees, out AimDirection 
@@ -153,7 +186,7 @@ public class PlayerControl : MonoBehaviour
     {
         Vector3 mouseWorldPosition = HelperUtilities.GetMouseWorldPosition(); 
         // посчитать вектора напрвления курсора от позиции выстрела
-        weaponDirection = (mouseWorldPosition - weaponShootPosition.position); 
+        weaponDirection = (mouseWorldPosition - player.activeWeapon.GetShootPosition()); 
 
         // Вычислить вектор направления курсора мыши от позиции трансформации игрока
         Vector3 playerDirection = (mouseWorldPosition - transform.position); 
@@ -171,7 +204,32 @@ public class PlayerControl : MonoBehaviour
         player.aimWeaponEvent.CallAimWeaponEvent(playerAimDirection, playerAngleDegrees, weaponAngleDegrees, weaponDirection);
     }
 
-        #region Validation
+    private void FireWeaponInput(Vector3 weaponDirection, float weaponAngleDegrees, float playerAngleDegrees, AimDirection playerAimDirection)
+    {
+        // выстрелить из оружия на лкм
+        if (Input.GetMouseButton(0))
+        {
+            // тригер fireWeaponEvent
+            player.fireWeaponEvent.CallFireWeaponEvent(true, /*leftMouseDownPreviousFrame,*/ playerAimDirection, playerAngleDegrees, weaponAngleDegrees, weaponDirection);
+            //leftMouseDownPreviousFrame = true;
+        }
+        else
+        {
+            //leftMouseDownPreviousFrame = false;
+        }
+    }
+
+    private void SetWeaponByIndex(int weaponIndex)
+    {
+        if (weaponIndex - 1 < player.weaponList.Count)
+        {
+            currentWeaponIndex = weaponIndex;
+            player.setActiveWeaponEvent.CallSetActiveWeaponEvent(player.weaponList[weaponIndex - 1]);
+        }
+    }
+
+
+    #region Validation
 
 #if UNITY_EDITOR
 

@@ -12,6 +12,8 @@ public static class Settings
     #region Room settings
 
     public const int maxChildCorridors = 3;
+    public const float fadeInTime = 0.5f;
+    public const float doorUnlockDelay = 1f;
 
     #endregion
 
@@ -29,6 +31,40 @@ public static class Settings
     public static int rollRight = Animator.StringToHash("rollRight");
     public static int rollLeft = Animator.StringToHash("rollLeft");
     public static int rollDown = Animator.StringToHash("rollDown");
+    public static float baseSpeedForPlayerAnimations = 8f;
 
     #endregion
+
+    #region FIRING CONTROL
+    public const float useAimAngleDistance = 3.5f; // если расстояние до цели меньше этого параметра, то
+    // считаем угол от игрока. Если больше, то угол от оружия
+    #endregion
+
+    #region GAMEOBJECT TAGS
+    public const string playerTag = "Player";
+    public const string playerWeapon = "playerWeapon";
+    #endregion
+
+    #region UI PARAMETERS
+    public const float uiHeartSpacing = 16f;
+    public const float uiAmmoIconSpacing = 4f;
+    #endregion
+
+    #region ENEMY PARAMETERS
+    public const int defaultEnemyHealth = 20;
+    #endregion
+    
+    #region CONTACT DAMAGE PARAMETERS
+    public const float contactDamageCollisionResetDelay = 0.5f;
+    #endregion
+
+
+    // анимации для врагов
+    public static float baseSpeedForEnemyAnimations = 3f;
+
+
+    // Параметры для дверей
+    public static int open = Animator.StringToHash("open");
+
+
 }
