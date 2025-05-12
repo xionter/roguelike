@@ -15,7 +15,7 @@ public class InstantiatedRoom : MonoBehaviour
     [HideInInspector] public Tilemap decoration2Tilemap;
     [HideInInspector] public Tilemap frontTilemap;
     [HideInInspector] public Tilemap collisionTilemap;
-    [HideInInspector] public Tilemap minimapTilemap;
+    //[HideInInspector] public Tilemap minimapTilemap;
     [HideInInspector] public Bounds roomColliderBounds;
     
     
@@ -38,8 +38,10 @@ public class InstantiatedRoom : MonoBehaviour
 
     private void PopulateTilemapMemberVariables(GameObject roomGameobject)
     {
+        Debug.Log("AMOGUS");
+
         grid = roomGameobject.GetComponentInChildren<Grid>();
-        
+        Debug.Log("AGGGJKJLSJDLFJ");
         Tilemap[] tilemaps = grid.GetComponentsInChildren<Tilemap>();
         foreach (Tilemap tilemap in tilemaps)
         {
@@ -63,10 +65,10 @@ public class InstantiatedRoom : MonoBehaviour
             {
                 collisionTilemap = tilemap;
             }
-            else if (tilemap.CompareTag("minimapTilemap "))
+            /*else if (tilemap.CompareTag("minimapTilemap "))
             {
                 minimapTilemap = tilemap;
-            }
+            }*/
         } 
     }
 
