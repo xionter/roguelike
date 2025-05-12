@@ -1249,6 +1249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1153809911}
   - component: {fileID: 1153809910}
+  - component: {fileID: 1153809912}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1287,6 +1288,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1153809912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153809909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df58069d67fe63613b9e033c4dd63726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomTemplateSO: {fileID: 11400000, guid: a497dc160aa9b3348943bcfee0a96eca, type: 2}
 --- !u!1 &1225544466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,6 +1396,12 @@ MonoBehaviour:
   poolArray:
   - poolSize: 30
     prefab: {fileID: 5201712444714649251, guid: 82fbfe1a122653c809d066fcfd5b487d, type: 3}
+    componentType: IFireable
+  - poolSize: 30
+    prefab: {fileID: 5201712444714649251, guid: d1f40bbc76d579de29116d6593fe18f8, type: 3}
+    componentType: IFireable
+  - poolSize: 30
+    prefab: {fileID: 5201712444714649251, guid: dba4167d6f0907695a6f183246370743, type: 3}
     componentType: IFireable
 --- !u!4 &1273252259
 Transform:
@@ -2052,7 +2072,7 @@ Camera:
     x: 0
     y: 0
     width: 1
-    height: 0.9996518
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
