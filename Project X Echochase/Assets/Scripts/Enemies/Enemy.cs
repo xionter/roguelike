@@ -8,7 +8,6 @@ using UnityEngine.Rendering;
 [RequireComponent(typeof(DealContactDamage))]
 [RequireComponent(typeof(DestroyedEvent))]
 [RequireComponent(typeof(Destroyed))]
-/*
 [RequireComponent(typeof(EnemyWeaponAI))]
 [RequireComponent(typeof(AimWeaponEvent))]
 [RequireComponent(typeof(AimWeapon))]
@@ -20,6 +19,7 @@ using UnityEngine.Rendering;
 [RequireComponent(typeof(ReloadWeaponEvent))]
 [RequireComponent(typeof(ReloadWeapon))]
 [RequireComponent(typeof(WeaponReloadedEvent))]
+/*
 [RequireComponent(typeof(EnemyMovementAI))]
 [RequireComponent(typeof(MovementToPositionEvent))]
 [RequireComponent(typeof(MovementToPosition))]
@@ -41,11 +41,11 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public EnemyDetailsSO enemyDetails;
     private HealthEvent healthEvent;
     private Health health;
-    /*
     [HideInInspector] public AimWeaponEvent aimWeaponEvent;
     [HideInInspector] public FireWeaponEvent fireWeaponEvent;
     private FireWeapon fireWeapon;
     private SetActiveWeaponEvent setActiveWeaponEvent;
+    /*
     private EnemyMovementAI enemyMovementAI;
     [HideInInspector] public MovementToPositionEvent movementToPositionEvent;
     [HideInInspector] public IdleEvent idleEvent;
@@ -59,12 +59,11 @@ public class Enemy : MonoBehaviour
     {
         healthEvent = GetComponent<HealthEvent>();
         health = GetComponent<Health>();
-        /*
         aimWeaponEvent = GetComponent<AimWeaponEvent>();
         fireWeaponEvent = GetComponent<FireWeaponEvent>();
         fireWeapon = GetComponent<FireWeapon>();
         setActiveWeaponEvent = GetComponent<SetActiveWeaponEvent>();
-        enemyMovementAI = GetComponent<EnemyMovementAI>();
+        /*enemyMovementAI = GetComponent<EnemyMovementAI>();
         movementToPositionEvent = GetComponent<MovementToPositionEvent>();
         idleEvent = GetComponent<IdleEvent>();
         materializeEffect = GetComponent<MaterializeEffect>();*/
@@ -104,9 +103,9 @@ public class Enemy : MonoBehaviour
 
         //SetEnemyMovementUpdateFrame(enemySpawnNumber);
 
-        //SetEnemyStartingHealth(dungeonLevel);
+        SetEnemyStartingHealth(dungeonLevel);
 
-        //SetEnemyStartingWeapon();
+        SetEnemyStartingWeapon();
 
         //SetEnemyAnimationSpeed();
 
@@ -133,7 +132,6 @@ public class Enemy : MonoBehaviour
         health.SetStartingHealth(Settings.defaultEnemyHealth);
     }
 
-/*
     private void SetEnemyStartingWeapon()
     {
         if (enemyDetails.enemyWeapon != null)
@@ -145,7 +143,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
+/*
     private void SetEnemyAnimationSpeed()
     {
         animator.speed = enemyMovementAI.moveSpeed / Settings.baseSpeedForEnemyAnimations;
@@ -160,18 +158,17 @@ public class Enemy : MonoBehaviour
         EnemyEnable(true);
 
     }
-
+*/
     private void EnemyEnable(bool isEnabled)
     {
-        // Enable/Disable colliders
+        // коллизии
         circleCollider2D.enabled = isEnabled;
         polygonCollider2D.enabled = isEnabled;
 
-        // Enable/Disable movement AI
+        // ai movement
         //enemyMovementAI.enabled = isEnabled;
 
-        // Enable / Disable Fire Weapon
-        //fireWeapon.enabled = isEnabled;
+        // fire weapon
+        fireWeapon.enabled = isEnabled;
     }
-    */
 }

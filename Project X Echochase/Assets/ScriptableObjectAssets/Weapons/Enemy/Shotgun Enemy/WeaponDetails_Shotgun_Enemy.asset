@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bae824a349d59805a1c442dd52086e0, type: 3}
-  m_Name: WeaponDetails_PlasmaBlaster
+  m_Name: WeaponDetails_Shotgun_Enemy
   m_EditorClassIdentifier: 
-  weaponName: PlasmaBlaster
-  weaponSprite: {fileID: 21300000, guid: a9d9372b640a67a4dae1cdbb59e3b919, type: 3}
-  weaponShootPosition: {x: 1.245, y: 0.277, z: 0}
-  weaponCurrentAmmo: {fileID: 11400000, guid: 1c7d41c6e3fa01005a93e9fb6eba2a60, type: 2}
+  weaponName: Shotgun Enemy
+  weaponSprite: {fileID: 21300000, guid: 957e7c5a4532c7b4fa28cd31bf5aee5d, type: 3}
+  weaponShootPosition: {x: 1.376, y: 0.208, z: 0}
+  weaponCurrentAmmo: {fileID: 11400000, guid: d9b15027fe9d0ea41b53e83c8dd13b6c, type: 2}
   hasInfiniteAmmo: 1
   hasInfiniteClipCapacity: 0
   weaponClipAmmoCapacity: 6
   weaponAmmoCapacity: 0
-  weaponFireRate: 0.25
-  weaponPrechargeTime: 1.2
+  weaponFireRate: 0.4
+  weaponPrechargeTime: 0
   weaponReloadTime: 1
