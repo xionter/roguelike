@@ -1269,8 +1269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 0}
-  dungeonLevelList: {fileID: 11400000, guid: f564593041ee8994fb38aa94bcccc204, type: 2}
-  currentDungeonLevelListIndex: 0
+  dungeonLevel: {fileID: 11400000, guid: f564593041ee8994fb38aa94bcccc204, type: 2}
   gameState: 0
   previousGameState: 0
 --- !u!4 &1153809911
@@ -2053,7 +2052,7 @@ Camera:
     x: 0
     y: 0
     width: 1
-    height: 1
+    height: 0.9996518
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
