@@ -23,7 +23,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
         
         LoadRoomNodeTypeList();
         
-//        GameResources.Instance.dimmedMaterial.SetFloat("Alpha_Slider", 1f);
+        GameResources.Instance.dimmedMaterial.SetFloat("Alpha_Slider", 1f);
     }
     
     private void LoadRoomNodeTypeList()
@@ -56,7 +56,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
 
                 dungeonRebuildAttemptsForNodeGraph++;
 
-                dungeonBuildSuccessful = !AttemptToBuildRandomDungeon(roomNodeGraph);
+                dungeonBuildSuccessful = AttemptToBuildRandomDungeon(roomNodeGraph);
             }
 
             if (dungeonBuildSuccessful)
@@ -439,8 +439,8 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
         room.lowerBounds = roomTemplate.lowerBounds;
         room.upperBounds = roomTemplate.upperBounds;
         room.spawnPositionArray = roomTemplate.spawnPositionArray;
-        room.enemiesByLevelList = roomTemplate.enemiesByLevelList;
-        room.roomLevelEnemySpawnParametersList = roomTemplate.roomEnemySpawnParametersList;
+        //room.enemiesByLevelList = roomTemplate.enemiesByLevelList;
+        //room.roomLevelEnemySpawnParametersList = roomTemplate.roomEnemySpawnParametersList;
         room.templateLowerBounds = roomTemplate.lowerBounds;
         room.templateUpperBounds = roomTemplate.upperBounds;
         
@@ -475,7 +475,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     
     private RoomNodeGraphSO GetRandomRoomNodeGraph(RoomNodeGraphSO roomNodeGraph)
     {
-        return dungeonLevel.roomNodeGraph;
+        //return dungeonLevel.roomNodeGraph;
         roomNodeGraph = ScriptableObject.CreateInstance<RoomNodeGraphSO>();
         string path = $"Assets/ScriptableObjectAssets/Dungeon/Level_Graph.asset";
         if (string.IsNullOrEmpty(AssetDatabase.GetAssetPath(roomNodeGraph)))
