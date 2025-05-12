@@ -18,7 +18,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     
     #endregion
     
-    [SerializeField] private List<DungeonLevelSO> dungeonLevelList;
+    [SerializeField] private DungeonLevelSO dungeonLevel;
 
     #region ToolTip
 
@@ -50,7 +50,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         switch (gameState)
         {
             case GameState.gameStarted:
-                PlayDungeonLevel(currentDungeonLevelIndex);
+                PlayDungeonLevel();
                 
                 gameState = GameState.playingLevel;
 
@@ -59,10 +59,10 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         }
     }
 
-    private void PlayDungeonLevel(int currentDungeonLevelIndex)
+    private void PlayDungeonLevel()
     {
         
-        var dungeonBuiltSucessfully = DungeonBuilder.Instance.GenerateDungeon(dungeonLevelList[currentDungeonLevelIndex]);
+        var dungeonBuiltSucessfully = DungeonBuilder.Instance.GenerateDungeon(dungeonLevel);
         
         if (!dungeonBuiltSucessfully)
         {
@@ -77,7 +77,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     private void OnValidate()
     {
-        HelperUtilities.ValidateCheckEnumerableValues(this, nameof(dungeonLevelList), dungeonLevelList);
+        // HelperUtilities.ValidateCheckEnumerableValues(this, nameof(dungeonLevel), dungeonLevel);
     }
 #endif
     #endregion
