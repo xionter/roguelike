@@ -192,7 +192,7 @@ public class InstantiatedRoom : MonoBehaviour
             {
                 collisionTilemap = tilemap;
             }
-            else if (tilemap.CompareTag("minimapTilemap "))
+            else if (tilemap.CompareTag("minimapTilemap"))
             {
                 minimapTilemap = tilemap;
             }
@@ -217,12 +217,12 @@ public class InstantiatedRoom : MonoBehaviour
                 if (doorway.orientation == Orientation.north)
                 {
                     door = Instantiate(doorway.doorPrefab, gameObject.transform);
-                    door.transform.localPosition = new Vector3(doorway.position.x + tileDistance / 2f, doorway.position.y + tileDistance, 0f);
+                    door.transform.localPosition = new Vector3(doorway.position.x + tileDistance / 2f + 0.5f, doorway.position.y + tileDistance, 0f);
                 }
                 else if (doorway.orientation == Orientation.south)
                 {
                     door = Instantiate(doorway.doorPrefab, gameObject.transform);
-                    door.transform.localPosition = new Vector3(doorway.position.x + tileDistance / 2f, doorway.position.y, 0f);
+                    door.transform.localPosition = new Vector3(doorway.position.x + tileDistance / 2f + 0.5f, doorway.position.y, 0f);
                 }
                 else if (doorway.orientation == Orientation.east)
                 {
