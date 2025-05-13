@@ -5,6 +5,7 @@ using System;
 
 public static class StaticEventHandler 
 {
+    //room changed event
     public static event Action<RoomChangedEventArgs> OnRoomChanged;
 
     public static void CallRoomChangedEvent(Room room)
@@ -14,7 +15,7 @@ public static class StaticEventHandler
 
 
     public static event Action<RoomEnemiesDefeatedArgs> OnRoomEnemiesDefeated;
-
+    
     public static void CallRoomEnemiesDefeatedEvent(Room room)
     {
         OnRoomEnemiesDefeated?.Invoke(new RoomEnemiesDefeatedArgs() { room = room });
