@@ -19,7 +19,6 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     #endregion Tooltip
     [SerializeField] private CanvasGroup canvasGroup;
 
-    /*
     #region Header DUNGEON LEVELS
 
     [Space(10)]
@@ -31,7 +30,6 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     [Tooltip("Populate with the dungeon level scriptable objects")]
 
     #endregion Tooltip
-*/
     [SerializeField] private DungeonLevelSO dungeonLevel;
 
 
@@ -49,7 +47,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     [HideInInspector] public GameState previousGameState;
     //private long gameScore;
     //private int scoreMultiplier;
- //   private InstantiatedRoom bossRoom;
+    //   private InstantiatedRoom bossRoom;
     //private bool isFading = false;
 
     protected override void Awake()
@@ -64,8 +62,8 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         InstantiatePlayer();
 
     }
-    
-    
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
@@ -80,8 +78,20 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         //StartCoroutine(Fade(0f, 1f, 0f, Color.black));
     }
 
+    /// <summary>
+    /// Set the current room the player in in
+    /// </summary>
+    public void SetCurrentRoom(Room room)
+    {
+        previousRoom = currentRoom;
+        currentRoom = room;
 
-        /// <summary>
+        //// Debug
+        //Debug.Log(room.prefab.name.ToString());
+    }
+
+
+    /// <summary>
     /// Create player in scene at position
     /// </summary>
     private void InstantiatePlayer()
@@ -111,18 +121,56 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         {
             case GameState.gameStarted:
                 PlayDungeonLevel();
-                
+
                 gameState = GameState.playingLevel;
 
                 break;
-            
+
         }
     }
-    /*
+
+    private void OnEnable()
+    {
+        // Subscribe to room changed event.
+        StaticEventHandler.OnRoomChanged += StaticEventHandler_OnRoomChanged;
+
+        // // Subscribe to room enemies defeated event
+        // StaticEventHandler.OnRoomEnemiesDefeated += StaticEventHandler_OnRoomEnemiesDefeated;
+        //
+        // // Subscribe to the points scored event
+        // StaticEventHandler.OnPointsScored += StaticEventHandler_OnPointsScored;
+        //
+        // // Subscribe to score multiplier event
+        // StaticEventHandler.OnMultiplier += StaticEventHandler_OnMultiplier;
+        //
+        // // Subscribe to player destroyed event
+        // player.destroyedEvent.OnDestroyed += Player_OnDestroyed;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe from room changed event
+        StaticEventHandler.OnRoomChanged -= StaticEventHandler_OnRoomChanged;
+
+        // // Unsubscribe from room enemies defeated event
+        // StaticEventHandler.OnRoomEnemiesDefeated -= StaticEventHandler_OnRoomEnemiesDefeated;
+        //
+        // // Unsubscribe from the points scored event
+        // StaticEventHandler.OnPointsScored -= StaticEventHandler_OnPointsScored;
+        //
+        // // Unsubscribe from score multiplier event
+        // StaticEventHandler.OnMultiplier -= StaticEventHandler_OnMultiplier;
+        //
+        // // Unubscribe from player destroyed event
+        // player.destroyedEvent.OnDestroyed -= Player_OnDestroyed;
+
+    }
+
+
     private void StaticEventHandler_OnRoomChanged(RoomChangedEventArgs roomChangedEventArgs)
     {
         SetCurrentRoom(roomChangedEventArgs.room);
-    }*/
+    }
 
 
     private void PlayDungeonLevel()
@@ -134,21 +182,21 @@ public class GameManager : SingletonMonobehaviour<GameManager>
             Debug.LogError("Couldn't build dungeon from specified rooms and node graphs");
         }
 
-    /*
+
         // Call static event that room has changed.
         StaticEventHandler.CallRoomChangedEvent(currentRoom);
 
         // Set player roughly mid-room
-        //player.gameObject.transform.position = new Vector3((currentRoom.lowerBounds.x + currentRoom.upperBounds.x) / 2f, (currentRoom.lowerBounds.y + currentRoom.upperBounds.y) / 2f, 0f);
+        player.gameObject.transform.position = new Vector3((currentRoom.lowerBounds.x + currentRoom.upperBounds.x) / 2f, (currentRoom.lowerBounds.y + currentRoom.upperBounds.y) / 2f, 0f);
 
         // Get nearest spawn point in room nearest to player
-        //player.gameObject.transform.position = HelperUtilities.GetSpawnPositionNearestToPlayer(player.gameObject.transform.position);
+        player.gameObject.transform.position = HelperUtilities.GetSpawnPositionNearestToPlayer(player.gameObject.transform.position);
 
         // Display Dungeon Level Text
-        StartCoroutine(DisplayDungeonLevelText());
+        //StartCoroutine(DisplayDungeonLevelText());
 
         //// ** Demo code
-        //RoomEnemiesDefeated();*/
+        //RoomEnemiesDefeated();
     }
 
     public Player GetPlayer()
@@ -179,8 +227,3 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 #endif
     #endregion
 }
-
-
-
-
-

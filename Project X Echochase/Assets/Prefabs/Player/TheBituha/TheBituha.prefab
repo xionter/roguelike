@@ -124,6 +124,14 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3855455257090151169, guid: 130a7ae56e2277f4abdcfb42adc8c887, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855455257090151169, guid: 130a7ae56e2277f4abdcfb42adc8c887, type: 3}
+      propertyPath: m_TagString
+      value: playerWeapon
+      objectReference: {fileID: 0}
     - target: {fileID: 4045676673981784286, guid: 130a7ae56e2277f4abdcfb42adc8c887, type: 3}
       propertyPath: m_Size.x
       value: 1.125

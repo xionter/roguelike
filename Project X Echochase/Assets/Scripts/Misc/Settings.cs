@@ -2,6 +2,11 @@ using UnityEngine;
 
 public static class Settings 
 {
+    #region UNITS
+    public const float pixelsPerUnit = 16f;
+    public const float tileSizePixels = 16f;
+    #endregion
+
     #region Dungeon BUILD SETTINGS
 
     public const int maxDungeonRebuildAttemptsForRoomGraph = 1000;
@@ -33,6 +38,8 @@ public static class Settings
     public static int rollDown = Animator.StringToHash("rollDown");
     public static float baseSpeedForPlayerAnimations = 8f;
 
+    //door
+    public static int open = Animator.StringToHash("open");
     #endregion
 
     #region FIRING CONTROL
@@ -61,10 +68,5 @@ public static class Settings
 
     // анимации для врагов
     public static float baseSpeedForEnemyAnimations = 3f;
-
-
-    // Параметры для дверей
-    public static int open = Animator.StringToHash("open");
-
 
 }

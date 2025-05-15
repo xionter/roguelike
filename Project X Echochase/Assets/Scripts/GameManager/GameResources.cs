@@ -199,6 +199,9 @@ public class GameResources : MonoBehaviour
         HelperUtilities.ValidateCheckNullValue(this, nameof(playerSelectionPrefab), playerSelectionPrefab);
         HelperUtilities.ValidateCheckEnumerableValues(this, nameof(playerDetailsList), playerDetailsList);
         HelperUtilities.ValidateCheckNullValue(this, nameof(currentPlayer), currentPlayer);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(litMaterial), litMaterial);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(dimmedMaterial), dimmedMaterial);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(variableLitShader), variableLitShader);
         //HelperUtilities.ValidateCheckNullValue(this, nameof(mainMenuMusic), mainMenuMusic);
         //HelperUtilities.ValidateCheckNullValue(this, nameof(soundsMasterMixerGroup), soundsMasterMixerGroup);
         //HelperUtilities.ValidateCheckNullValue(this, nameof(doorOpenCloseSoundEffect), doorOpenCloseSoundEffect);
@@ -208,9 +211,6 @@ public class GameResources : MonoBehaviour
         HelperUtilities.ValidateCheckNullValue(this, nameof(healthPickup), healthPickup);
         HelperUtilities.ValidateCheckNullValue(this, nameof(ammoPickup), ammoPickup);
         HelperUtilities.ValidateCheckNullValue(this, nameof(weaponPickup), weaponPickup);
-        HelperUtilities.ValidateCheckNullValue(this, nameof(litMaterial), litMaterial);
-        HelperUtilities.ValidateCheckNullValue(this, nameof(dimmedMaterial), dimmedMaterial);
-        HelperUtilities.ValidateCheckNullValue(this, nameof(variableLitShader), variableLitShader);
         HelperUtilities.ValidateCheckNullValue(this, nameof(materializeShader), materializeShader);
         HelperUtilities.ValidateCheckEnumerableValues(this, nameof(enemyUnwalkableCollisionTilesArray), enemyUnwalkableCollisionTilesArray);
         HelperUtilities.ValidateCheckNullValue(this, nameof(preferredEnemyPathTile), preferredEnemyPathTile);
