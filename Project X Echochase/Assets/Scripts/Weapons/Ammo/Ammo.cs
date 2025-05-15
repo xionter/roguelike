@@ -4,7 +4,7 @@ using UnityEngine;
 public class Ammo : MonoBehaviour, IFireable
 {
     #region Tooltip
-    [Tooltip("Populate with child TrailRenderer component")]
+    [Tooltip("Дочерний компонент TrailRenderer")]
     #endregion Tooltip
     [SerializeField] private TrailRenderer trailRenderer;
 

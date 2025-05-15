@@ -6,19 +6,19 @@ using UnityEngine;
 public class ActiveWeapon : MonoBehaviour
 {
     #region Tooltip
-    [Tooltip("Populate with the SpriteRenderer on the child Weapon gameobject")]
+    [Tooltip("Заполните SpriteRenderer дочернего объекта Weapon")]
     #endregion
     [SerializeField] private SpriteRenderer weaponSpriteRenderer;
     #region Tooltip
-    [Tooltip("Populate with the PolygonCollider2D on the child Weapon gameobject")]
+    [Tooltip("Заполните PolygonCollider2D дочернего объекта Weapon")]
     #endregion
     [SerializeField] private PolygonCollider2D weaponPolygonCollider2D;
     #region Tooltip
-    [Tooltip("Populate with the Transform on the WeaponShootPosition gameobject")]
+    [Tooltip("Заполните Transform объекта WeaponShootPosition")]
     #endregion
     [SerializeField] private Transform weaponShootPositionTransform;
     #region Tooltip
-    [Tooltip("Populate with the Transform on the WeaponEffectPosition gameobject")]
+    [Tooltip("Заполните Transform объекта WeaponEffectPosition")]
     #endregion
     [SerializeField] private Transform weaponEffectPositionTransform;
 
@@ -28,7 +28,7 @@ public class ActiveWeapon : MonoBehaviour
 
     private void Awake()
     {
-        // Load components
+        // Загрузка компонентов
         setWeaponEvent = GetComponent<SetActiveWeaponEvent>();
     }
 
@@ -51,22 +51,22 @@ public class ActiveWeapon : MonoBehaviour
     {
         currentWeapon = weapon;
 
-        // Set current weapon sprite
+        // Установить текущий спрайт оружия
         weaponSpriteRenderer.sprite = currentWeapon.weaponDetails.weaponSprite;
 
-        // If the weapon has a polygon collider and a sprite then set it to the weapon sprite physics shape
+        // Если у оружия есть полигональный коллайдер и спрайт, то установить физическую форму спрайта
         if (weaponPolygonCollider2D != null && weaponSpriteRenderer.sprite != null)
         {
-            // Get sprite physics shape - this returns the sprite physics shape points as a list of Vector2s
+            // Получить физическую форму спрайта - возвращает точки физической формы спрайта в виде списка Vector2
             List<Vector2> spritePhysicsShapePointsList = new List<Vector2>();
             weaponSpriteRenderer.sprite.GetPhysicsShape(0, spritePhysicsShapePointsList);
 
-            // Set polygon collider on weapon to pick up physics shap for sprite - set collider points to sprite physics shape points
+            // Установить полигональный коллайдер на оружие, чтобы он соответствовал физической форме спрайта - установить точки коллайдера в точки физической формы спрайта
             weaponPolygonCollider2D.points = spritePhysicsShapePointsList.ToArray();
 
         }
 
-        // Set weapon shoot position
+        // Установить позицию стрельбы оружия
         weaponShootPositionTransform.localPosition = currentWeapon.weaponDetails.weaponShootPosition;
     }
 

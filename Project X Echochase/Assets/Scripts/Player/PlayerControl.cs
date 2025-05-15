@@ -127,7 +127,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     /// <summary>
-    /// Player roll coroutine
+    /// Player roll
     /// </summary>
     private IEnumerator PlayerRollRoutine(Vector3 direction)
     {

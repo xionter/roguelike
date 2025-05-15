@@ -9,16 +9,14 @@ public class DoorLightingControl : MonoBehaviour
 
     private void Awake()
     {
-        //Get components
         door = GetComponentInParent<Door>();
     }
 
     /// <summary>
-    /// Fade in door
+    /// Затемнить двери
     /// </summary>
     public void FadeInDoor(Door door)
     {
-        //Create new material to fade in
         Material material = new Material(GameResources.Instance.variableLitShader);
 
         if (!isLit)
@@ -33,10 +31,7 @@ public class DoorLightingControl : MonoBehaviour
             isLit = true;
         }
     }
-
-    /// <summary>
-    /// Fade in door coroutine
-    /// </summary>
+    
     private IEnumerator FadeInDoorRoutine(SpriteRenderer spriteRenderer, Material material)
     {
         spriteRenderer.material = material;
@@ -50,7 +45,7 @@ public class DoorLightingControl : MonoBehaviour
         spriteRenderer.material = GameResources.Instance.litMaterial;
     }
 
-    // Fade door in if triggered
+    // Затемнить если сработал триггер
     private void OnTriggerEnter2D(Collider2D collision)
     {
         FadeInDoor(door);

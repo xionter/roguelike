@@ -5,47 +5,47 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DungeonLevel_", menuName = "Scriptable Objects/Dungeon/Dungeon Level")]
 public class DungeonLevelSO : ScriptableObject
 {
-    #region Header BASIC LEVEL DETAILS
+    #region Header ОСНОВНЫЕ ДЕТАЛИ УРОВНЯ
 
     [Space(10)]
-    [Header("BASIC LEVEL DETAILS")]
+    [Header("ОСНОВНЫЕ ДЕТАЛИ УРОВНЯ")]
 
-    #endregion Header BASIC LEVEL DETAILS
+    #endregion Header ОСНОВНЫЕ ДЕТАЛИ УРОВНЯ
 
     #region Tooltip
 
-    [Tooltip("The name for the level")]
+    [Tooltip("Имя уровня")]
 
     #endregion Tooltip
 
     public string levelName;
 
-    #region Header ROOM TEMPLATES FOR LEVEL
+    #region Header ШАБЛОНЫ КОМНАТ ДЛЯ УРОВНЯ
 
     [Space(10)]
-    [Header("ROOM TEMPLATES FOR LEVEL")]
+    [Header("ШАБЛОНЫ КОМНАТ ДЛЯ УРОВНЯ")]
 
-    #endregion Header ROOM TEMPLATES FOR LEVEL
+    #endregion Header ШАБЛОНЫ КОМНАТ ДЛЯ УРОВНЯ
 
     #region Tooltip
 
-    //[Tooltip("Populate the list with the room templates that you want to be part of the level.  You need to ensure that room templates are included for all room node types that are specified in the Room Node Graphs for the level.")]
+    [Tooltip("Заполните список шаблонами комнат, которые вы хотите включить в уровень. Убедитесь, что шаблоны комнат включены для всех типов узлов комнат, указанных в графах узлов комнат для уровня.")]
 
     #endregion Tooltip
 
     public List<RoomTemplateSO> roomTemplateList;
     
     
-    #region Header ROOM NODE GRAPHS FOR LEVEL
+    #region Header ГРАФЫ УЗЛОВ КОМНАТ ДЛЯ УРОВНЯ
 
     [Space(10)]
-    [Header("ROOM NODE GRAPHS FOR LEVEL")]
+    [Header("ГРАФЫ УЗЛОВ КОМНАТ ДЛЯ УРОВНЯ")]
 
-    #endregion Header ROOM NODE GRAPHS FOR LEVEL
+    #endregion Header ГРАФЫ УЗЛОВ КОМНАТ ДЛЯ УРОВНЯ
 
     #region Tooltip
 
-    [Tooltip("Populate this list with the room node grpahs which should be randomly selected from for the level.")]
+    [Tooltip("Заполните этот список графами узлов комнат, которые должны быть случайным образом выбраны для уровня.")]
 
     #endregion Tooltip
 
@@ -55,7 +55,7 @@ public class DungeonLevelSO : ScriptableObject
 
 #if UNITY_EDITOR
 
-    // Validate scriptable object details enetered
+    // Проверка введённых данных ScriptableObject
     private void OnValidate()
     {
         HelperUtilities.ValidateCheckEmptyString(this, nameof(levelName), levelName);
@@ -87,17 +87,17 @@ public class DungeonLevelSO : ScriptableObject
 
         if (isEWCorridor == false)
         {
-            Debug.Log("In " + this.name.ToString() + " : No E/W Corridor Room Type Specified");
+            Debug.Log("В " + this.name.ToString() + " : Не указан тип комнаты для коридора В/З");
         }
 
         if (isNSCorridor == false)
         {
-            Debug.Log("In " + this.name.ToString() + " : No N/S Corridor Room Type Specified");
+            Debug.Log("В " + this.name.ToString() + " : Не указан тип комнаты для коридора С/Ю");
         }
 
         if (isEntrance == false)
         {
-            Debug.Log("In " + this.name.ToString() + " : No Entrance Corridor Room Type Specified");
+            Debug.Log("В " + this.name.ToString() + " : Не указан тип комнаты для входа");
         }
 
         
@@ -128,7 +128,7 @@ public class DungeonLevelSO : ScriptableObject
             }
 
             if (!isRoomNodeTypeFound)
-                Debug.Log("In " + this.name.ToString() + " : No room template " + roomNodeSO.roomNodeType.name.ToString() + " found for node graph " + roomNodeGraph.name.ToString());
+                Debug.Log("В " + this.name.ToString() + " : Не найден шаблон комнаты " + roomNodeSO.roomNodeType.name.ToString() + " для графа узлов " + roomNodeGraph.name.ToString());
 
 
         }

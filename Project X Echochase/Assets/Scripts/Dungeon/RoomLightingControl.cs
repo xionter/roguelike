@@ -10,33 +10,33 @@ public class RoomLightingControl : MonoBehaviour
     
     private void Awake()
     {
-        //Load Components
+        // Загрузка компонентов
         instantiatedRoom = GetComponent<InstantiatedRoom>();
     }
 
     private void OnEnable()
     {
-        //subscribe to room changed event
+        // Подписка на событие изменения комнаты
         StaticEventHandler.OnRoomChanged += StaticEventHandler_OnRoomChanged;
     }
 
     private void OnDisable()
     {
-        //unsubscribe from room changed event
+        // Отписка от события изменения комнаты
         StaticEventHandler.OnRoomChanged -= StaticEventHandler_OnRoomChanged;
     }
 
     /// <summary>
-    /// Handle room changed event
+    /// Обработчик события изменения комнаты
     /// </summary>
     private void StaticEventHandler_OnRoomChanged(RoomChangedEventArgs roomChangedEventArgs)
     {
         if (roomChangedEventArgs.room == instantiatedRoom.room && !instantiatedRoom.room.isLit)
         {
-            //Fade in room
+            // Плавное появление освещения комнаты
             FadeInRoomLighting();
 
-            //Fade in the room doors lighting
+            // Плавное появление освещения дверей комнаты
             FadeInDoors();
 
             instantiatedRoom.room.isLit = true;
@@ -44,7 +44,7 @@ public class RoomLightingControl : MonoBehaviour
     }
 
     /// <summary>
-    /// Fade in the room lighting
+    /// Плавное появление освещения комнаты
     /// </summary>
     private void FadeInRoomLighting()
     {
@@ -52,11 +52,11 @@ public class RoomLightingControl : MonoBehaviour
     }
 
     /// <summary>
-    /// Fade in the room lighting coroutine
+    /// Корутина для плавного появления освещения комнаты
     /// </summary>
     private IEnumerator FadeInRoomLightingRoutine(InstantiatedRoom instantiatedRoom)
     {
-        //Create new material to fade in
+        // Создание нового материала для плавного появления
         Material material = new Material(GameResources.Instance.variableLitShader);
 
         instantiatedRoom.groundTilemap.GetComponent<TilemapRenderer>().material = material;
@@ -71,7 +71,7 @@ public class RoomLightingControl : MonoBehaviour
             yield return null;
         }
 
-        //Set material backto lit material
+        // Возврат материала к освещённому материалу
         instantiatedRoom.groundTilemap.GetComponent<TilemapRenderer>().material = GameResources.Instance.litMaterial;
         instantiatedRoom.decoration1Tilemap.GetComponent<TilemapRenderer>().material = GameResources.Instance.litMaterial;
         instantiatedRoom.decoration2Tilemap.GetComponent<TilemapRenderer>().material = GameResources.Instance.litMaterial;
@@ -80,7 +80,7 @@ public class RoomLightingControl : MonoBehaviour
     }
 
     /// <summary>
-    /// Fade in the doors
+    /// Плавное появление дверей
     /// </summary>
     private void FadeInDoors()
     {

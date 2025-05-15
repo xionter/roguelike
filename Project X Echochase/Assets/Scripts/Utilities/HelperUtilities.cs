@@ -34,9 +34,8 @@ public static class HelperUtilities
     }
 
     /// <summary>
-    /// Get the direction vector from an angle in degrees
+    /// Получить вектор направления из угла в градусах
     /// </summary>
-    /// <returns></returns>
     public static Vector3 GetDirectionVectorFromAngle(float angle)
     {
         Vector3 directionVector = new Vector3(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle), 0f);
@@ -233,6 +232,5 @@ public static class HelperUtilities
         return nearestSpawnPosition;
 
     }
-
 }
 

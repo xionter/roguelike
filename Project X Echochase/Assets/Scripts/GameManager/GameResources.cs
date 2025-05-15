@@ -21,178 +21,118 @@ public class GameResources : MonoBehaviour
 
     #region Header DUNGEON
     [Space(10)]
-    [Header("DUNGEON")]
+    [Header("ПОДЗЕМЕЛЬЕ")]
     #endregion
     #region Tooltip
-    [Tooltip("Populate with the dungeon RoomNodeTypeListSO")]
+    [Tooltip("Заполните списком типов узлов комнат подземелья (RoomNodeTypeListSO)")]
     #endregion
 
     public RoomNodeTypeListSO roomNodeTypeList;
 
     #region PLAYER SELECTION
     [Space(10)]
-    [Header("PLAYER SELECTION")]
+    [Header("ВЫБОР ИГРОКА")]
     #endregion PLAYER SELECTION
     #region Tooltip
-    [Tooltip("The PlayerSelection prefab")]
+    [Tooltip("Префаб выбора игрока")]
     #endregion Tooltip
     public GameObject playerSelectionPrefab;
 
     #region Header PLAYER
     [Space(10)]
-    [Header("PLAYER")]
+    [Header("ИГРОК")]
     #endregion Header PLAYER
     #region Tooltip
-    [Tooltip("Player details list - populate the list with the playerdetails scriptable objects")]
+    [Tooltip("Список деталей игрока - заполните список ScriptableObject с деталями игрока")]
     #endregion Tooltip
     public List<PlayerDetailsSO> playerDetailsList;
     #region Tooltip
-    [Tooltip("The current player scriptable object - this is used to reference the current player between scenes")]
+    [Tooltip("Текущий ScriptableObject игрока - используется для передачи данных между сценами")]
     #endregion Tooltip
     public CurrentPlayerSO currentPlayer;
-/*
-    #region Header MUSIC
-    [Space(10)]
-    [Header("MUSIC")]
-    #endregion Header MUSIC
-    #region Tooltip
-    [Tooltip("Populate with the music master mixer group")]
-    #endregion
-    public AudioMixerGroup musicMasterMixerGroup;
-    #region Tooltip
-    [Tooltip("Main menu music scriptable object")]
-    #endregion Tooltip
-    public MusicTrackSO mainMenuMusic;
-    #region Tooltip
-    [Tooltip("music on full snapshot")]
-    #endregion Tooltip
-    public AudioMixerSnapshot musicOnFullSnapshot;
-    #region Tooltip
-    [Tooltip("music low snapshot")]
-    #endregion Tooltip
-    public AudioMixerSnapshot musicLowSnapshot;
-    #region Tooltip
-    [Tooltip("music off snapshot")]
-    #endregion Tooltip
-    public AudioMixerSnapshot musicOffSnapshot;
-    */
-/*
-    #region Header SOUNDS
-    [Space(10)]
-    [Header("SOUNDS")]
-    #endregion Header
-    #region Tooltip
-    [Tooltip("Populate with the sounds master mixer group")]
-    #endregion
-    public AudioMixerGroup soundsMasterMixerGroup;
-    #region Tooltip
-    [Tooltip("Door open close sound effect")]
-    #endregion Tooltip
-    public SoundEffectSO doorOpenCloseSoundEffect;
-    #region Tooltip
-    [Tooltip("Populate with the table flip sound effect")]
-    #endregion
-    public SoundEffectSO tableFlip;
-    #region Tooltip
-    [Tooltip("Populate with the chest open sound effect")]
-    #endregion
-    public SoundEffectSO chestOpen;
-    #region Tooltip
-    [Tooltip("Populate with the health pickup sound effect")]
-    #endregion
-    public SoundEffectSO healthPickup;
-    #region Tooltip
-    [Tooltip("Populate with the weapon pickup sound effect")]
-    #endregion
-    public SoundEffectSO weaponPickup;
-    #region Tooltip
-    [Tooltip("Populate with the ammo pickup sound effect")]
-    #endregion
-    public SoundEffectSO ammoPickup;
-*/
+
     #region Header MATERIALS
     [Space(10)]
-    [Header("MATERIALS")]
+    [Header("МАТЕРИАЛЫ")]
     #endregion
     #region Tooltip
-    [Tooltip("Dimmed Material")]
+    [Tooltip("Материал с затемнением")]
     #endregion
     public Material dimmedMaterial;
 
     #region Tooltip
-    [Tooltip("Sprite-Lit-Default Material")]
+    [Tooltip("Материал Sprite-Lit-Default")]
     #endregion
     public Material litMaterial;
 
     #region Tooltip
-    [Tooltip("Populate with the Variable Lit Shader")]
+    [Tooltip("Заполните шейдером Variable Lit")]
     #endregion
     public Shader variableLitShader;
     #region Tooltip
-    [Tooltip("Populate with the Materialize Shader")]
+    [Tooltip("Заполните шейдером Materialize")]
     #endregion
     public Shader materializeShader;
 
     #region Header SPECIAL TILEMAP TILES
     [Space(10)]
-    [Header("SPECIAL TILEMAP TILES")]
+    [Header("СПЕЦИАЛЬНЫЕ ТАЙЛЫ TILEMAP")]
     #endregion Header SPECIAL TILEMAP TILES
     #region Tooltip
-    [Tooltip("Collision tiles that the enemies can navigate to")]
+    [Tooltip("Тайлы столкновений, по которым враги не могут ходить")]
     #endregion Tooltip
     public TileBase[] enemyUnwalkableCollisionTilesArray;
     #region Tooltip
-    [Tooltip("Preferred path tile for enemy navigation")]
+    [Tooltip("Предпочтительный тайл пути для навигации врагов")]
     #endregion Tooltip
     public TileBase preferredEnemyPathTile;
 
     #region Header UI
     [Space(10)]
-    [Header("UI")]
+    [Header("ИНТЕРФЕЙС")]
     #endregion
     #region Tooltip
-    [Tooltip("Populate with heart image prefab")]
+    [Tooltip("Заполните префабом изображения сердца")]
     #endregion
     public GameObject heartPrefab;
     #region Tooltip
-    [Tooltip("Populate with ammo icon prefab")]
-    #endregion
+    [Tooltip("Заполните префабом иконки патронов")]
+    #endregion Tooltip
     public GameObject ammoIconPrefab;
     #region Tooltip
-    [Tooltip("The score prefab")]
+    [Tooltip("Префаб очков")]
     #endregion
     public GameObject scorePrefab;
 
     #region Header CHESTS
     [Space(10)]
-    [Header("CHESTS")]
+    [Header("СУНДУКИ")]
     #endregion
     #region Tooltip
-    [Tooltip("Chest item prefab")]
+    [Tooltip("Префаб предмета из сундука")]
     #endregion
     public GameObject chestItemPrefab;
     #region Tooltip
-    [Tooltip("Populate with heart icon sprite")]
+    [Tooltip("Заполните иконкой сердца")]
     #endregion
     public Sprite heartIcon;
     #region Tooltip
-    [Tooltip("Populate with bullet icon sprite")]
+    [Tooltip("Заполните иконкой пули")]
     #endregion
     public Sprite bulletIcon;
 
     #region Header MINIMAP
     [Space(10)]
-    [Header("MINIMAP")]
+    [Header("МИНИКАРТА")]
     #endregion
     #region Tooltip
-    [Tooltip("Minimap skull prefab")]
+    [Tooltip("Префаб черепа для миникарты")]
     #endregion
     public GameObject minimapSkullPrefab;
 
-
     #region Validation
 #if UNITY_EDITOR
-    // Validate the scriptable object details entered
+    // Проверка введённых данных ScriptableObject
     private void OnValidate()
     {
         HelperUtilities.ValidateCheckNullValue(this, nameof(roomNodeTypeList), roomNodeTypeList);
@@ -202,30 +142,7 @@ public class GameResources : MonoBehaviour
         HelperUtilities.ValidateCheckNullValue(this, nameof(litMaterial), litMaterial);
         HelperUtilities.ValidateCheckNullValue(this, nameof(dimmedMaterial), dimmedMaterial);
         HelperUtilities.ValidateCheckNullValue(this, nameof(variableLitShader), variableLitShader);
-        //HelperUtilities.ValidateCheckNullValue(this, nameof(mainMenuMusic), mainMenuMusic);
-        //HelperUtilities.ValidateCheckNullValue(this, nameof(soundsMasterMixerGroup), soundsMasterMixerGroup);
-        //HelperUtilities.ValidateCheckNullValue(this, nameof(doorOpenCloseSoundEffect), doorOpenCloseSoundEffect);
-        /*
-        HelperUtilities.ValidateCheckNullValue(this, nameof(tableFlip), tableFlip);
-        HelperUtilities.ValidateCheckNullValue(this, nameof(chestOpen), chestOpen);
-        HelperUtilities.ValidateCheckNullValue(this, nameof(healthPickup), healthPickup);
-        HelperUtilities.ValidateCheckNullValue(this, nameof(ammoPickup), ammoPickup);
-        HelperUtilities.ValidateCheckNullValue(this, nameof(weaponPickup), weaponPickup);
-        HelperUtilities.ValidateCheckNullValue(this, nameof(materializeShader), materializeShader);
-        HelperUtilities.ValidateCheckEnumerableValues(this, nameof(enemyUnwalkableCollisionTilesArray), enemyUnwalkableCollisionTilesArray);
-        HelperUtilities.ValidateCheckNullValue(this, nameof(preferredEnemyPathTile), preferredEnemyPathTile);
-        */
-        //HelperUtilities.ValidateCheckNullValue(this, nameof(musicMasterMixerGroup), musicMasterMixerGroup);
-        //HelperUtilities.ValidateCheckNullValue(this, nameof(musicOnFullSnapshot), musicOnFullSnapshot);
-        //HelperUtilities.ValidateCheckNullValue(this, nameof(musicLowSnapshot), musicLowSnapshot);
-        //HelperUtilities.ValidateCheckNullValue(this, nameof(musicOffSnapshot), musicOffSnapshot); 
-        //HelperUtilities.ValidateCheckNullValue(this, nameof(heartPrefab), heartPrefab);
         HelperUtilities.ValidateCheckNullValue(this, nameof(ammoIconPrefab), ammoIconPrefab);
-        //HelperUtilities.ValidateCheckNullValue(this, nameof(scorePrefab), scorePrefab);
-        //HelperUtilities.ValidateCheckNullValue(this, nameof(chestItemPrefab), chestItemPrefab);
-        //HelperUtilities.ValidateCheckNullValue(this, nameof(heartIcon), heartIcon);
-        //HelperUtilities.ValidateCheckNullValue(this, nameof(bulletIcon), bulletIcon);
-        //HelperUtilities.ValidateCheckNullValue(this, nameof(minimapSkullPrefab), minimapSkullPrefab);
     }
 
 #endif

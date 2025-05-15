@@ -3,7 +3,6 @@ using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System.Collections;
 
-
 [DisallowMultipleComponent]
 [RequireComponent(typeof(BoxCollider2D))]
 public class InstantiatedRoom : MonoBehaviour
@@ -17,7 +16,6 @@ public class InstantiatedRoom : MonoBehaviour
     [HideInInspector] public Tilemap collisionTilemap;
     [HideInInspector] public Tilemap minimapTilemap;
     [HideInInspector] public Bounds roomColliderBounds;
-
 
     private BoxCollider2D boxCollider2D;
 
@@ -47,18 +45,17 @@ public class InstantiatedRoom : MonoBehaviour
         AddDoorsToRooms();
 
         DisableCollisionTilemapRenderer();
-
     }
 
     private void BlockOffUnusedDoorWays()
     {
-        // Loop through all doorways
+        // Проходим по всем дверным проёмам
         foreach (DoorWay doorway in room.doorWayList)
         {
             if (doorway.isConnected)
                 continue;
 
-            // Block unconnected doorways using tiles on tilemaps
+            // Закрываем неиспользуемые дверные проёмы с помощью тайлов на тайлмапах
             if (collisionTilemap != null)
             {
                 BlockADoorwayOnTilemapLayer(collisionTilemap, doorway);
@@ -92,7 +89,7 @@ public class InstantiatedRoom : MonoBehaviour
     }
 
     /// <summary>
-    /// Block a doorway on a tilemap layer
+    /// Закрыть дверной проём на слое тайлмапа
     /// </summary>
     private void BlockADoorwayOnTilemapLayer(Tilemap tilemap, DoorWay doorway)
     {
@@ -111,57 +108,53 @@ public class InstantiatedRoom : MonoBehaviour
             case Orientation.none:
                 break;
         }
-
     }
 
     /// <summary>
-    /// Block doorway horizontally - for North and South doorways
+    /// Закрыть дверной проём горизонтально - для северных и южных дверей
     /// </summary>
     private void BlockDoorwayHorizontally(Tilemap tilemap, DoorWay doorway)
     {
         Vector2Int startPosition = doorway.doorwayStartCopyPosition;
 
-        // loop through all tiles to copy
+        // Проходим по всем тайлам для копирования
         for (int xPos = 0; xPos < doorway.doorwayCopyTileWidth; xPos++)
         {
             for (int yPos = 0; yPos < doorway.doorwayCopyTileHeight; yPos++)
             {
-                // Get rotation of tile being copied
+                // Получаем поворот тайла, который копируем
                 Matrix4x4 transformMatrix = tilemap.GetTransformMatrix(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0));
 
-                // Copy tile
+                // Копируем тайл
                 tilemap.SetTile(new Vector3Int(startPosition.x + 1 + xPos, startPosition.y - yPos, 0), tilemap.GetTile(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0)));
 
-                // Set rotation of tile copied
+                // Устанавливаем поворот скопированного тайла
                 tilemap.SetTransformMatrix(new Vector3Int(startPosition.x + 1 + xPos, startPosition.y - yPos, 0), transformMatrix);
             }
         }
     }
 
     /// <summary>
-    /// Block doorway vertically - for East and West doorways
+    /// Закрыть дверной проём вертикально - для восточных и западных дверей
     /// </summary>
     private void BlockDoorwayVertically(Tilemap tilemap, DoorWay doorway)
     {
         Vector2Int startPosition = doorway.doorwayStartCopyPosition;
 
-        // loop through all tiles to copy
+        // Проходим по всем тайлам для копирования
         for (int yPos = 0; yPos < doorway.doorwayCopyTileHeight; yPos++)
         {
-
             for (int xPos = 0; xPos < doorway.doorwayCopyTileWidth; xPos++)
             {
-                // Get rotation of tile being copied
+                // Получаем поворот тайла, который копируем
                 Matrix4x4 transformMatrix = tilemap.GetTransformMatrix(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0));
 
-                // Copy tile
+                // Копируем тайл
                 tilemap.SetTile(new Vector3Int(startPosition.x + xPos, startPosition.y - 1 - yPos, 0), tilemap.GetTile(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0)));
 
-                // Set rotation of tile copied
+                // Устанавливаем поворот скопированного тайла
                 tilemap.SetTransformMatrix(new Vector3Int(startPosition.x + xPos, startPosition.y - 1 - yPos, 0), transformMatrix);
-
             }
-
         }
     }
 
@@ -200,7 +193,7 @@ public class InstantiatedRoom : MonoBehaviour
     }
 
     /// <summary>
-    /// Add opening doors if this is not a corridor room 
+    /// Добавить открывающиеся двери, если это не коридор
     /// </summary>
     private void AddDoorsToRooms()
     {
@@ -235,10 +228,10 @@ public class InstantiatedRoom : MonoBehaviour
                     door.transform.localPosition = new Vector3(doorway.position.x, doorway.position.y + tileDistance * 1.25f, 0f);
                 }
 
-                //Get door component
+                // Получаем компонент двери
                 Door doorComponent = door.GetComponent<Door>();
 
-                //Set if door is part of a boss room
+                // Устанавливаем, является ли дверь частью комнаты босса
                 if (room.roomNodeType.isBossRoom)
                 {
                     doorComponent.isBossRoomDoor = true;
@@ -295,5 +288,4 @@ public class InstantiatedRoom : MonoBehaviour
 
         EnableRoomCollider();
     }
-
 }

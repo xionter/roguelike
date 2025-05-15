@@ -6,65 +6,65 @@ public class PlayerDetailsSO : ScriptableObject
 {
     #region Header PLAYER BASE DETAILS 
     [Space(10)] 
-    [Header("PLAYER BASE DETAILS")] 
+    [Header("ОСНОВНЫЕ ДЕТАЛИ ИГРОКА")] 
     #endregion 
     #region Tooltip 
-    [Tooltip("Player character name.")] 
+    [Tooltip("Имя персонажа игрока.")] 
     #endregion 
     public string playerCharacterName;
 
     #region Tooltip 
-    [Tooltip("Prefab gameobject for the player")] 
+    [Tooltip("Префаб игрового объекта для игрока")] 
     #endregion 
     public GameObject playerPrefab;
 
     #region Tooltip 
-    [Tooltip("Player runtime animator controller")] 
+    [Tooltip("Runtime Animator Controller для игрока")] 
     #endregion 
     public RuntimeAnimatorController runtimeAnimatorController;
 
 
     #region Header HEALTH
     [Space(10)]
-    [Header("HEALTH")]
+    [Header("ЗДОРОВЬЕ")]
     #endregion
     #region Tooltip
-    [Tooltip("Player starting health amount")]
+    [Tooltip("Начальное количество здоровья игрока")]
     #endregion
     public int playerHealthAmount;
     #region Tooltip
-    [Tooltip("Select if has immunity period immediately after being hit.  If so specify the immunity time in seconds in the other field")]
+    [Tooltip("Выберите, есть ли период иммунитета сразу после получения урона. Если да, укажите время иммунитета в секундах в другом поле")]
     #endregion
     public bool isImmuneAfterHit = false;
     #region Tooltip
-    [Tooltip("Immunity time in seconds after being hit")]
+    [Tooltip("Время иммунитета в секундах после получения урона")]
     #endregion
     public float hitImmunityTime;
 
     #region Header WEAPON
     [Space(10)]
-    [Header("WEAPON")]
+    [Header("ОРУЖИЕ")]
     #endregion
     #region Tooltip
-    [Tooltip("Player  initial starting weapon")]
+    [Tooltip("Начальное оружие игрока")]
     #endregion
     public WeaponDetailsSO startingWeapon;
     #region Tooltip
-    [Tooltip("Populate with the list of starting weapons")]
+    [Tooltip("Заполните список начального оружия")]
     #endregion
     public List<WeaponDetailsSO> startingWeaponList;
 
 
     #region Header OTHER 
     [Space(10)] 
-    [Header("OTHER")] 
+    [Header("ПРОЧЕЕ")] 
     #endregion 
     #region Tooltip 
-    [Tooltip("Player icon sprite to be used in the minimap")] 
+    [Tooltip("Иконка игрока для использования на миникарте")] 
     #endregion 
     public Sprite playerMiniMapIcon; 
     #region Tooltip 
-    [Tooltip("Player hand sprite")] 
+    [Tooltip("Спрайт руки игрока")] 
     #endregion 
     public Sprite playerHandSprite;
 

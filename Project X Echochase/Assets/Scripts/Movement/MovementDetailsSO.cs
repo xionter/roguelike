@@ -7,31 +7,31 @@ public class MovementDetailsSO : ScriptableObject
 {
     #region Header MOVEMENT DETAILS
     [Space(10)]
-    [Header("MOVEMENT DETAILS")]
+    [Header("ДЕТАЛИ ДВИЖЕНИЯ")]
     #endregion Header
     #region Tooltip
-    [Tooltip("The minimum move speed. The GetMoveSpeed method calculates a random value between the minimum and maximum")]
+    [Tooltip("Минимальная скорость движения. Метод GetMoveSpeed вычисляет случайное значение между минимальной и максимальной")]
     #endregion Tooltip
     public float minMoveSpeed = 8f;
     #region Tooltip
-    [Tooltip("The maximum move speed. The GetMoveSpeed method calculates a random value between the minimum and maximum")]
+    [Tooltip("Максимальная скорость движения. Метод GetMoveSpeed вычисляет случайное значение между минимальной и максимальной")]
     #endregion Tooltip
     public float maxMoveSpeed = 8f;
     #region Tooltip
-    [Tooltip("If there is a roll movement- this is the roll speed")]
+    [Tooltip("Если есть движение перекатом - это скорость переката")]
     #endregion
     public float rollSpeed; // для игрока
     #region Tooltip
-    [Tooltip("If there is a roll movement - this is the roll distance")]
+    [Tooltip("Если есть движение перекатом - это расстояние переката")]
     #endregion
     public float rollDistance; // для игрока
     #region Tooltip
-    [Tooltip("If there is a roll movement - this is the cooldown time in seconds between roll actions")]
+    [Tooltip("Если есть движение перекатом - это время перезарядки в секундах между действиями переката")]
     #endregion
     public float rollCooldownTime; // для игрока
 
     /// <summary>
-    /// Рандомная скорость на отрезке от мин до макс
+    /// Случайная скорость на отрезке от минимальной до максимальной
     /// </summary>
     public float GetMoveSpeed()
     {

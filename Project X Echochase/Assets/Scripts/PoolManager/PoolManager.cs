@@ -6,7 +6,7 @@ using UnityEngine;
 public class PoolManager : SingletonMonobehaviour<PoolManager>
 {
     #region Tooltip
-    [Tooltip("Populate this array with prefabs that you want to add to the pool, and specify the number of gameobjects to be created for each.")]
+    [Tooltip("Заполните этот массив префабами, которые вы хотите добавить в пул, и укажите количество объектов, которые нужно создать для каждого.")]
     #endregion
     [SerializeField] private Pool[] poolArray = null;
     private Transform objectPoolTransform;
@@ -22,10 +22,10 @@ public class PoolManager : SingletonMonobehaviour<PoolManager>
 
     private void Start()
     {
-        // This singleton gameobject will be the object pool parent
+        // Этот объект Singleton будет родительским объектом для пула
         objectPoolTransform = this.gameObject.transform;
 
-        // Create object pools on start
+        // Создание пулов объектов при старте
         for (int i = 0; i < poolArray.Length; i++)
         {
             CreatePool(poolArray[i].prefab, poolArray[i].poolSize, poolArray[i].componentType);
@@ -34,15 +34,15 @@ public class PoolManager : SingletonMonobehaviour<PoolManager>
     }
 
     /// <summary>
-    /// Create the object pool with the specified prefabs and the specified pool size for each
+    /// Создать пул объектов с указанными префабами и заданным размером пула для каждого
     /// </summary>
     private void CreatePool(GameObject prefab, int poolSize, string componentType)
     {
         int poolKey = prefab.GetInstanceID();
 
-        string prefabName = prefab.name; // get prefab name
+        string prefabName = prefab.name; // получить имя префаба
 
-        GameObject parentGameObject = new GameObject(prefabName + "Anchor"); // create parent gameobject to parent the child objects to
+        GameObject parentGameObject = new GameObject(prefabName + "Anchor"); // создать родительский объект для дочерних объектов
 
         parentGameObject.transform.SetParent(objectPoolTransform);
 
@@ -64,7 +64,7 @@ public class PoolManager : SingletonMonobehaviour<PoolManager>
     }
 
     /// <summary>
-    /// Reuse a gameobject component in the pool.  'prefab' is the prefab gameobject containing the component. 'position' is the world position for the gameobject where it should appear when enabled. 'rotation' should be set if the gameobject needs to be rotated.
+    /// Повторно использовать компонент объекта из пула. 'prefab' — это префаб игрового объекта, содержащий компонент. 'position' — это мировая позиция для игрового объекта, где он должен появиться при активации. 'rotation' задаёт поворот объекта.
     /// </summary>
     public Component ReuseComponent(GameObject prefab, Vector3 position, Quaternion rotation)
     {
@@ -72,7 +72,7 @@ public class PoolManager : SingletonMonobehaviour<PoolManager>
 
         if (poolDictionary.ContainsKey(poolKey))
         {
-            // Get object from pool queue
+            // Получить объект из очереди пула
             Component componentToReuse = GetComponentFromPool(poolKey);
 
             ResetObject(position, rotation, componentToReuse, prefab);
@@ -81,13 +81,13 @@ public class PoolManager : SingletonMonobehaviour<PoolManager>
         }
         else
         {
-            Debug.Log("No object pool for " + prefab);
+            Debug.Log("Нет пула для " + prefab);
             return null;
         }
     }
 
     /// <summary>
-    /// Get a gameobject component from the pool using the 'poolKey'
+    /// Получить компонент игрового объекта из пула, используя 'poolKey'
     /// </summary>
     private Component GetComponentFromPool(int poolKey)
     {
@@ -103,7 +103,7 @@ public class PoolManager : SingletonMonobehaviour<PoolManager>
     }
 
     /// <summary>
-    /// Reset the gameobject.
+    /// Сбросить состояние игрового объекта.
     /// </summary>
     private void ResetObject(Vector3 position, Quaternion rotation, Component componentToReuse, GameObject prefab)
     {

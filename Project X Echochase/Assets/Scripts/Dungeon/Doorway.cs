@@ -8,15 +8,15 @@ public class DoorWay
     public GameObject doorPrefab;
 
     #region Header
-    [Header("The Upper Left Position To Start Copying From")]
+    [Header("Верхняя левая позиция для копирования")]
     #endregion
     public Vector2Int doorwayStartCopyPosition;
     #region Header
-    [Header("The width of tiles in the doorway to copy over")]
+    [Header("Ширина плит в дверном проходе")]
     #endregion
     public int doorwayCopyTileWidth;
     #region Header
-    [Header("The height of tiles in the doorway to copy over")]
+    [Header("Высота плит в дверном проходе")]
     #endregion
     public int doorwayCopyTileHeight;
     [HideInInspector]

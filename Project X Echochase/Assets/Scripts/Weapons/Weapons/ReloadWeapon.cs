@@ -51,7 +51,7 @@ public class ReloadWeapon : MonoBehaviour
     }
 
     /// <summary>
-    /// Reload weapon coroutine
+    /// Перезагрузить оружие 
     /// </summary>
     private IEnumerator ReloadWeaponRoutine(Weapon weapon, int topUpAmmoPercent)
     {

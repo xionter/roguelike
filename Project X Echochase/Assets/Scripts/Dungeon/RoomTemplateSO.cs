@@ -10,77 +10,77 @@ public class RoomTemplateSO : ScriptableObject
     #region Header ROOM PREFAB
 
     [Space(10)]
-    [Header("ROOM PREFAB")]
+    [Header("ПРЕФАБ КОМНАТЫ")]
 
     #endregion Header ROOM PREFAB
 
     #region Tooltip
 
-    [Tooltip("The gameobject prefab for the room (this will contain all the tilemaps for the room and environment game objects)")]
+    [Tooltip("Префаб игрового объекта для комнаты (он будет содержать все тайлмапы для комнаты и объектов окружения)")]
 
     #endregion Tooltip
-    
+
     public GameObject prefab;
-    
-    [HideInInspector] public GameObject previousPrefab; // this is used to regenerate the guid if the so is copied and the prefab is changed
-    
+
+    [HideInInspector] public GameObject previousPrefab; // используется для повторной генерации GUID, если объект был скопирован и префаб изменился
+
     #region Header ROOM CONFIGURATION
-    
+
     [Space(10)]
-    [Header("ROOM CONFIGURATION")]
-    
+    [Header("КОНФИГУРАЦИЯ КОМНАТЫ")]
+
     #endregion Header ROOM CONFIGURATION
 
     #region Tooltip
 
-    [Tooltip("The room node type SO. The room node types correspond to the room nodes in yhe room node graph. The exceptions being with corridors. In the room node graph there is just one corridor type 'Corridor'. For the room templates there are one corridor node type - CorridorNS.")]
+    [Tooltip("Тип узла комнаты. Типы узлов комнаты соответствуют узлам комнаты в графе узлов комнаты. Исключением являются коридоры. В графе узлов комнаты есть только один тип коридора 'Corridor'. Для шаблонов комнат есть один тип узла коридора - CorridorNS.")]
 
     #endregion Tooltip
-    
+
     public RoomNodeTypeSO roomNodeType;
-    
+
     #region Tooltip
-    
-    [Tooltip("If you imagine a rectangle around the room tilemap that just completely encloses it, the room lower bounds represent the bottom left corner of that rectangle. This should be determined from the tilemap for the room (using the coordinate brush pointer to get the tilemap grid position for that bottom left corner (Note: this is the local tilemap position and NOT world position)).")]
-    
+
+    [Tooltip("Если представить прямоугольник вокруг тайлмапа комнаты, который полностью её охватывает, нижняя граница комнаты представляет нижний левый угол этого прямоугольника. Это значение должно быть определено из тайлмапа комнаты (с использованием указателя координат кисти для получения позиции сетки тайлмапа для этого нижнего левого угла (Примечание: это локальная позиция тайлмапа, а НЕ мировая позиция)).")]
+
     #endregion Tooltip
-    
+
     public Vector2Int lowerBounds;
-    
+
     #region Tooltip
-    
-    [Tooltip("If you imagine a rectangle around the room tilemap that just completely encloses it, the room lower bounds represent the bottom right corner of that rectangle. This should be determined from the tilemap for the room (using the coordinate brush pointer to get the tilemap grid position for that bottom right corner (Note: this is the local tilemap position and NOT world position)).")]
-    
+
+    [Tooltip("Если представить прямоугольник вокруг тайлмапа комнаты, который полностью её охватывает, верхняя граница комнаты представляет верхний правый угол этого прямоугольника. Это значение должно быть определено из тайлмапа комнаты (с использованием указателя координат кисти для получения позиции сетки тайлмапа для этого верхнего правого угла (Примечание: это локальная позиция тайлмапа, а НЕ мировая позиция)).")]
+
     #endregion Tooltip
-    
+
     public Vector2Int upperBounds;
-    
+
     #region Tooltip
-    
-    [Tooltip("There should be a maximum of two doorways for a room - one for north and west. These should have a consistent 3 tile opening size, with the middle tile position being the doorway coordinate 'position'")]
-    
+
+    [Tooltip("В комнате должно быть максимум два дверных проёма - один на север и один на запад. Они должны иметь одинаковый размер проёма в 3 тайла, при этом средняя позиция тайла является координатой 'позиции' дверного проёма.")]
+
     #endregion Tooltip
-    
+
     [SerializeField] public List<DoorWay> doorwayList;
-    
+
     #region Tooltip
-    
-    [Tooltip("Each possible spawn position (used for enemies and chests) for the room in tilemap coordinates should be added to this array")]
-    
+
+    [Tooltip("Каждая возможная позиция спавна (используется для врагов и сундуков) для комнаты в координатах тайлмапа должна быть добавлена в этот массив")]
+
     #endregion Tooltip
-    
+
     public Vector2Int[] spawnPositionArray;
 
     #region Header ENEMY DETAILS
 
     [Space(10)]
-    [Header("ENEMY DETAILS")]
+    [Header("ДЕТАЛИ ВРАГОВ")]
 
     #endregion Header ENEMY DETAILS
 
     #region Tooltip
 
-    [Tooltip("Populate the list with all the enemies that can be spawned in this room by dungeon level, including the ratio (random) of this enemy type that will be spawned")]
+    [Tooltip("Заполните список всеми врагами, которые могут быть заспавнены в этой комнате по уровням подземелья, включая соотношение (случайное) этого типа врагов, которые будут заспавнены")]
 
     #endregion Tooltip
 
@@ -89,14 +89,14 @@ public class RoomTemplateSO : ScriptableObject
 
     #region Tooltip
 
-    [Tooltip("Populate the list with the spawn parameters for the enemies.")]
+    [Tooltip("Заполните список параметрами спавна для врагов.")]
 
     #endregion Tooltip
 
     public List<RoomEnemySpawnParameters> roomEnemySpawnParametersList;
 
     /// <summary>
-    /// Returns the list of Entrances for the room template
+    /// Возвращает список входов для шаблона комнаты
     /// </summary>
     public List<DoorWay> GetDoorwayList()
     {
@@ -106,22 +106,20 @@ public class RoomTemplateSO : ScriptableObject
     #region Validation
 
 #if UNITY_EDITOR
-    
-    //Validate SO fields
+
+    // Проверка полей ScriptableObject
     private void OnValidate()
     {
-        //Set unique GUID if empty or the prefab changes
+        // Установить уникальный id, если он пуст или префаб изменился
         if (guid == "" || previousPrefab != prefab)
         {
             guid = GUID.Generate().ToString();
             previousPrefab = prefab;
-            EditorUtility.SetDirty(this);// ayo
+            EditorUtility.SetDirty(this); // пометить объект как изменённый
         }
 
         HelperUtilities.ValidateCheckNullValue(this, nameof(prefab), prefab);
-        //HelperUtilities.ValidateCheckNullValue(this, nameof(battleMusic), battleMusic);
-        //HelperUtilities.ValidateCheckNullValue(this, nameof(ambientMusic), ambientMusic);
-        //HelperUtilities.ValidateCheckNullValue(this, nameof(roomNodeType), roomNodeType);
+
 
 
         if (enemiesByLevelList.Count > 0 || roomEnemySpawnParametersList.Count > 0)
@@ -133,21 +131,21 @@ public class RoomTemplateSO : ScriptableObject
             {
                 HelperUtilities.ValidateCheckNullValue(this, nameof(roomEnemySpawnParameters.dungeonLevel), roomEnemySpawnParameters.dungeonLevel);
 
-                HelperUtilities.ValidateCheckPositiveRange(this, nameof(roomEnemySpawnParameters.minTotalEnemiesToSpawn), 
-                  roomEnemySpawnParameters.minTotalEnemiesToSpawn, nameof(roomEnemySpawnParameters.maxTotalEnemiesToSpawn), 
+                HelperUtilities.ValidateCheckPositiveRange(this, nameof(roomEnemySpawnParameters.minTotalEnemiesToSpawn),
+                  roomEnemySpawnParameters.minTotalEnemiesToSpawn, nameof(roomEnemySpawnParameters.maxTotalEnemiesToSpawn),
                   roomEnemySpawnParameters.maxTotalEnemiesToSpawn, true);
 
-                HelperUtilities.ValidateCheckPositiveRange(this, nameof(roomEnemySpawnParameters.minSpawnInterval), 
-                  roomEnemySpawnParameters.minSpawnInterval, nameof(roomEnemySpawnParameters.maxSpawnInterval), 
+                HelperUtilities.ValidateCheckPositiveRange(this, nameof(roomEnemySpawnParameters.minSpawnInterval),
+                  roomEnemySpawnParameters.minSpawnInterval, nameof(roomEnemySpawnParameters.maxSpawnInterval),
                   roomEnemySpawnParameters.maxSpawnInterval, true);
 
-                HelperUtilities.ValidateCheckPositiveRange(this, nameof(roomEnemySpawnParameters.minConcurrentEnemies), 
-                  roomEnemySpawnParameters.minConcurrentEnemies, nameof(roomEnemySpawnParameters.maxConcurrentEnemies), 
+                HelperUtilities.ValidateCheckPositiveRange(this, nameof(roomEnemySpawnParameters.minConcurrentEnemies),
+                  roomEnemySpawnParameters.minConcurrentEnemies, nameof(roomEnemySpawnParameters.maxConcurrentEnemies),
                   roomEnemySpawnParameters.maxConcurrentEnemies, false);
 
                 bool isEnemyTypesListForDungeonLevel = false;
 
-                // проверка enemy type
+                // проверка типов врагов
                 foreach (SpawnableObjectsByLevel<EnemyDetailsSO> dungeonObjectsByLevel in enemiesByLevelList)
                 {
                     if (dungeonObjectsByLevel.dungeonLevel == roomEnemySpawnParameters.dungeonLevel && dungeonObjectsByLevel.spawnableObjectRatioList.Count > 0)
@@ -166,16 +164,16 @@ public class RoomTemplateSO : ScriptableObject
 
                 if (isEnemyTypesListForDungeonLevel == false && roomEnemySpawnParameters.dungeonLevel != null)
                 {
-                    Debug.Log("No enemy types specified in for dungeon level " + roomEnemySpawnParameters.dungeonLevel.levelName + " in gameobject " + this.name.ToString());
+                    Debug.Log("Не указаны типы врагов для уровня подземелья " + roomEnemySpawnParameters.dungeonLevel.levelName + " в игровом объекте " + this.name.ToString());
                 }
             }
         }
 
         HelperUtilities.ValidateCheckEnumerableValues(this, nameof(doorwayList), doorwayList);
-        
+
         HelperUtilities.ValidateCheckEnumerableValues(this, nameof(spawnPositionArray), spawnPositionArray);
     }
-    
+
 #endif
 
     #endregion Validation

@@ -10,24 +10,24 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 {
     #region Header GAMEOBJECT REFERENCES
     [Space(10)]
-    [Header("GAMEOBJECT REFERENCES")]
+    [Header("ССЫЛКИ НА GAMEOBJECT")]
     #endregion Header GAMEOBJECT REFERENCES
 
 
     #region Tooltip
-    [Tooltip("Populate with the FadeImage canvasgroup component in the FadeScreenUI")]
+    [Tooltip("Заполните компонентом CanvasGroup из FadeScreenUI")]
     #endregion Tooltip
     [SerializeField] private CanvasGroup canvasGroup;
 
     #region Header DUNGEON LEVELS
 
     [Space(10)]
-    [Header("DUNGEON LEVELS")]
+    [Header("УРОВНИ ПОДЗЕМЕЛЬЯ")]
     #endregion Header DUNGEON LEVELS
 
     #region Tooltip
 
-    [Tooltip("Populate with the dungeon level scriptable objects")]
+    [Tooltip("Заполните объектами ScriptableObject для уровней подземелья")]
 
     #endregion Tooltip
     [SerializeField] private DungeonLevelSO dungeonLevel;
@@ -35,7 +35,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     #region Tooltip
 
-    [Tooltip("Populate with the starting dungeon level for testing , first level = 0")]
+    [Tooltip("Заполните начальным уровнем подземелья для тестирования, первый уровень = 0")]
 
     #endregion Tooltip
     private Room currentRoom;
@@ -45,26 +45,26 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     [HideInInspector] public GameState gameState;
     [HideInInspector] public GameState previousGameState;
-    //private long gameScore;
-    //private int scoreMultiplier;
-    //   private InstantiatedRoom bossRoom;
-    //private bool isFading = false;
+    private long gameScore;
+    private int scoreMultiplier;
+    private InstantiatedRoom bossRoom;
+    private bool isFading = false;
 
     protected override void Awake()
     {
-        // Call base class
+        // Вызов метода базового класса
         base.Awake();
 
-        // Set player details - saved in current player scriptable object from the main menu
+        // Установить данные игрока - сохранены в текущем ScriptableObject игрока из главного меню
         playerDetails = GameResources.Instance.currentPlayer.playerDetails;
 
-        // Instantiate player
+        // Создать игрока
         InstantiatePlayer();
 
     }
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Start вызывается один раз перед первым выполнением Update после создания MonoBehaviour
     private void Start()
     {
         previousGameState = GameState.gameStarted;
@@ -74,39 +74,39 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
         //scoreMultiplier = 1;
 
-        // Set screen to black
+        // Установить экран в черный цвет
         //StartCoroutine(Fade(0f, 1f, 0f, Color.black));
     }
 
     /// <summary>
-    /// Set the current room the player in in
+    /// Установить текущую комнату, в которой находится игрок
     /// </summary>
     public void SetCurrentRoom(Room room)
     {
         previousRoom = currentRoom;
         currentRoom = room;
 
-        //// Debug
+        //// Отладка
         //Debug.Log(room.prefab.name.ToString());
     }
 
 
     /// <summary>
-    /// Create player in scene at position
+    /// Создать игрока в сцене в указанной позиции
     /// </summary>
     private void InstantiatePlayer()
     {
-        // Instantiate player
+        // Создать объект игрока
         GameObject playerGameObject = Instantiate(playerDetails.playerPrefab);
 
-        // Initialize Player
+        // Инициализировать игрока
         player = playerGameObject.GetComponent<Player>();
 
         player.Initialize(playerDetails);
 
     }
 
-    // Update is called once per frame
+    // Update вызывается один раз за кадр
     private void Update()
     {
         HandleGameState();
@@ -131,37 +131,37 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     private void OnEnable()
     {
-        // Subscribe to room changed event.
+        // Подписаться на событие изменения комнаты
         StaticEventHandler.OnRoomChanged += StaticEventHandler_OnRoomChanged;
 
-        // // Subscribe to room enemies defeated event
+        // // Подписаться на событие, когда враги в комнате побеждены
         // StaticEventHandler.OnRoomEnemiesDefeated += StaticEventHandler_OnRoomEnemiesDefeated;
         //
-        // // Subscribe to the points scored event
+        // // Подписаться на событие начисления очков
         // StaticEventHandler.OnPointsScored += StaticEventHandler_OnPointsScored;
         //
-        // // Subscribe to score multiplier event
+        // // Подписаться на событие изменения множителя очков
         // StaticEventHandler.OnMultiplier += StaticEventHandler_OnMultiplier;
         //
-        // // Subscribe to player destroyed event
+        // // Подписаться на событие уничтожения игрока
         // player.destroyedEvent.OnDestroyed += Player_OnDestroyed;
     }
 
     private void OnDisable()
     {
-        // Unsubscribe from room changed event
+        // Отписаться от события изменения комнаты
         StaticEventHandler.OnRoomChanged -= StaticEventHandler_OnRoomChanged;
 
-        // // Unsubscribe from room enemies defeated event
+        // // Отписаться от события, когда враги в комнате побеждены
         // StaticEventHandler.OnRoomEnemiesDefeated -= StaticEventHandler_OnRoomEnemiesDefeated;
         //
-        // // Unsubscribe from the points scored event
+        // // Отписаться от события начисления очков
         // StaticEventHandler.OnPointsScored -= StaticEventHandler_OnPointsScored;
         //
-        // // Unsubscribe from score multiplier event
+        // // Отписаться от события изменения множителя очков
         // StaticEventHandler.OnMultiplier -= StaticEventHandler_OnMultiplier;
         //
-        // // Unubscribe from player destroyed event
+        // // Отписаться от события уничтожения игрока
         // player.destroyedEvent.OnDestroyed -= Player_OnDestroyed;
 
     }
@@ -179,23 +179,23 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
         if (!dungeonBuiltSucessfully)
         {
-            Debug.LogError("Couldn't build dungeon from specified rooms and node graphs");
+            Debug.LogError("Не удалось построить подземелье из указанных комнат и графов узлов");
         }
 
 
-        // Call static event that room has changed.
+        // Вызвать статическое событие, что комната изменилась
         StaticEventHandler.CallRoomChangedEvent(currentRoom);
 
-        // Set player roughly mid-room
+        // Установить игрока примерно в центре комнаты
         player.gameObject.transform.position = new Vector3((currentRoom.lowerBounds.x + currentRoom.upperBounds.x) / 2f, (currentRoom.lowerBounds.y + currentRoom.upperBounds.y) / 2f, 0f);
 
-        // Get nearest spawn point in room nearest to player
+        // Получить ближайшую точку появления в комнате, ближайшую к игроку
         player.gameObject.transform.position = HelperUtilities.GetSpawnPositionNearestToPlayer(player.gameObject.transform.position);
 
-        // Display Dungeon Level Text
+        // Отобразить текст уровня подземелья
         //StartCoroutine(DisplayDungeonLevelText());
 
-        //// ** Demo code
+        //// ** Демонстрационный код
         //RoomEnemiesDefeated();
     }
 
@@ -208,22 +208,9 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     {
         return currentRoom;
     }
-
-
-
+    
     public DungeonLevelSO GetCurrentDungeonLevel()
     {
         return dungeonLevel;
-        //return dungeonLevel[currentdungeonLevelIndex];
     }
-
-    #region Validation
-#if UNITY_EDITOR
-
-    private void OnValidate()
-    {
-        //HelperUtilities.ValidateCheckEnumerableValues(this, nameof(dungeonLevel), dungeonLevel);
-    }
-#endif
-    #endregion
 }

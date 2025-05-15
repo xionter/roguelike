@@ -8,34 +8,34 @@ public class WeaponStatusUI : MonoBehaviour
 {
     #region Header OBJECT REFERENCES
     [Space(10)]
-    [Header("OBJECT REFERENCES")]
+    [Header("Ссылки на объекты")]
     #endregion Header OBJECT REFERENCES
     #region Tooltip
-    [Tooltip("Populate with image component on the child WeaponImage gameobject")]
+    [Tooltip("Заполните компонентом Image дочернего объекта WeaponImage")]
     #endregion Tooltip
     [SerializeField] private Image weaponImage;
     #region Tooltip
-    [Tooltip("Populate with the Transform from the child AmmoHolder gameobject")]
+    [Tooltip("Заполните Transform дочернего объекта AmmoHolder")]
     #endregion Tooltip
     [SerializeField] private Transform ammoHolderTransform;
     #region Tooltip
-    [Tooltip("Populate with the TextMeshPro-Text component on the child ReloadText gameobject")]
+    [Tooltip("Заполните компонентом TextMeshPro-Text дочернего объекта ReloadText")]
     #endregion Tooltip
     [SerializeField] private TextMeshProUGUI reloadText;
     #region Tooltip
-    [Tooltip("Populate with the TextMeshPro-Text component on the child AmmoRemainingText gameobject")]
+    [Tooltip("Заполните компонентом TextMeshPro-Text дочернего объекта AmmoRemainingText")]
     #endregion Tooltip
     [SerializeField] private TextMeshProUGUI ammoRemainingText;
     #region Tooltip
-    [Tooltip("Populate with the TextMeshPro-Text component on the child WeaponNameText gameobject")]
+    [Tooltip("Заполните компонентом TextMeshPro-Text дочернего объекта WeaponNameText")]
     #endregion Tooltip
     [SerializeField] private TextMeshProUGUI weaponNameText;
     #region Tooltip
-    [Tooltip("Populate with the RectTransform of the child gameobject ReloadBar")]
+    [Tooltip("Заполните RectTransform дочернего объекта ReloadBar")]
     #endregion Tooltip
     [SerializeField] private Transform reloadBar;
     #region Tooltip
-    [Tooltip("Populate with the Image component of the child gameobject BarImage")]
+    [Tooltip("Заполните компонентом Image дочернего объекта BarImage")]
     #endregion Tooltip
     [SerializeField] private Image barImage;
 
