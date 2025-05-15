@@ -67,7 +67,7 @@ public class Ammo : MonoBehaviour, IFireable
 
         DealDamage(collision);
 
-        //AmmoHitEffect();
+        AmmoHitEffect();
 
         DisableAmmo();
     }
@@ -192,7 +192,7 @@ public class Ammo : MonoBehaviour, IFireable
         gameObject.SetActive(false);
     }
 
-    /*private void AmmoHitEffect()
+    private void AmmoHitEffect()
     {
         if (ammoDetails.ammoHitEffect != null && ammoDetails.ammoHitEffect.ammoHitEffectPrefab != null)
         {
@@ -203,7 +203,7 @@ public class Ammo : MonoBehaviour, IFireable
             // система частиц по дефолту отключает gameobject при завершении, нужно ставить вручную
             ammoHitEffect.gameObject.SetActive(true);
         }
-    }*/
+    }
 
 
     public void SetAmmoMaterial(Material material)

@@ -1,4 +1,4 @@
-/*using UnityEngine;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "AmmoHitEffect_", menuName = "Scriptable Objects/Weapons/Ammo Hit Effect")]
 public class AmmoHitEffectSO : ScriptableObject
@@ -93,4 +93,4 @@ public class AmmoHitEffectSO : ScriptableObject
 #endif
 
     #endregion Validation
-}*/
+}
