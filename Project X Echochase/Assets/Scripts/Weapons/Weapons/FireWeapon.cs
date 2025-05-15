@@ -185,7 +185,7 @@ public class FireWeapon : MonoBehaviour
         weaponFiredEvent.CallWeaponFiredEvent(activeWeapon.GetCurrentWeapon());
 
         // визуальные эффекты
-        //WeaponShootEffect(aimAngle);
+        WeaponShootEffect(aimAngle);
 
         // звуковые эффекты
         //WeaponSoundEffect();
@@ -208,7 +208,7 @@ public class FireWeapon : MonoBehaviour
     }
     
 
-    /*
+    
     /// <summary>
     /// Визуальный эффект выстрела
     /// </summary>
@@ -224,7 +224,7 @@ public class FireWeapon : MonoBehaviour
             weaponShootEffect.gameObject.SetActive(true);
         }
     }
-
+    /*
     /// <summary>
     /// Звуковой эффект выстрела
     /// </summary>
