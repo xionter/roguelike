@@ -16,6 +16,7 @@ MonoBehaviour:
   weaponSprite: {fileID: 21300000, guid: 957e7c5a4532c7b4fa28cd31bf5aee5d, type: 3}
   weaponShootPosition: {x: 1.376, y: 0.208, z: 0}
   weaponCurrentAmmo: {fileID: 11400000, guid: b6ee77974a063e50e94c6f2f4527435a, type: 2}
+  weaponShootEffect: {fileID: 11400000, guid: c790ba1e82750de0590ae889fdae3eec, type: 2}
   hasInfiniteAmmo: 1
   hasInfiniteClipCapacity: 0
   weaponClipAmmoCapacity: 4
