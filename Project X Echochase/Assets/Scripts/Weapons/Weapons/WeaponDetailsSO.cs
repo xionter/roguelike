@@ -28,10 +28,6 @@ public class WeaponDetailsSO : ScriptableObject
     [Tooltip("Текущие боеприпасы оружия")]
     #endregion Tooltip
     public AmmoDetailsSO weaponCurrentAmmo;
-    /*#region Tooltip
-    [Tooltip("Эффект стрельбы оружия (Scriptable Object) - содержит параметры для использования с префабом эффекта стрельбы")]
-    #endregion Tooltip
-    public WeaponShootEffectSO weaponShootEffect;
     #region Tooltip
     [Tooltip("Звуковой эффект стрельбы оружия (Scriptable Object)")]
     #endregion Tooltip
@@ -39,7 +35,11 @@ public class WeaponDetailsSO : ScriptableObject
     #region Tooltip
     [Tooltip("Звуковой эффект перезарядки оружия (Scriptable Object)")]
     #endregion Tooltip
-    public SoundEffectSO weaponReloadingSoundEffect;*/
+    public SoundEffectSO weaponReloadingSoundEffect;
+    /*#region Tooltip
+    [Tooltip("Эффект стрельбы оружия (Scriptable Object) - содержит параметры для использования с префабом эффекта стрельбы")]
+    #endregion Tooltip
+    public WeaponShootEffectSO weaponShootEffect;*/
     #region Header WEAPON OPERATING VALUES
     [Space(10)]
     [Header("РАБОЧИЕ ПАРАМЕТРЫ ОРУЖИЯ")]

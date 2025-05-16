@@ -188,7 +188,7 @@ public class FireWeapon : MonoBehaviour
         //WeaponShootEffect(aimAngle);
 
         // звуковые эффекты
-        //WeaponSoundEffect();
+        WeaponSoundEffect();
     }
     
     /// <summary>
@@ -206,7 +206,7 @@ public class FireWeapon : MonoBehaviour
     {
         firePreChargeTimer = activeWeapon.GetCurrentWeapon().weaponDetails.weaponPrechargeTime;
     }
-    
+
 
     /*
     /// <summary>
@@ -224,6 +224,7 @@ public class FireWeapon : MonoBehaviour
             weaponShootEffect.gameObject.SetActive(true);
         }
     }
+    */
 
     /// <summary>
     /// Звуковой эффект выстрела
@@ -235,5 +236,4 @@ public class FireWeapon : MonoBehaviour
             SoundEffectManager.Instance.PlaySoundEffect(activeWeapon.GetCurrentWeapon().weaponDetails.weaponFiringSoundEffect);
         }
     }
-    */
 }
