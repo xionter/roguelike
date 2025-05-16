@@ -17,7 +17,6 @@ public class FireWeapon : MonoBehaviour
 
     private void Awake()
     {
-        // подгрузить компоненты
         activeWeapon = GetComponent<ActiveWeapon>();
         fireWeaponEvent = GetComponent<FireWeaponEvent>();
         reloadWeaponEvent = GetComponent<ReloadWeaponEvent>();
@@ -26,41 +25,30 @@ public class FireWeapon : MonoBehaviour
 
     private void OnEnable()
     {
-        // подписаться на ивент
         fireWeaponEvent.OnFireWeapon += FireWeaponEvent_OnFireWeapon;
     }
 
     private void OnDisable()
     {
-        // отписаться от ивента
         fireWeaponEvent.OnFireWeapon -= FireWeaponEvent_OnFireWeapon;
     }
 
     private void Update()
     {
-        // уменьшить таймер перезарядки
         fireRateCoolDownTimer -= Time.deltaTime;
     }
-    
 
-    /// <summary>
-    /// Обработать FireWeaponEvent
-    /// </summary>
     private void FireWeaponEvent_OnFireWeapon(FireWeaponEvent fireWeaponEvent, FireWeaponEventArgs fireWeaponEventArgs)
     {
         WeaponFire(fireWeaponEventArgs);
     }
 
-    /// <summary>
-    /// Выстрелить из оружия
-    /// </summary>
     private void WeaponFire(FireWeaponEventArgs fireWeaponEventArgs)
     {
         WeaponPreCharge(fireWeaponEventArgs);
 
         if (fireWeaponEventArgs.fire)
         {
-            // Проверка, может ли выстрелить оружие
             if (IsWeaponReadyToFire())
             {
                 FireAmmo(fireWeaponEventArgs.aimAngle, fireWeaponEventArgs.weaponAimAngle, fireWeaponEventArgs.weaponAimDirectionVector);
@@ -72,10 +60,6 @@ public class FireWeapon : MonoBehaviour
         }
     }
 
-    
-    /// <summary>
-    /// Обработка зарядки оружия
-    /// </summary>
     private void WeaponPreCharge(FireWeaponEventArgs fireWeaponEventArgs)
     {
         if (fireWeaponEventArgs.firePreviousFrame)
@@ -87,10 +71,7 @@ public class FireWeapon : MonoBehaviour
             ResetPrechargeTimer();
         }
     }
-    
-    /// <summary>
-    /// Проверка, может ли оружие выстрелить
-    /// </summary>
+
     private bool IsWeaponReadyToFire()
     {
         if (activeWeapon == null || activeWeapon.GetCurrentWeapon() == null)
@@ -191,23 +172,15 @@ public class FireWeapon : MonoBehaviour
         //WeaponSoundEffect();
     }
     
-    /// <summary>
-    /// Перезагрузка перезарядки
-    /// </summary>
     private void ResetCoolDownTimer()
     {
         fireRateCoolDownTimer = activeWeapon.GetCurrentWeapon().weaponDetails.weaponFireRate;
     }
 
-    /// <summary>
-    /// Обновить таймер precharge
-    /// </summary>
     private void ResetPrechargeTimer()
     {
         firePreChargeTimer = activeWeapon.GetCurrentWeapon().weaponDetails.weaponPrechargeTime;
     }
-    
-
     
     /// <summary>
     /// Визуальный эффект выстрела

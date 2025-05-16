@@ -1,3 +1,7 @@
+//НЕПОНЯТНО, ПОЧЕМУ НЕ РАБОТАЕТ. НЕ УДАЛЯТЬ!!!!!
+
+
+
 //using System.Collections;
 //using UnityEngine;
 

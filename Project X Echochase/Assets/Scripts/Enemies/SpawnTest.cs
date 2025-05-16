@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+// НЕПОНЯТНО, ПОЧЕМУ НЕ РАБОТАЕТ. НЕ УДАЛЯТЬ КОМЕНТЫ
 public class SpawnTest : MonoBehaviour
 {
     public RoomTemplateSO roomTemplateSO;

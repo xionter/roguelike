@@ -3,76 +3,75 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WeaponShootEffect_", menuName = "Scriptable Objects/Weapons/Weapon Shoot Effect")]
 public class WeaponShootEffectSO : ScriptableObject
 {
-    #region Header WEAPON SHOOT EFFECT DETAILS
+    #region Header ДЕТАЛИ ЭФФЕКТА ВЫСТРЕЛА ОРУЖИЯ
     [Space(10)]
     [Header("WEAPON SHOOT EFFECT DETAILS")]
-    #endregion Header WEAPON SHOOT EFFECT DETAILS
+    #endregion Header ДЕТАЛИ ЭФФЕКТА ВЫСТРЕЛА ОРУЖИЯ
 
     #region Tooltip
-    [Tooltip("The color gradient for the shoot effect.  This gradient show the color of particles during their lifetime - from left to right ")]
+    [Tooltip("Градиент цвета для эффекта выстрела. Показывает изменение цвета частиц в течение их времени жизни (слева направо)")]
     #endregion Tooltip
     public Gradient colorGradient;
 
     #region Tooltip
-    [Tooltip("The length of time the particle system is emitting particles")]
+    [Tooltip("Длительность эмиссии частиц системы частиц")]
     #endregion Tooltip
     public float duration = 0.50f;
 
     #region Tooltip
-    [Tooltip("The start particle size for the particle effect")]
+    [Tooltip("Начальный размер частиц эффекта")]
     #endregion Tooltip
     public float startParticleSize = 0.25f;
 
     #region Tooltip
-    [Tooltip("The start particle speed for the particle effect")]
+    [Tooltip("Начальная скорость частиц эффекта")]
     #endregion Tooltip
     public float startParticleSpeed = 3f;
 
     #region Tooltip
-    [Tooltip("The particle lifetime for the particle effect")]
+    [Tooltip("Время жизни частиц эффекта")]
     #endregion Tooltip
     public float startLifetime = 0.5f;
 
     #region Tooltip
-    [Tooltip("The maximum number of particles to be emitted")]
+    [Tooltip("Максимальное количество эмитируемых частиц")]
     #endregion Tooltip
     public int maxParticleNumber = 100;
 
     #region Tooltip
-    [Tooltip("The number of particles emitted per second. If zero it will just be the burst number")]
+    [Tooltip("Количество частиц, испускаемых в секунду. Если 0 - будет использовано только количество из burst")]
     #endregion Tooltip
     public int emissionRate = 100;
 
     #region Tooltip
-    [Tooltip("How many particles should be emmitted in the particle effect burst")]
+    [Tooltip("Количество частиц, выброшенных за один раз (burst)")]
     #endregion Tooltip
     public int burstParticleNumber = 20;
 
     #region Tooltip
-    [Tooltip("The gravity on the particles - a small negative number will make them float up")]
-    #endregion
+    [Tooltip("Гравитация, воздействующая на частицы. Небольшое отрицательное значение заставит их подниматься вверх")]
+    #endregion Tooltip
     public float effectGravity = -0.01f;
 
     #region Tooltip
-    [Tooltip("The sprite for the particle effect.  If none is specified then the default particle sprite will be used")]
+    [Tooltip("Спрайт для эффекта частиц. Если не указан - будет использован стандартный спрайт частиц")]
     #endregion Tooltip
     public Sprite sprite;
 
     #region Tooltip
-    [Tooltip("The min velocity for the particle over its lifetime. A random value between min and max will be generated.")]
+    [Tooltip("Минимальная скорость частицы за время её жизни. Будет выбрано случайное значение между min и max")]
     #endregion Tooltip
     public Vector3 velocityOverLifetimeMin;
 
     #region Tooltip
-    [Tooltip("The max velocity for the particle over its lifetime. A random value between min and max will be generated.")]
+    [Tooltip("Максимальная скорость частицы за время её жизни. Будет выбрано случайное значение между min и max")]
     #endregion Tooltip
     public Vector3 velocityOverLifetimeMax;
 
     #region Tooltip
-    [Tooltip("weaponShootEffectPrefab contains the particle system for the shoot effect - and is configured by the weaponShootEffect SO")]
+    [Tooltip("Префаб weaponShootEffectPrefab содержит систему частиц для эффекта выстрела и настраивается через weaponShootEffect SO")]
     #endregion Tooltip
     public GameObject weaponShootEffectPrefab;
-
 
     #region Validation
 

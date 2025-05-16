@@ -5,139 +5,137 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AmmoDetails_", menuName = "Scriptable Objects/Weapons/Ammo Details")]
 public class AmmoDetailsSO : ScriptableObject
 {
-    #region Header BASIC AMMO DETAILS
+    #region Header Основные параметры снаряда
     [Space(10)]
-    [Header("BASIC AMMO DETAILS")]
+    [Header("ОСНОВНЫЕ ПАРАМЕТРЫ СНАРЯДА")]
     #endregion
     #region Tooltip
-    [Tooltip("Name for the ammo")]
+    [Tooltip("Название снаряда")]
     #endregion
     public string ammoName;
     public bool isPlayerAmmo;
 
-    #region Header AMMO SPRITE, PREFAB & MATERIALS
+    #region Header Спрайт, префаб и материалы снаряда
     [Space(10)]
-    [Header("AMMO SPRITE, PREFAB & MATERIALS")]
+    [Header("СПРАЙТ, ПРЕФАБ И МАТЕРИАЛЫ СНАРЯДА")]
     #endregion
     #region Tooltip
-    [Tooltip("Sprite to be used for the ammo")]
+    [Tooltip("Спрайт, используемый для снаряда")]
     #endregion
     public Sprite ammoSprite;
     #region Tooltip
-    [Tooltip("Populate with the prefab to be used for the ammo.  If multiple prefabs are specified then a random prefab from the array will be selecetd.  The prefab can be an ammo pattern - as long as it conforms to the IFireable interface.")]
+    [Tooltip("Укажите префаб для снаряда. Если указано несколько префабов, будет выбран случайный. Префаб может быть шаблоном снаряда, если он соответствует интерфейсу IFireable.")]
     #endregion
     public GameObject[] ammoPrefabArray;
     #region Tooltip
-    [Tooltip("The material to be used for the ammo")]
+    [Tooltip("Материал, используемый для снаряда")]
     #endregion
     public Material ammoMaterial;
     #region Tooltip
-    [Tooltip("If the ammo should 'charge' briefly before moving then set the time in seconds that the ammo is held charging after firing before release")]
+    [Tooltip("Если снаряд должен 'заряжаться' перед выстрелом, укажите время в секундах, которое он будет заряжаться перед выпуском")]
     #endregion
     public float ammoChargeTime = 0.1f;
     #region Tooltip
-    [Tooltip("If the ammo has a charge time then specify what material should be used to render the ammo while charging")]
+    [Tooltip("Если у снаряда есть время заряда, укажите материал для отображения снаряда во время заряда")]
     #endregion
     public Material ammoChargeMaterial;
-    #region Header AMMO HIT EFFECT
-    #region Header AMMO HIT EFFECT
+    #region Эффект попадания снаряда
+    #region Эффект попадания снаряда
     [Space(10)]
-    [Header("AMMO HIT EFFECT")]
+    [Header("ЭФФЕКТ ПОПАДАНИЯ СНАРЯДА")]
     #endregion
     #region Tooltip
-    [Tooltip("The scriptable object that defines the parameters for the hit effect prefab")]
+    [Tooltip("Scriptable Object, определяющий параметры эффекта попадания")]
     #endregion
     #endregion
     public AmmoHitEffectSO ammoHitEffect;
 
-    #region Header AMMO BASE PARAMETERS
+    #region Header Базовые параметры снаряда
     [Space(10)]
-    [Header("AMMO BASE PARAMETERS")]
+    [Header("БАЗОВЫЕ ПАРАМЕТРЫ СНАРЯДА")]
     #endregion
     #region Tooltip
-    [Tooltip("The damage each ammo deals")]
+    [Tooltip("Урон, наносимый снарядом")]
     #endregion
     public int ammoDamage = 1;
     #region Tooltip
-    [Tooltip("The minimum speed of the ammo - the speed will be a random value between the min and max")]
+    [Tooltip("Минимальная скорость снаряда - скорость будет случайным значением между min и max")]
     #endregion
     public float ammoSpeedMin = 20f;
     #region Tooltip
-    [Tooltip("The maximum speed of the ammo - the speed will be a random value between the min and max")]
+    [Tooltip("Максимальная скорость снаряда - скорость будет случайным значением между min и max")]
     #endregion
     public float ammoSpeedMax = 20f;
     #region Tooltip
-    [Tooltip("The range of the ammo (or ammo pattern) in unity units")]
+    [Tooltip("Дальность снаряда (или шаблона снаряда) в юнитах Unity")]
     #endregion
     public float ammoRange = 20f;
     #region Tooltip
-    [Tooltip("The rotation speed in degrees per second of the ammo pattern")]
+    [Tooltip("Скорость вращения шаблона снаряда в градусах в секунду")]
     #endregion
     public float ammoRotationSpeed = 1f;
 
-    #region Header AMMO SPREAD DETAILS
+    #region Header Параметры разброса снаряда
     [Space(10)]
-    [Header("AMMO SPREAD DETAILS")]
+    [Header("ПАРАМЕТРЫ РАЗБРОСА СНАРЯДА")]
     #endregion
     #region Tooltip
-    [Tooltip("This is the  minimum spread angle of the ammo.  A higher spread means less accuracy. A random spread is calculated between the min and max values.")]
+    [Tooltip("Минимальный угол разброса снаряда. Больший разброс означает меньшую точность. Случайный разброс рассчитывается между min и max значениями.")]
     #endregion
     public float ammoSpreadMin = 0f;
     #region Tooltip
-    [Tooltip(" This is the  maximum spread angle of the ammo.  A higher spread means less accuracy. A random spread is calculated between the min and max values. ")]
+    [Tooltip("Максимальный угол разброса снаряда. Больший разброс означает меньшую точность. Случайный разброс рассчитывается между min и max значениями.")]
     #endregion
     public float ammoSpreadMax = 0f;
 
-    #region Header AMMO SPAWN DETAILS
+    #region Header Параметры создания снарядов
     [Space(10)]
-    [Header("AMMO SPAWN DETAILS")]
+    [Header("ПАРАМЕТРЫ СОЗДАНИЯ СНАРЯДОВ")]
     #endregion
     #region Tooltip
-    [Tooltip("This is the minimum number of ammo that are spawned per shot. A random number of ammo are spawned between the minimum and maximum values. ")]
+    [Tooltip("Минимальное количество снарядов, создаваемых за выстрел. Количество будет случайным между min и max значениями.")]
     #endregion
     public int ammoSpawnAmountMin = 1;
     #region Tooltip
-    [Tooltip("This is the maximum number of ammo that are spawned per shot. A random number of ammo are spawned between the minimum and maximum values. ")]
+    [Tooltip("Максимальное количество снарядов, создаваемых за выстрел. Количество будет случайным между min и max значениями.")]
     #endregion
     public int ammoSpawnAmountMax = 1;
     #region Tooltip
-    [Tooltip("Minimum spawn interval time. The time interval in seconds between spawned ammo is a random value between the minimum and maximum values specified.")]
+    [Tooltip("Минимальный интервал между созданием снарядов. Интервал в секундах будет случайным между min и max значениями.")]
     #endregion
     public float ammoSpawnIntervalMin = 0f;
     #region Tooltip
-    [Tooltip("Maximum spawn interval time. The time interval in seconds between spawned ammo is a random value between the minimum and maximum values specified.")]
+    [Tooltip("Максимальный интервал между созданием снарядов. Интервал в секундах будет случайным между min и max значениями.")]
     #endregion
     public float ammoSpawnIntervalMax = 0f;
 
-
-    #region Header AMMO TRAIL DETAILS
+    #region Header Параметры следа снаряда
     [Space(10)]
-    [Header("AMMO TRAIL DETAILS")]
+    [Header("ПАРАМЕТРЫ СЛЕДА СНАРЯДА")]
     #endregion
     #region Tooltip
-    [Tooltip("Selected if an ammo trail is required, otherwise deselect.  If selected then the rest of the ammo trail values should be populated.")]
+    [Tooltip("Отметьте, если нужен след от снаряда. Если отмечено, заполните остальные параметры следа.")]
     #endregion
     public bool isAmmoTrail = false;
     #region Tooltip
-    [Tooltip("Ammo trail lifetime in seconds.")]
+    [Tooltip("Время жизни следа снаряда в секундах.")]
     #endregion
     public float ammoTrailTime = 3f;
     #region Tooltip
-    [Tooltip("Ammo trail material.")]
+    [Tooltip("Материал следа снаряда.")]
     #endregion
     public Material ammoTrailMaterial;
     #region Tooltip
-    [Tooltip("The starting width for the ammo trail.")]
+    [Tooltip("Начальная ширина следа снаряда.")]
     #endregion
     [Range(0f, 1f)] public float ammoTrailStartWidth;
     #region Tooltip
-    [Tooltip("The ending width for the ammo trail")]
+    [Tooltip("Конечная ширина следа снаряда")]
     #endregion
     [Range(0f, 1f)] public float ammoTrailEndWidth;
 
     #region Validation
 #if UNITY_EDITOR
-    // Validate the scriptable object details entered
     private void OnValidate()
     {
         HelperUtilities.ValidateCheckEmptyString(this, nameof(ammoName), ammoName);

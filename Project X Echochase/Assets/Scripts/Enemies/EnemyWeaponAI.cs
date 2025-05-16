@@ -5,12 +5,14 @@ using UnityEngine;
 public class EnemyWeaponAI : MonoBehaviour
 {
     #region Tooltip
-    [Tooltip("Select the layers that the enemy bullets will hit")]
+    [Tooltip("Выберите слои, по которым могут попадать пули врага")]
     #endregion Tooltip
     [SerializeField] private LayerMask layerMask;
+
     #region Tooltip
-    [Tooltip("Populate this with the WeaponShootPosition child gameobject transform")]
+    [Tooltip("Укажите трансформ дочернего объекта WeaponShootPosition")]
     #endregion Tooltip
+
     [SerializeField] private Transform weaponShootPosition;
     private Enemy enemy;
     private EnemyDetailsSO enemyDetails;

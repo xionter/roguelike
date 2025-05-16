@@ -51,7 +51,7 @@ public class Ammo : MonoBehaviour, IFireable
                 if (ammoDetails.isPlayerAmmo)
                 {
                     // нет множителя
-                    //StaticEventHandler.CallMultiplierEvent(false);
+                    StaticEventHandler.CallMultiplierEvent(false);
                 }
 
                 DisableAmmo();
@@ -95,12 +95,12 @@ public class Ammo : MonoBehaviour, IFireable
             if (enemyHit)
             {
                 // multiplier
-                //StaticEventHandler.CallMultiplierEvent(true);
+                StaticEventHandler.CallMultiplierEvent(true);
             }
             else
             {
                 // no multiplier
-                //StaticEventHandler.CallMultiplierEvent(false);
+                StaticEventHandler.CallMultiplierEvent(false);
             }
         }
 

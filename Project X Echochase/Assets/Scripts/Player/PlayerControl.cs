@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     #region Tooltip
-    [Tooltip("MovementDetailsSO scriptable object containing movement details such as speed")]
+    [Tooltip("ScriptableObject с параметрами движения (скорость и др.)")]
     #endregion Tooltip
 
     [SerializeField] private MovementDetailsSO movementDetails;

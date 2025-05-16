@@ -6,14 +6,14 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class Door : MonoBehaviour
 {
-    #region Header OBJECT REFERENCES
+    #region Header ССЫЛКИ НА ОБЪЕКТЫ
     [Space(10)]
     [Header("OBJECT REFERENCES")]
     #endregion
 
     #region Tooltip
-    [Tooltip("Populate this with the BoxCollider2D component on the DoorCollider gameobject")]
-    #endregion
+    [Tooltip("Укажите компонент BoxCollider2D объекта DoorCollider")]
+    #endregion Tooltip
     [SerializeField] private BoxCollider2D doorCollider;
 
     [HideInInspector] public bool isBossRoomDoor = false;

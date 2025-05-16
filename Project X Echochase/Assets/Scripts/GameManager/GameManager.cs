@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+/**/
 [DisallowMultipleComponent]
 public class GameManager : SingletonMonobehaviour<GameManager>
 {
@@ -69,13 +69,6 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     {
         previousGameState = GameState.gameStarted;
         gameState = GameState.gameStarted;
-
-        //gameScore = 0;
-
-        //scoreMultiplier = 1;
-
-        // Установить экран в черный цвет
-        //StartCoroutine(Fade(0f, 1f, 0f, Color.black));
     }
 
     /// <summary>
@@ -133,37 +126,12 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     {
         // Подписаться на событие изменения комнаты
         StaticEventHandler.OnRoomChanged += StaticEventHandler_OnRoomChanged;
-
-        // // Подписаться на событие, когда враги в комнате побеждены
-        // StaticEventHandler.OnRoomEnemiesDefeated += StaticEventHandler_OnRoomEnemiesDefeated;
-        //
-        // // Подписаться на событие начисления очков
-        // StaticEventHandler.OnPointsScored += StaticEventHandler_OnPointsScored;
-        //
-        // // Подписаться на событие изменения множителя очков
-        // StaticEventHandler.OnMultiplier += StaticEventHandler_OnMultiplier;
-        //
-        // // Подписаться на событие уничтожения игрока
-        // player.destroyedEvent.OnDestroyed += Player_OnDestroyed;
     }
 
     private void OnDisable()
     {
         // Отписаться от события изменения комнаты
         StaticEventHandler.OnRoomChanged -= StaticEventHandler_OnRoomChanged;
-
-        // // Отписаться от события, когда враги в комнате побеждены
-        // StaticEventHandler.OnRoomEnemiesDefeated -= StaticEventHandler_OnRoomEnemiesDefeated;
-        //
-        // // Отписаться от события начисления очков
-        // StaticEventHandler.OnPointsScored -= StaticEventHandler_OnPointsScored;
-        //
-        // // Отписаться от события изменения множителя очков
-        // StaticEventHandler.OnMultiplier -= StaticEventHandler_OnMultiplier;
-        //
-        // // Отписаться от события уничтожения игрока
-        // player.destroyedEvent.OnDestroyed -= Player_OnDestroyed;
-
     }
 
 
@@ -191,12 +159,6 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
         // Получить ближайшую точку появления в комнате, ближайшую к игроку
         player.gameObject.transform.position = HelperUtilities.GetSpawnPositionNearestToPlayer(player.gameObject.transform.position);
-
-        // Отобразить текст уровня подземелья
-        //StartCoroutine(DisplayDungeonLevelText());
-
-        //// ** Демонстрационный код
-        //RoomEnemiesDefeated();
     }
 
     public Player GetPlayer()
