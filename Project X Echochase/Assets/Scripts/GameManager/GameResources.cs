@@ -29,23 +29,10 @@ public class GameResources : MonoBehaviour
 
     public RoomNodeTypeListSO roomNodeTypeList;
 
-    #region PLAYER SELECTION
-    [Space(10)]
-    [Header("ВЫБОР ИГРОКА")]
-    #endregion PLAYER SELECTION
-    #region Tooltip
-    [Tooltip("Префаб выбора игрока")]
-    #endregion Tooltip
-    public GameObject playerSelectionPrefab;
-
     #region Header PLAYER
     [Space(10)]
     [Header("ИГРОК")]
     #endregion Header PLAYER
-    #region Tooltip
-    [Tooltip("Список деталей игрока - заполните список ScriptableObject с деталями игрока")]
-    #endregion Tooltip
-    public List<PlayerDetailsSO> playerDetailsList;
     #region Tooltip
     [Tooltip("Текущий ScriptableObject игрока - используется для передачи данных между сценами")]
     #endregion Tooltip
@@ -104,6 +91,41 @@ public class GameResources : MonoBehaviour
     #endregion
     public GameObject scorePrefab;
 
+//жду звуки
+/*
+    #region Header SOUNDS
+    [Space(10)]
+    [Header("SOUNDS")]
+    #endregion Header
+    #region Tooltip
+    [Tooltip("Укажите основную группу микшера для звуков")]
+    #endregion
+    public AudioMixerGroup soundsMasterMixerGroup;
+    #region Tooltip
+    [Tooltip("Звук открытия/закрытия двери")]
+    #endregion Tooltip
+    public SoundEffectSO doorOpenCloseSoundEffect;
+    #region Tooltip
+    [Tooltip("Укажите звуковой эффект переворота стола")]
+    #endregion
+    public SoundEffectSO tableFlip;
+    #region Tooltip
+    [Tooltip("Укажите звуковой эффект открытия сундука")]
+    #endregion
+    public SoundEffectSO chestOpen;
+    #region Tooltip
+    [Tooltip("Укажите звуковой эффект подбора здоровья")]
+    #endregion
+    public SoundEffectSO healthPickup;
+    #region Tooltip
+    [Tooltip("Укажите звуковой эффект подбора оружия")]
+    #endregion
+    public SoundEffectSO weaponPickup;
+    #region Tooltip
+    [Tooltip("Укажите звуковой эффект подбора патронов")]
+    #endregion
+    public SoundEffectSO ammoPickup;
+*/
     #region Header CHESTS
     [Space(10)]
     [Header("СУНДУКИ")]
@@ -132,17 +154,23 @@ public class GameResources : MonoBehaviour
 
     #region Validation
 #if UNITY_EDITOR
-    // Проверка введённых данных ScriptableObject
     private void OnValidate()
     {
         HelperUtilities.ValidateCheckNullValue(this, nameof(roomNodeTypeList), roomNodeTypeList);
-        HelperUtilities.ValidateCheckNullValue(this, nameof(playerSelectionPrefab), playerSelectionPrefab);
-        HelperUtilities.ValidateCheckEnumerableValues(this, nameof(playerDetailsList), playerDetailsList);
         HelperUtilities.ValidateCheckNullValue(this, nameof(currentPlayer), currentPlayer);
         HelperUtilities.ValidateCheckNullValue(this, nameof(litMaterial), litMaterial);
         HelperUtilities.ValidateCheckNullValue(this, nameof(dimmedMaterial), dimmedMaterial);
         HelperUtilities.ValidateCheckNullValue(this, nameof(variableLitShader), variableLitShader);
         HelperUtilities.ValidateCheckNullValue(this, nameof(ammoIconPrefab), ammoIconPrefab);
+        /*HelperUtilities.ValidateCheckNullValue(this, nameof(chestOpen), chestOpen);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(healthPickup), healthPickup);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(ammoPickup), ammoPickup);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(weaponPickup), weaponPickup);
+        */
+        HelperUtilities.ValidateCheckNullValue(this, nameof(chestItemPrefab), chestItemPrefab);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(heartIcon), heartIcon);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(bulletIcon), bulletIcon);
+
     }
 
 #endif

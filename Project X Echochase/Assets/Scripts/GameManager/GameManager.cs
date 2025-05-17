@@ -155,10 +155,10 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         StaticEventHandler.CallRoomChangedEvent(currentRoom);
 
         // Установить игрока примерно в центре комнаты
-        player.gameObject.transform.position = new Vector3((currentRoom.lowerBounds.x + currentRoom.upperBounds.x) / 2f, (currentRoom.lowerBounds.y + currentRoom.upperBounds.y) / 2f, 0f);
+//        player.gameObject.transform.position = new Vector3((currentRoom.lowerBounds.x + currentRoom.upperBounds.x) / 2f, (currentRoom.lowerBounds.y + currentRoom.upperBounds.y) / 2f, 0f);
 
         // Получить ближайшую точку появления в комнате, ближайшую к игроку
-        player.gameObject.transform.position = HelperUtilities.GetSpawnPositionNearestToPlayer(player.gameObject.transform.position);
+//        player.gameObject.transform.position = HelperUtilities.GetSpawnPositionNearestToPlayer(player.gameObject.transform.position);
     }
 
     public Player GetPlayer()
