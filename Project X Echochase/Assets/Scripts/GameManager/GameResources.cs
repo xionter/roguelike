@@ -167,6 +167,9 @@ public class GameResources : MonoBehaviour
         HelperUtilities.ValidateCheckNullValue(this, nameof(ammoPickup), ammoPickup);
         HelperUtilities.ValidateCheckNullValue(this, nameof(weaponPickup), weaponPickup);
         */
+        HelperUtilities.ValidateCheckEnumerableValues(this, nameof(enemyUnwalkableCollisionTilesArray),
+            enemyUnwalkableCollisionTilesArray);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(preferredEnemyPathTile), preferredEnemyPathTile);
         HelperUtilities.ValidateCheckNullValue(this, nameof(chestItemPrefab), chestItemPrefab);
         HelperUtilities.ValidateCheckNullValue(this, nameof(heartIcon), heartIcon);
         HelperUtilities.ValidateCheckNullValue(this, nameof(bulletIcon), bulletIcon);

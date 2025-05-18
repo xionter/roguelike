@@ -14,3 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Slizzard
   enemyPrefab: {fileID: 3612535418984673539, guid: 6a6e1582888159541a4f2275cebaaffd, type: 3}
+  chaseDistance: 50
+  enemyWeapon: {fileID: 0}
+  firingIntervalMin: 0.1
+  firingIntervalMax: 1
+  firingDurationMin: 1
+  firingDurationMax: 2
+  firingLineOfSightRequired: 0
+  enemyHealthDetailsArray:
+  - dungeonLevel: {fileID: 11400000, guid: f564593041ee8994fb38aa94bcccc204, type: 2}
+    enemyHealthAmount: 1000
+  isImmuneAfterHit: 1
+  hitImmunityTime: 1
+  isHealthBarDisplayed: 1

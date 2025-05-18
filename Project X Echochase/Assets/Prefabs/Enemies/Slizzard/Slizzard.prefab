@@ -92,6 +92,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4160253513560298308, guid: 7d9bf5c8e5746c642a787fa527ac3292, type: 3}
+      propertyPath: movementDetails
+      value: 
+      objectReference: {fileID: 11400000, guid: 839d37270780a974a90fd89ea736f9d7, type: 2}
     - target: {fileID: 5045320335855835643, guid: 7d9bf5c8e5746c642a787fa527ac3292, type: 3}
       propertyPath: m_Name
       value: Slizzard

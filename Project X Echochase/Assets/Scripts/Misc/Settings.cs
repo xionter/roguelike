@@ -53,6 +53,14 @@ public static class Settings
     // считаем угол от игрока. Если больше, то угол от оружия
     #endregion
 
+    #region AStar Params
+
+    public const int defaultAStarMovementPenalty = 40;
+    public const int preferredPathAStarMovementPenalty = 1;
+    public const float playerMoveDistanceToRebuildPath = 3f;
+    public const float enemyPathRebuildCooldown = 2f;
+    #endregion
+
     #region GAMEOBJECT TAGS
     public const string playerTag = "Player";
     public const string playerWeapon = "playerWeapon";

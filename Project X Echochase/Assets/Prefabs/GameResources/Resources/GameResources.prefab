@@ -45,15 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomNodeTypeList: {fileID: 11400000, guid: 3f31e111c51918d43841dfe1b7a83edf, type: 2}
-  playerSelectionPrefab: {fileID: 0}
-  playerDetailsList: []
   currentPlayer: {fileID: 11400000, guid: 8aafbe5132efd72668c8782e44e39180, type: 2}
   dimmedMaterial: {fileID: -876546973899608171, guid: a35e9f660aeac4b4188308b3cef079f7, type: 3}
   litMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   variableLitShader: {fileID: -6465566751694194690, guid: 7685fbcb4cb341c4f94321ca17b4b758, type: 3}
   materializeShader: {fileID: 0}
-  enemyUnwalkableCollisionTilesArray: []
-  preferredEnemyPathTile: {fileID: 0}
+  enemyUnwalkableCollisionTilesArray:
+  - {fileID: 11400000, guid: 70979756fc250f848ba41b309d983e8d, type: 2}
+  - {fileID: 11400000, guid: 259a9d84b792bf347ba0ac3cfc4048d3, type: 2}
+  preferredEnemyPathTile: {fileID: 11400000, guid: 285e7e83b4ba9904195a2f63888cf1ef, type: 2}
   heartPrefab: {fileID: 3382433886380462954, guid: d1fd4f5171736494295acbe88514c3b7, type: 3}
   ammoIconPrefab: {fileID: 3382433886380462954, guid: b7ffc10fdcd06e963b2a7fd5a8845d5c, type: 3}
   scorePrefab: {fileID: 0}

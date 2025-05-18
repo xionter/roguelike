@@ -14,3 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Hedusa Green
   enemyPrefab: {fileID: 5608039967066705527, guid: afd340b59b941ff44bf2721bff13399f, type: 3}
+  chaseDistance: 50
+  enemyWeapon: {fileID: 0}
+  firingIntervalMin: 0.1
+  firingIntervalMax: 1
+  firingDurationMin: 1
+  firingDurationMax: 2
+  firingLineOfSightRequired: 0
+  enemyHealthDetailsArray:
+  - dungeonLevel: {fileID: 11400000, guid: f564593041ee8994fb38aa94bcccc204, type: 2}
+    enemyHealthAmount: 1000
+  isImmuneAfterHit: 1
+  hitImmunityTime: 1
+  isHealthBarDisplayed: 1

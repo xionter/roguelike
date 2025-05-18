@@ -653,7 +653,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 585367522}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86d6185d78bb3ecdb94103adb03a0d99, type: 3}
   m_Name: 
@@ -771,6 +771,8 @@ GameObject:
   m_Component:
   - component: {fileID: 741087215}
   - component: {fileID: 741087214}
+  - component: {fileID: 741087216}
+  - component: {fileID: 741087217}
   m_Layer: 0
   m_Name: DungeonBuilder
   m_TagString: Untagged
@@ -790,7 +792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006d5534dd902e54892ec909ba65768f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultRoomTemplate: {fileID: 11400000, guid: dd45fde284e1b2141b9e711c0896657a, type: 2}
+  defaultRoomTemplate: {fileID: 11400000, guid: a497dc160aa9b3348943bcfee0a96eca, type: 2}
 --- !u!4 &741087215
 Transform:
   m_ObjectHideFlags: 0
@@ -806,6 +808,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &741087216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741087213}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fbd94feba985dd4bbca1a3ba351a0d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &741087217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741087213}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df58069d67fe63613b9e033c4dd63726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomTemplateSO: {fileID: 11400000, guid: a497dc160aa9b3348943bcfee0a96eca, type: 2}
 --- !u!1 &755608525
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,7 +2107,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 0.999542
     height: 1
   near clip plane: 0.3
   far clip plane: 1000

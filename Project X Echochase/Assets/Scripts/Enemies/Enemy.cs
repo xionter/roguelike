@@ -25,12 +25,21 @@ using UnityEngine.Rendering;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
 [RequireComponent(typeof(PolygonCollider2D))]
+[RequireComponent(typeof(EnemyMovementAI))]
+[RequireComponent(typeof(MovementToPosition))]
+[RequireComponent(typeof(MovementToPositionEvent))]
+[RequireComponent(typeof(Idle))]
+[RequireComponent(typeof(IdleEvent))]
 #endregion REQUIRE COMPONENTS
 
 [DisallowMultipleComponent]
 public class Enemy : MonoBehaviour
 {
-    [HideInInspector] public EnemyDetailsSO enemyDetails;
+    [HideInInspector]
+    public EnemyDetailsSO enemyDetails;
+    private EnemyMovementAI enemyMovementAI;
+    [HideInInspector] public MovementToPositionEvent movementToPositionEvent;
+    [HideInInspector] public IdleEvent idleEvent;
     private HealthEvent healthEvent;
     private Health health;
     [HideInInspector] public AimWeaponEvent aimWeaponEvent;
@@ -46,6 +55,9 @@ public class Enemy : MonoBehaviour
     {
         healthEvent = GetComponent<HealthEvent>();
         health = GetComponent<Health>();
+        enemyMovementAI = GetComponent<EnemyMovementAI>();
+        movementToPositionEvent = GetComponent<MovementToPositionEvent>();
+        idleEvent = GetComponent<IdleEvent>();
         aimWeaponEvent = GetComponent<AimWeaponEvent>();
         fireWeaponEvent = GetComponent<FireWeaponEvent>();
         fireWeapon = GetComponent<FireWeapon>();

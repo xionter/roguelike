@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8153860813993155753, guid: 7d9bf5c8e5746c642a787fa527ac3292, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5475508290742015070, guid: 7d9bf5c8e5746c642a787fa527ac3292, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2677052291328750761, guid: 7d9bf5c8e5746c642a787fa527ac3292, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 742017483208621248, guid: 7d9bf5c8e5746c642a787fa527ac3292, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -88,6 +100,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3808896577926298390, guid: 7d9bf5c8e5746c642a787fa527ac3292, type: 3}
+      propertyPath: enemyDetails
+      value: 
+      objectReference: {fileID: 11400000, guid: 2ff4a0c0e714e2c43b45264fa66fcb32, type: 2}
     - target: {fileID: 3831850045818764226, guid: 7d9bf5c8e5746c642a787fa527ac3292, type: 3}
       propertyPath: m_Size.x
       value: 0.25
@@ -116,6 +132,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4160253513560298308, guid: 7d9bf5c8e5746c642a787fa527ac3292, type: 3}
+      propertyPath: movementDetails
+      value: 
+      objectReference: {fileID: 11400000, guid: e286204576be87146b86e872a391e287, type: 2}
     - target: {fileID: 5045320335855835643, guid: 7d9bf5c8e5746c642a787fa527ac3292, type: 3}
       propertyPath: m_Name
       value: MudRock_Brown
@@ -139,6 +159,14 @@ PrefabInstance:
     - target: {fileID: 6323716623834929745, guid: 7d9bf5c8e5746c642a787fa527ac3292, type: 3}
       propertyPath: m_Color.r
       value: 0.8349056
+      objectReference: {fileID: 0}
+    - target: {fileID: 6411134532057953068, guid: 7d9bf5c8e5746c642a787fa527ac3292, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6601361359431652436, guid: 7d9bf5c8e5746c642a787fa527ac3292, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7697408492666851500, guid: 7d9bf5c8e5746c642a787fa527ac3292, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y

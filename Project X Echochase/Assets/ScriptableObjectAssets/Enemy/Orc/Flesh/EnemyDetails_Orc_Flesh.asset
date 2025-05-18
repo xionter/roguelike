@@ -14,3 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Orc
   enemyPrefab: {fileID: 7648753368459797475, guid: 9a3b505d93bd7b546a88778a47eef655, type: 3}
+  chaseDistance: 50
+  enemyWeapon: {fileID: 0}
+  firingIntervalMin: 0.1
+  firingIntervalMax: 1
+  firingDurationMin: 1
+  firingDurationMax: 2
+  firingLineOfSightRequired: 0
+  enemyHealthDetailsArray:
+  - dungeonLevel: {fileID: 11400000, guid: f564593041ee8994fb38aa94bcccc204, type: 2}
+    enemyHealthAmount: 1000
+  isImmuneAfterHit: 1
+  hitImmunityTime: 1
+  isHealthBarDisplayed: 1

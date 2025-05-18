@@ -18,6 +18,14 @@ public class EnemyDetailsSO : ScriptableObject
     #endregion
     public GameObject enemyPrefab;
 
+    #region Tooltip
+
+    [Tooltip("Расстояние до игрока для начала атаки")]
+
+    #endregion
+
+    public float chaseDistance = 50f;
+    
     #region Header НАСТРОЙКИ ОРУЖИЯ ВРАГА
     [Space(10)]
     [Header("ENEMY WEAPON SETTINGS")]
@@ -74,6 +82,7 @@ public class EnemyDetailsSO : ScriptableObject
     {
         HelperUtilities.ValidateCheckEmptyString(this, nameof(enemyName), enemyName);
         HelperUtilities.ValidateCheckNullValue(this, nameof(enemyPrefab), enemyPrefab);
+        HelperUtilities.ValidateCheckPositiveValue(this, nameof(chaseDistance), chaseDistance, false);
         HelperUtilities.ValidateCheckPositiveRange(this, nameof(firingIntervalMin), firingIntervalMin, nameof(firingIntervalMax), firingIntervalMax, false);
         HelperUtilities.ValidateCheckPositiveRange(this, nameof(firingDurationMin), firingDurationMin, nameof(firingDurationMax), firingDurationMax, false);
         HelperUtilities.ValidateCheckEnumerableValues(this, nameof(enemyHealthDetailsArray), enemyHealthDetailsArray);

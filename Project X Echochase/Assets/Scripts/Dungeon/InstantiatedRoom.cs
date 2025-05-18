@@ -15,6 +15,7 @@ public class InstantiatedRoom : MonoBehaviour
     [HideInInspector] public Tilemap frontTilemap;
     [HideInInspector] public Tilemap collisionTilemap;
     [HideInInspector] public Tilemap minimapTilemap;
+    [HideInInspector] public int[,] aStarMovementPenalty;
     [HideInInspector] public Bounds roomColliderBounds;
 
     private BoxCollider2D boxCollider2D;
@@ -41,6 +42,8 @@ public class InstantiatedRoom : MonoBehaviour
         PopulateTilemapMemberVariables(roomGameobject);
 
         BlockOffUnusedDoorWays();
+
+        AddObstaclesAndPreferredPaths();
 
         AddDoorsToRooms();
 
@@ -191,7 +194,38 @@ public class InstantiatedRoom : MonoBehaviour
             }
         }
     }
+    
+    private void AddObstaclesAndPreferredPaths()
+    {
+        aStarMovementPenalty = new int[room.templateUpperBounds.x - room.templateLowerBounds.x + 1,
+            room.templateUpperBounds.y - room.templateLowerBounds.y + 1];
 
+        for (var x = 0; x < (room.templateUpperBounds.x - room.templateLowerBounds.x + 1); x++)
+        {
+            for (var y = 0; y< (room.templateUpperBounds.y - room.templateLowerBounds.y + 1); y++)
+            {
+                aStarMovementPenalty[x, y] = Settings.defaultAStarMovementPenalty;
+                
+                TileBase tile = collisionTilemap.GetTile(new Vector3Int(x + room.templateLowerBounds.x,
+                    y + room.templateLowerBounds.y, 0));
+
+                foreach (var collisionTile in GameResources.Instance.enemyUnwalkableCollisionTilesArray)
+                {
+                    if (tile == collisionTile)
+                    {
+                        aStarMovementPenalty[x, y] = 0;
+                        break;
+                    }
+                }
+                
+                if (tile == GameResources.Instance.preferredEnemyPathTile)
+                {
+                    aStarMovementPenalty[x, y] = Settings.preferredPathAStarMovementPenalty;
+                }
+            }
+        }
+    }
+    
     /// <summary>
     /// Добавить открывающиеся двери, если это не коридор
     /// </summary>
@@ -241,6 +275,7 @@ public class InstantiatedRoom : MonoBehaviour
             }
         }
     }
+
 
     private void DisableCollisionTilemapRenderer()
     {

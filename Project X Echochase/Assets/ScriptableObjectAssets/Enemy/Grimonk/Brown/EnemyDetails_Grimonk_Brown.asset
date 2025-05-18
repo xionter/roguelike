@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Grimonk
   enemyPrefab: {fileID: 1271450167123410562, guid: 6a667af0dccf5794ebe412a59ddd76f5, type: 3}
+  chaseDistance: 50
   enemyWeapon: {fileID: 0}
   firingIntervalMin: 0.1
   firingIntervalMax: 1
@@ -23,6 +24,6 @@ MonoBehaviour:
   enemyHealthDetailsArray:
   - dungeonLevel: {fileID: 11400000, guid: f564593041ee8994fb38aa94bcccc204, type: 2}
     enemyHealthAmount: 1000
-  isImmuneAfterHit: 0
-  hitImmunityTime: 0
-  isHealthBarDisplayed: 0
+  isImmuneAfterHit: 1
+  hitImmunityTime: 1
+  isHealthBarDisplayed: 1

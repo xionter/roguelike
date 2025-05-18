@@ -14,3 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: SlimeBlock Green
   enemyPrefab: {fileID: 4190316793189156971, guid: bce0b613311d65f4992107ba655c2b85, type: 3}
+  chaseDistance: 50
+  enemyWeapon: {fileID: 0}
+  firingIntervalMin: 0.1
+  firingIntervalMax: 1
+  firingDurationMin: 1
+  firingDurationMax: 2
+  firingLineOfSightRequired: 0
+  enemyHealthDetailsArray:
+  - dungeonLevel: {fileID: 11400000, guid: f564593041ee8994fb38aa94bcccc204, type: 2}
+    enemyHealthAmount: 1000
+  isImmuneAfterHit: 1
+  hitImmunityTime: 1
+  isHealthBarDisplayed: 1
