@@ -13,18 +13,17 @@ public static class AStar
         startGridPosition -= (Vector3Int)room.templateLowerBounds;
         endGridPosition -= (Vector3Int)room.templateLowerBounds;
 
+        // Создание открытого списка и хэш-набора закрытых узлов
         List<Node> openNodeList = new List<Node>();
         HashSet<Node> closedNodeHashSet = new HashSet<Node>();
 
         // Создание узлов сетки для поиска пути
-        GridNodes gridNodes = new GridNodes(room.templateUpperBounds.x - room.templateLowerBounds.x + 1,
-            room.templateUpperBounds.y - room.templateLowerBounds.y + 1);
+        GridNodes gridNodes = new GridNodes(room.templateUpperBounds.x - room.templateLowerBounds.x + 1, room.templateUpperBounds.y - room.templateLowerBounds.y + 1);
 
         Node startNode = gridNodes.GetGridNode(startGridPosition.x, startGridPosition.y);
         Node targetNode = gridNodes.GetGridNode(endGridPosition.x, endGridPosition.y);
 
-        Node endPathNode = FindShortestPath(startNode, targetNode, gridNodes, 
-            openNodeList, closedNodeHashSet, room.instantiatedRoom);
+        Node endPathNode = FindShortestPath(startNode, targetNode, gridNodes, openNodeList, closedNodeHashSet, room.instantiatedRoom);
 
         if (endPathNode != null)
         {
@@ -163,29 +162,25 @@ public static class AStar
     /// Оценить соседний узел по позициям neighbourNodeXPosition и neighbourNodeYPosition, используя
     /// указанные gridNodes, closedNodeHashSet и instantiatedRoom. Возвращает null, если узел недействителен.
     /// </summary>
-    private static Node GetValidNodeNeighbour(int neighbourNodeXPosition, int neighbourNodeYPosition, GridNodes gridNodes, 
-        HashSet<Node> closedNodeHashSet, InstantiatedRoom instantiatedRoom)
+    private static Node GetValidNodeNeighbour(int neighbourNodeXPosition, int neighbourNodeYPosition, GridNodes gridNodes, HashSet<Node> closedNodeHashSet, InstantiatedRoom instantiatedRoom)
     {
         // Если позиция соседнего узла выходит за пределы сетки, вернуть null
-        if (neighbourNodeXPosition >= instantiatedRoom.room.templateUpperBounds.x - instantiatedRoom.room.templateLowerBounds.x 
-            || neighbourNodeXPosition < 0 
-            || neighbourNodeYPosition >= instantiatedRoom.room.templateUpperBounds.y - instantiatedRoom.room.templateLowerBounds.y 
-            || neighbourNodeYPosition < 0)
+        if (neighbourNodeXPosition >= instantiatedRoom.room.templateUpperBounds.x - instantiatedRoom.room.templateLowerBounds.x || neighbourNodeXPosition < 0 || neighbourNodeYPosition >= instantiatedRoom.room.templateUpperBounds.y - instantiatedRoom.room.templateLowerBounds.y || neighbourNodeYPosition < 0)
         {
             return null;
         }
 
         // Получить соседний узел
-        var neighbourNode = gridNodes.GetGridNode(neighbourNodeXPosition, neighbourNodeYPosition);
+        Node neighbourNode = gridNodes.GetGridNode(neighbourNodeXPosition, neighbourNodeYPosition);
 
         // Проверить наличие препятствия в этой позиции
-        var movementPenaltyForGridSpace = instantiatedRoom.aStarMovementPenalty[neighbourNodeXPosition, neighbourNodeYPosition];
+        int movementPenaltyForGridSpace = instantiatedRoom.aStarMovementPenalty[neighbourNodeXPosition, neighbourNodeYPosition];
 
         // Проверить наличие перемещаемого препятствия в этой позиции
         //int itemObstacleForGridSpace = instantiatedRoom.aStarItemObstacles[neighbourNodeXPosition, neighbourNodeYPosition];
 
         // Если сосед является препятствием или находится в закрытом списке, пропустить
-        if (movementPenaltyForGridSpace == 0  || closedNodeHashSet.Contains(neighbourNode))
+        if (movementPenaltyForGridSpace == 0 || /* itemObstacleForGridSpace == 0  || */ closedNodeHashSet.Contains(neighbourNode))
         {
             return null;
         }

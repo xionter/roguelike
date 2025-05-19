@@ -653,7 +653,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 585367522}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86d6185d78bb3ecdb94103adb03a0d99, type: 3}
   m_Name: 
@@ -815,7 +815,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741087213}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4fbd94feba985dd4bbca1a3ba351a0d2, type: 3}
   m_Name: 
@@ -1439,6 +1439,9 @@ MonoBehaviour:
   - poolSize: 20
     prefab: {fileID: 6452866707339787744, guid: 818c695ac0fafa5d7b846e6ee769fdad, type: 3}
     componentType: AmmoHitEffect
+  - poolSize: 30
+    prefab: {fileID: 5201712444714649251, guid: 369f334cee05897a9b8fd763c6a6f067, type: 3}
+    componentType: IFireable
 --- !u!4 &1273252259
 Transform:
   m_ObjectHideFlags: 0

@@ -15,15 +15,15 @@ MonoBehaviour:
   enemyName: Hedusa Blue
   enemyPrefab: {fileID: 5608039967066705527, guid: 7994cceed93c68e44b3d43f1707d4165, type: 3}
   chaseDistance: 50
-  enemyWeapon: {fileID: 0}
+  enemyWeapon: {fileID: 11400000, guid: 5e6eeaaa59f7fd3098235ceaf6a05822, type: 2}
   firingIntervalMin: 0.1
   firingIntervalMax: 1
   firingDurationMin: 1
   firingDurationMax: 2
-  firingLineOfSightRequired: 0
+  firingLineOfSightRequired: 1
   enemyHealthDetailsArray:
   - dungeonLevel: {fileID: 11400000, guid: f564593041ee8994fb38aa94bcccc204, type: 2}
-    enemyHealthAmount: 1000
-  isImmuneAfterHit: 1
-  hitImmunityTime: 1
+    enemyHealthAmount: 100
+  isImmuneAfterHit: 0
+  hitImmunityTime: 0
   isHealthBarDisplayed: 1

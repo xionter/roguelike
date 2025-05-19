@@ -35,8 +35,8 @@ public class EnemySpawner : SingletonMonobehaviour<EnemySpawner>
         //MusicManager.Instance.PlayMusic(currentRoom.ambientMusic, 0.2f, 2f);
 
         // если комната - корридор или вход, то выходим
-        // if (currentRoom.roomNodeType.isCorridorEW || currentRoom.roomNodeType.isCorridorNS || currentRoom.roomNodeType.isEntrance)
-            // return;
+        if (currentRoom.roomNodeType.isCorridorEW || currentRoom.roomNodeType.isCorridorNS || currentRoom.roomNodeType.isEntrance) 
+            return;
 
         // если комната уже была зачищена, то выходим
         if (currentRoom.isClearedOfEnemies) return;

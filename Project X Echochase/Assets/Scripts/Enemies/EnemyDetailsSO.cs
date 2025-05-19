@@ -74,7 +74,7 @@ public class EnemyDetailsSO : ScriptableObject
     #region Tooltip
     [Tooltip("Отображать ли полосу здоровья у врага")]
     #endregion
-    public bool isHealthBarDisplayed = false;
+    public bool isHealthBarDisplayed = true;
 
     #region Validation
 #if UNITY_EDITOR

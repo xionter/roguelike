@@ -34,8 +34,11 @@ public class SpawnTest : MonoBehaviour
                 Destroy(enemy);
             }
         }
-
-        RoomTemplateSO roomTemplate = DungeonBuilder.Instance.GetRoomTemplate("06431339af15df741a333e538187e379");
+        if (roomChangedEventArgs.room == null) {
+            Debug.LogError("roomChangedEventArgs.room is null!");
+            return;
+        }
+        RoomTemplateSO roomTemplate = DungeonBuilder.Instance.GetRoomTemplate(roomChangedEventArgs.room.templateID);
 
         if (roomTemplate != null)
         {
@@ -48,16 +51,14 @@ public class SpawnTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            Debug.Log("Yaica");
             if(instantiatedEnemy != null)
-            {
-                
-                //Destroy(instantiatedEnemy);
+            { 
+                Destroy(instantiatedEnemy);
             }
             EnemyDetailsSO enemyDetails = randomEnemyHelperClass.GetItem();
             if (enemyDetails != null)
             {
-                Debug.Log("Yaica2");
+                Debug.Log(HelperUtilities.GetSpawnPositionNearestToPlayer(HelperUtilities.GetMouseWorldPosition()));
                 instantiatedEnemy = Instantiate(enemyDetails.enemyPrefab,
                     HelperUtilities.GetSpawnPositionNearestToPlayer(HelperUtilities.GetMouseWorldPosition()),
                     Quaternion.identity);
