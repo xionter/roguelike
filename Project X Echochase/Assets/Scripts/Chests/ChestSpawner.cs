@@ -95,8 +95,6 @@ public class ChestSpawner : MonoBehaviour
 
         if (chestRoom == null)
         {
-            if(GetComponentInParent<InstantiatedRoom>().room == null)
-                Debug.Log("GAY");
             chestRoom = GetComponentInParent<InstantiatedRoom>().room;
         }
 
