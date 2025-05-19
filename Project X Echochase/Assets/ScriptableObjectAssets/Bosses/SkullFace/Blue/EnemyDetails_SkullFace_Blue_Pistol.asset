@@ -14,16 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: SkullFace Blue
   enemyPrefab: {fileID: 3758058488491148191, guid: 9ee461d9166ee9647951745d34cacf33, type: 3}
+  chaseDistance: 50
   enemyWeapon: {fileID: 11400000, guid: 591b5d12b40e7061ba9a8150ef59e537, type: 2}
   firingIntervalMin: 1
   firingIntervalMax: 3
   firingDurationMin: 8
   firingDurationMax: 10
   firingLineOfSightRequired: 0
-  enemyStandardMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  enemyStandardMaterial: {fileID: 2100000, guid: 1b67de74064782ce9bb956b4fed81270, type: 2}
   enemyMaterializeTime: 2
   enemyMaterializeShader: {fileID: -6465566751694194690, guid: 5fec8f8e6ea244648a3c6ede24a56288, type: 3}
-  enemyMaterializeColor: {r: 0.026268143, g: 0.2735849, b: 0.021938415, a: 0}
+  enemyMaterializeColor: {r: 0.17277712, g: 1.7077296, b: 0.16916189, a: 0}
   enemyHealthDetailsArray:
   - dungeonLevel: {fileID: 0}
     enemyHealthAmount: 0

@@ -19,15 +19,12 @@ using UnityEngine.Rendering;
 [RequireComponent(typeof(ReloadWeaponEvent))]
 [RequireComponent(typeof(ReloadWeapon))]
 [RequireComponent(typeof(WeaponReloadedEvent))]
-<<<<<<< HEAD
 [RequireComponent(typeof(EnemyMovementAI))]
 [RequireComponent(typeof(MovementToPositionEvent))]
 [RequireComponent(typeof(MovementToPosition))]
 [RequireComponent(typeof(IdleEvent))]
 [RequireComponent(typeof(Idle))]
 [RequireComponent(typeof(AnimateEnemy))]
-=======
->>>>>>> 16a72cf5 (chest works ig)
 [RequireComponent(typeof(MaterializeEffect))]
 [RequireComponent(typeof(SortingGroup))]
 [RequireComponent(typeof(SpriteRenderer))]
@@ -47,12 +44,9 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public FireWeaponEvent fireWeaponEvent;
     private FireWeapon fireWeapon;
     private SetActiveWeaponEvent setActiveWeaponEvent;
-<<<<<<< HEAD
     private EnemyMovementAI enemyMovementAI;
     [HideInInspector] public MovementToPositionEvent movementToPositionEvent;
     [HideInInspector] public IdleEvent idleEvent;
-=======
->>>>>>> 16a72cf5 (chest works ig)
     private MaterializeEffect materializeEffect;
     private CircleCollider2D circleCollider2D;
     private PolygonCollider2D polygonCollider2D;
@@ -68,12 +62,9 @@ public class Enemy : MonoBehaviour
         fireWeaponEvent = GetComponent<FireWeaponEvent>();
         fireWeapon = GetComponent<FireWeapon>();
         setActiveWeaponEvent = GetComponent<SetActiveWeaponEvent>();
-<<<<<<< HEAD
         enemyMovementAI = GetComponent<EnemyMovementAI>();
         movementToPositionEvent = GetComponent<MovementToPositionEvent>();
         idleEvent = GetComponent<IdleEvent>();
-=======
->>>>>>> 16a72cf5 (chest works ig)
         materializeEffect = GetComponent<MaterializeEffect>();
         circleCollider2D = GetComponent<CircleCollider2D>();
         polygonCollider2D = GetComponent<PolygonCollider2D>();
@@ -126,14 +117,7 @@ public class Enemy : MonoBehaviour
 
         SetEnemyStartingWeapon();
 
-<<<<<<< HEAD
-        SetEnemyAnimationSpeed();
-
-        // Материализация врага
-        //StartCoroutine(MaterializeEnemy());
-=======
         StartCoroutine(MaterializeEnemy());
->>>>>>> 16a72cf5 (chest works ig)
     }
 
     /// <summary>
@@ -177,7 +161,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-<<<<<<< HEAD
     /// <summary>
     /// Установка скорости анимации врага в соответствии со скоростью движения
     /// </summary>
@@ -187,17 +170,6 @@ public class Enemy : MonoBehaviour
         animator.speed = enemyMovementAI.moveSpeed / Settings.baseSpeedForEnemyAnimations;
     }
 
-    // private IEnumerator MaterializeEnemy()
-    // {
-    //     // Отключение коллайдера, AI движения и AI оружия
-    //     EnemyEnable(false);
-    //
-    //     yield return StartCoroutine(materializeEffect.MaterializeRoutine(enemyDetails.enemyMaterializeShader, enemyDetails.enemyMaterializeColor, enemyDetails.enemyMaterializeTime, spriteRendererArray, enemyDetails.enemyStandardMaterial));
-    //
-    //     // Включение коллайдера, AI движения и AI оружия
-    //     EnemyEnable(true);
-    // }
-=======
     private IEnumerator MaterializeEnemy()
     {
         EnemyEnable(false);
@@ -207,7 +179,6 @@ public class Enemy : MonoBehaviour
         EnemyEnable(true);
     }
 
->>>>>>> 16a72cf5 (chest works ig)
 
     private void EnemyEnable(bool isEnabled)
     {

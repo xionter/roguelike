@@ -110,13 +110,10 @@ public class EnemyDetailsSO : ScriptableObject
     {
         HelperUtilities.ValidateCheckEmptyString(this, nameof(enemyName), enemyName);
         HelperUtilities.ValidateCheckNullValue(this, nameof(enemyPrefab), enemyPrefab);
-<<<<<<< HEAD
         HelperUtilities.ValidateCheckPositiveValue(this, nameof(chaseDistance), chaseDistance, false);
-=======
         HelperUtilities.ValidateCheckNullValue(this, nameof(enemyStandardMaterial), enemyStandardMaterial);
         HelperUtilities.ValidateCheckPositiveValue(this, nameof(enemyMaterializeTime), enemyMaterializeTime, true);
         HelperUtilities.ValidateCheckNullValue(this, nameof(enemyMaterializeShader), enemyMaterializeShader);
->>>>>>> 16a72cf5 (chest works ig)
         HelperUtilities.ValidateCheckPositiveRange(this, nameof(firingIntervalMin), firingIntervalMin, nameof(firingIntervalMax), firingIntervalMax, false);
         HelperUtilities.ValidateCheckPositiveRange(this, nameof(firingDurationMin), firingDurationMin, nameof(firingDurationMax), firingDurationMax, false);
         HelperUtilities.ValidateCheckEnumerableValues(this, nameof(enemyHealthDetailsArray), enemyHealthDetailsArray);
