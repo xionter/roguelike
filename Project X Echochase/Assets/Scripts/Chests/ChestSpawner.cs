@@ -95,6 +95,8 @@ public class ChestSpawner : MonoBehaviour
 
         if (chestRoom == null)
         {
+            if(GetComponentInParent<InstantiatedRoom>().room == null)
+                Debug.Log("GAY");
             chestRoom = GetComponentInParent<InstantiatedRoom>().room;
         }
 
@@ -186,7 +188,6 @@ public class ChestSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Get the number of items to spawn - max 1 of each - max 3 in total
     /// получить число предметов для спавна. Максимум 1 из каждого типа, в сумме 3
     /// </summary>
     private void GetItemsToSpawn(out int ammo, out int health, out int weapons)

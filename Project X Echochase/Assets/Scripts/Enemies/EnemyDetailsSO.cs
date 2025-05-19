@@ -55,6 +55,34 @@ public class EnemyDetailsSO : ScriptableObject
     #endregion
     public bool firingLineOfSightRequired;
 
+
+    #region Header МАТЕРИАЛ ВРАГА
+    [Space(10)]
+    [Header("ENEMY MATERIAL")]
+    #endregion
+    #region Tooltip
+    [Tooltip("Это стандартный материал для создания световых теней для врага (используется после того, как враг материализуется)")]
+    #endregion
+    public Material enemyStandardMaterial;
+
+    #region Header ПАРАМЕТРЫ МАТЕРИАЛИЗАЦИИ ВРАГА
+    [Space(10)]
+    [Header("ENEMY MATERIALIZE SETTINGS")]
+    #endregion
+    #region Tooltip
+    [Tooltip("Время в секундах, которое требуется врагу, чтобы материализоваться")]
+    #endregion
+    public float enemyMaterializeTime;
+    #region Tooltip
+    [Tooltip("Шейдер, используемый при материализации")]
+    #endregion
+    public Shader enemyMaterializeShader;
+    [ColorUsage(true, true)]
+    #region Tooltip
+    [Tooltip("Цвет, который будет использоваться, когда враг материализуется.  Это цвет высокой четкости, поэтому интенсивность можно настроить так, чтобы он вызывал свечение")]
+    #endregion
+    public Color enemyMaterializeColor;
+
     #region Header ЗДОРОВЬЕ ВРАГА
     [Space(10)]
     [Header("ENEMY HEALTH")]
@@ -82,7 +110,13 @@ public class EnemyDetailsSO : ScriptableObject
     {
         HelperUtilities.ValidateCheckEmptyString(this, nameof(enemyName), enemyName);
         HelperUtilities.ValidateCheckNullValue(this, nameof(enemyPrefab), enemyPrefab);
+<<<<<<< HEAD
         HelperUtilities.ValidateCheckPositiveValue(this, nameof(chaseDistance), chaseDistance, false);
+=======
+        HelperUtilities.ValidateCheckNullValue(this, nameof(enemyStandardMaterial), enemyStandardMaterial);
+        HelperUtilities.ValidateCheckPositiveValue(this, nameof(enemyMaterializeTime), enemyMaterializeTime, true);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(enemyMaterializeShader), enemyMaterializeShader);
+>>>>>>> 16a72cf5 (chest works ig)
         HelperUtilities.ValidateCheckPositiveRange(this, nameof(firingIntervalMin), firingIntervalMin, nameof(firingIntervalMax), firingIntervalMax, false);
         HelperUtilities.ValidateCheckPositiveRange(this, nameof(firingDurationMin), firingDurationMin, nameof(firingDurationMax), firingDurationMax, false);
         HelperUtilities.ValidateCheckEnumerableValues(this, nameof(enemyHealthDetailsArray), enemyHealthDetailsArray);

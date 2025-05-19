@@ -62208,6 +62208,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9222701057974096022, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222701057974096022, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.data[0].max
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222701057974096022, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.data[0].min
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222701057974096022, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.data[0].dungeonLevel
+      value: 
+      objectReference: {fileID: 11400000, guid: f564593041ee8994fb38aa94bcccc204, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -62270,6 +62286,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8862940156690327302, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862940156690327302, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.data[0].max
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862940156690327302, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.data[0].min
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862940156690327302, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.data[0].dungeonLevel
+      value: 
+      objectReference: {fileID: 11400000, guid: f564593041ee8994fb38aa94bcccc204, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
