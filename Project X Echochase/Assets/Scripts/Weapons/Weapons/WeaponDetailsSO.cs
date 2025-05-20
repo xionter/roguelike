@@ -40,11 +40,6 @@ public class WeaponDetailsSO : ScriptableObject
     [Tooltip("Звуковой эффект перезарядки оружия (Scriptable Object)")]
     #endregion Tooltip
     public SoundEffectSO weaponReloadingSoundEffect;
-    #region Tooltip
-    [Tooltip("Эффект стрельбы оружия (Scriptable Object) - содержит параметры для использования с префабом эффекта стрельбы")]
-    #endregion Tooltip
-    public WeaponShootEffectSO weaponShootEffect;
-    public SoundEffectSO weaponReloadingSoundEffect;
 
     #region Header WEAPON OPERATING VALUES
     [Space(10)]
