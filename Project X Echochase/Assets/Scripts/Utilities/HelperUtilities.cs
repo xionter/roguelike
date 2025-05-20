@@ -86,6 +86,18 @@ public static class HelperUtilities
 
         return aimDirection;
     }
+
+    /// <summary>
+    /// Перевести линейную шкалу громкости в децибелы
+    /// </summary>
+    public static float LinearToDecibels(int linear)
+    {
+        float linearScaleRange = 20f;
+
+        // формула для перевода линейной шкалы в логарифмическую шкалу децибел
+        return Mathf.Log10((float)linear / linearScaleRange) * 20f;
+    }
+
     public static bool ValidateCheckNullValue(Object thisObject, string fieldName, UnityEngine.Object objectToCheck) 
     { 
         if (objectToCheck == null) 
@@ -95,6 +107,7 @@ public static class HelperUtilities
         } 
         return false;
     }
+
     /// <summary>
     /// Проверяет если строка пустая
     /// </summary>
@@ -108,6 +121,7 @@ public static class HelperUtilities
 
         return false;
     }
+
     /// <summary>
     /// Список пуст или содержит null значения - возвращает true если есть ошибка
     /// </summary>

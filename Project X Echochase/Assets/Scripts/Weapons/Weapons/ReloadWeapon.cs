@@ -55,13 +55,12 @@ public class ReloadWeapon : MonoBehaviour
     /// </summary>
     private IEnumerator ReloadWeaponRoutine(Weapon weapon, int topUpAmmoPercent)
     {
-        /*
+        //Воспроизвести звук перезагрузки, если он есть
         if (weapon.weaponDetails.weaponReloadingSoundEffect != null)
         {
             SoundEffectManager.Instance.PlaySoundEffect(weapon.weaponDetails.weaponReloadingSoundEffect);
 
         }
-        */
 
         weapon.isWeaponReloading = true;
 

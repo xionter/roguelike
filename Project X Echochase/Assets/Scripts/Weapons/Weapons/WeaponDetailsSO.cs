@@ -5,73 +5,77 @@ public class WeaponDetailsSO : ScriptableObject
 {
     #region Header WEAPON BASE DETAILS
     [Space(10)]
-    [Header("WEAPON BASE DETAILS")]
+    [Header("ОСНОВНЫЕ ДЕТАЛИ ОРУЖИЯ")]
     #endregion Header WEAPON BASE DETAILS
     #region Tooltip
-    [Tooltip("Weapon name")]
+    [Tooltip("Название оружия")]
     #endregion Tooltip
     public string weaponName;
     #region Tooltip
-    [Tooltip("The sprite for the weapon - the sprite should have the 'generate physics shape' option selected ")]
+    [Tooltip("Спрайт оружия - у спрайта должна быть включена опция 'generate physics shape'")]
     #endregion Tooltip
     public Sprite weaponSprite;
 
     #region Header WEAPON CONFIGURATION
     [Space(10)]
-    [Header("WEAPON CONFIGURATION")]
+    [Header("КОНФИГУРАЦИЯ ОРУЖИЯ")]
     #endregion Header WEAPON CONFIGURATION
     #region Tooltip
-    [Tooltip("Weapon Shoot Position - the offset position for the end of the weapon from the sprite pivot pont")]
+    [Tooltip("Позиция стрельбы оружия - смещение от точки привязки спрайта")]
     #endregion Tooltip
     public Vector3 weaponShootPosition;
     #region Tooltip
-    [Tooltip("Weapon current ammo")]
+    [Tooltip("Текущие боеприпасы оружия")]
     #endregion Tooltip
     public AmmoDetailsSO weaponCurrentAmmo;
     #region Tooltip
     [Tooltip("Weapon shoot effect SO - contains particle effecct parameters to be used in conjunction with the weaponShootEffectPrefab ")]
     #endregion Tooltip
     public WeaponShootEffectSO weaponShootEffect;
-    /*
     #region Tooltip
-    [Tooltip("The firing sound effect SO for the weapon")]
+    [Tooltip("Звуковой эффект стрельбы оружия (Scriptable Object)")]
     #endregion Tooltip
     public SoundEffectSO weaponFiringSoundEffect;
     #region Tooltip
-    [Tooltip("The reloading sound effect SO for the weapon")]
+    [Tooltip("Звуковой эффект перезарядки оружия (Scriptable Object)")]
     #endregion Tooltip
     public SoundEffectSO weaponReloadingSoundEffect;
-    */
+    #region Tooltip
+    [Tooltip("Эффект стрельбы оружия (Scriptable Object) - содержит параметры для использования с префабом эффекта стрельбы")]
+    #endregion Tooltip
+    public WeaponShootEffectSO weaponShootEffect;
+    public SoundEffectSO weaponReloadingSoundEffect;
+
     #region Header WEAPON OPERATING VALUES
     [Space(10)]
-    [Header("WEAPON OPERATING VALUES")]
+    [Header("РАБОЧИЕ ПАРАМЕТРЫ ОРУЖИЯ")]
     #endregion Header WEAPON OPERATING VALUES
     #region Tooltip
-    [Tooltip("Select if the weapon has infinite ammo")]
+    [Tooltip("Выберите, если у оружия бесконечные боеприпасы")]
     #endregion Tooltip
     public bool hasInfiniteAmmo = false;
     #region Tooltip
-    [Tooltip("Select if the weapon has infinite clip capacity")]
+    [Tooltip("Выберите, если у оружия бесконечная ёмкость магазина")]
     #endregion Tooltip
     public bool hasInfiniteClipCapacity = false;
     #region Tooltip
-    [Tooltip("The weapon capacity - shots before a reload")]
+    [Tooltip("Ёмкость магазина оружия - количество выстрелов до перезарядки")]
     #endregion Tooltip
     public int weaponClipAmmoCapacity = 6;
     #region Tooltip
-    [Tooltip("Weapon ammo capacity - the maximum number of rounds at that can be held for this weapon")]
+    [Tooltip("Ёмкость боеприпасов оружия - максимальное количество патронов, которые можно носить для этого оружия")]
     #endregion Tooltip
     public int weaponAmmoCapacity = 100;
     #region Tooltip
-    [Tooltip("Weapon Fire Rate - 0.2 means 5 shots a second")]
+    [Tooltip("Скорострельность оружия - 0.2 означает 5 выстрелов в секунду")]
     #endregion Tooltip
     public float weaponFireRate = 0.2f;
     #region Tooltip
-    [Tooltip("Weapon Precharge Time - time in seconds to hold fire button down before firing")]
+    [Tooltip("Время предварительной зарядки оружия - время в секундах, в течение которого нужно удерживать кнопку стрельбы перед выстрелом")]
     #endregion Tooltip
     public float weaponPrechargeTime = 0f;
     #region Tooltip
-    [Tooltip("This is the weapon reload time in seconds")]
+    [Tooltip("Время перезарядки оружия в секундах")]
     #endregion Tooltip
     public float weaponReloadTime = 0f;
 
