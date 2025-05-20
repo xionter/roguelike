@@ -76,6 +76,8 @@ public class PlayerControl : MonoBehaviour
         // обработка weapon input игрока
         WeaponInput(); 
 
+        UseItemInput();
+
         PlayerRollCooldownTimer();
     }
 
@@ -309,6 +311,28 @@ public class PlayerControl : MonoBehaviour
         }
 
     }
+
+    private void UseItemInput()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            float useItemRadius = 2f;
+
+            // получить любой Usebale айтем рядом
+            Collider2D[] collider2DArray = Physics2D.OverlapCircleAll(player.GetPlayerPosition(), useItemRadius);
+
+            foreach (Collider2D collider2D in collider2DArray)
+            {
+                IUseable iUseable = collider2D.GetComponent<IUseable>();
+
+                if (iUseable != null)
+                {
+                    iUseable.UseItem();
+                }
+            }
+        }
+    }
+
 
     private void SetCurrentWeaponToFirstInTheList()
     {

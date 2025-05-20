@@ -117,10 +117,7 @@ public class Enemy : MonoBehaviour
 
         SetEnemyStartingWeapon();
 
-        SetEnemyAnimationSpeed();
-
-        // Материализация врага
-        //StartCoroutine(MaterializeEnemy());
+        StartCoroutine(MaterializeEnemy());
     }
 
     /// <summary>
@@ -173,16 +170,15 @@ public class Enemy : MonoBehaviour
         animator.speed = enemyMovementAI.moveSpeed / Settings.baseSpeedForEnemyAnimations;
     }
 
-    // private IEnumerator MaterializeEnemy()
-    // {
-    //     // Отключение коллайдера, AI движения и AI оружия
-    //     EnemyEnable(false);
-    //
-    //     yield return StartCoroutine(materializeEffect.MaterializeRoutine(enemyDetails.enemyMaterializeShader, enemyDetails.enemyMaterializeColor, enemyDetails.enemyMaterializeTime, spriteRendererArray, enemyDetails.enemyStandardMaterial));
-    //
-    //     // Включение коллайдера, AI движения и AI оружия
-    //     EnemyEnable(true);
-    // }
+    private IEnumerator MaterializeEnemy()
+    {
+        EnemyEnable(false);
+
+        yield return StartCoroutine(materializeEffect.MaterializeRoutine(enemyDetails.enemyMaterializeShader, enemyDetails.enemyMaterializeColor, enemyDetails.enemyMaterializeTime, spriteRendererArray, enemyDetails.enemyStandardMaterial));
+
+        EnemyEnable(true);
+    }
+
 
     private void EnemyEnable(bool isEnabled)
     {

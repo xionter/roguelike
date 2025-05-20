@@ -18315,6 +18315,8 @@ Transform:
   m_Children:
   - {fileID: 6609485346324854082}
   - {fileID: 2688677291029772846}
+  - {fileID: 8436425284820534131}
+  - {fileID: 3885174199498819268}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &8482761594033098549
@@ -62154,3 +62156,159 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!1001 &1502813305020113554
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1279268514308411793}
+    m_Modifications:
+    - target: {fileID: 1073036510124272872, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: m_Name
+      value: ChestSpawner_RoomEntry_SmallRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391967637087691862, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.1624894
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391967637087691862, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 13.714469
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391967637087691862, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.4610896
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391967637087691862, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391967637087691862, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391967637087691862, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391967637087691862, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391967637087691862, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391967637087691862, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391967637087691862, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222701057974096022, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222701057974096022, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.data[0].max
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222701057974096022, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.data[0].min
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222701057974096022, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.data[0].dungeonLevel
+      value: 
+      objectReference: {fileID: 11400000, guid: f564593041ee8994fb38aa94bcccc204, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+--- !u!4 &3885174199498819268 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2391967637087691862, guid: e1113b5199189926396ffaaf2f54ceb3, type: 3}
+  m_PrefabInstance: {fileID: 1502813305020113554}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5847692529058025653
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1279268514308411793}
+    m_Modifications:
+    - target: {fileID: 857603296528128888, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: m_Name
+      value: ChestSpawner_EnemiesDefeated_SmallRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 2608456399192036294, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.8344746
+      objectReference: {fileID: 0}
+    - target: {fileID: 2608456399192036294, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 26.562353
+      objectReference: {fileID: 0}
+    - target: {fileID: 2608456399192036294, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.4610896
+      objectReference: {fileID: 0}
+    - target: {fileID: 2608456399192036294, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2608456399192036294, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2608456399192036294, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2608456399192036294, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2608456399192036294, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2608456399192036294, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2608456399192036294, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862940156690327302, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862940156690327302, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.data[0].max
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862940156690327302, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.data[0].min
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862940156690327302, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+      propertyPath: chestSpawnChanceByLevelList.Array.data[0].dungeonLevel
+      value: 
+      objectReference: {fileID: 11400000, guid: f564593041ee8994fb38aa94bcccc204, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+--- !u!4 &8436425284820534131 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2608456399192036294, guid: d43665c513dd6bc90ad880b26d88e35f, type: 3}
+  m_PrefabInstance: {fileID: 5847692529058025653}
+  m_PrefabAsset: {fileID: 0}
