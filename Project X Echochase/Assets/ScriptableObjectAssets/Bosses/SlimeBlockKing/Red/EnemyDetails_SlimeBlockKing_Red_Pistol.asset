@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: SlimeBlockKing Red
   enemyPrefab: {fileID: 7319223158551244009, guid: fdd442992e79132499c80b1a9cfb7fed, type: 3}
   chaseDistance: 50
-  enemyWeapon: {fileID: 0}
+  enemyWeapon: {fileID: 11400000, guid: c501a84a1b470b1f3943765535063844, type: 2}
   firingIntervalMin: 0.1
   firingIntervalMax: 1
   firingDurationMin: 1

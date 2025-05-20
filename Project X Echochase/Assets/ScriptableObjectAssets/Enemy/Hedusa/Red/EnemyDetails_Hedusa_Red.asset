@@ -27,7 +27,7 @@ MonoBehaviour:
   enemyMaterializeColor: {r: 1.5106524, g: 3.117435, b: 16.0297, a: 0}
   enemyHealthDetailsArray:
   - dungeonLevel: {fileID: 11400000, guid: f564593041ee8994fb38aa94bcccc204, type: 2}
-    enemyHealthAmount: 1
+    enemyHealthAmount: 50
   isImmuneAfterHit: 0
   hitImmunityTime: 0
   isHealthBarDisplayed: 1
