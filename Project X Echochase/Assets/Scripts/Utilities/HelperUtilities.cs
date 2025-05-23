@@ -19,7 +19,19 @@ public static class HelperUtilities
 
         worldPosition.z = 0f; 
         return worldPosition; 
-    } 
+    }
+
+    /// <summary>
+    /// Получить нижнюю и верхнюю границы области просмотра камеры
+    /// </summary>
+    public static void CameraWorldPositionBounds(out Vector2Int cameraWorldPositionLowerBounds, out Vector2Int cameraWorldPositionUpperBounds, Camera camera)
+    {
+        Vector3 worldPositionViewportBottomLeft = camera.ViewportToWorldPoint(new Vector3(0f, 0f, 0f));
+        Vector3 worldPositionViewportTopRight = camera.ViewportToWorldPoint(new Vector3(1f, 1f, 0f));
+
+        cameraWorldPositionLowerBounds = new Vector2Int((int)worldPositionViewportBottomLeft.x, (int)worldPositionViewportBottomLeft.y);
+        cameraWorldPositionUpperBounds = new Vector2Int((int)worldPositionViewportTopRight.x, (int)worldPositionViewportTopRight.y);
+    }
 
     /// <summary> 
     /// Получить угол в градусах с направления вектора 

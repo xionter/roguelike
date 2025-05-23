@@ -8,10 +8,86 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8306359533571795284, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: destroySoundEffect
+      value: 
+      objectReference: {fileID: 11400000, guid: 55fb69b7c922529458e823a6c20befa6, type: 2}
+    - target: {fileID: -8306359533571795284, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: startingHealthAmount
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: -8271695499279357033, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 62992ee9ece948240886bba53d33660a, type: 2}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_Size.x
+      value: 2.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_Size.y
+      value: 3.635203
+      objectReference: {fileID: 0}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.8176014
+      objectReference: {fileID: 0}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 2.625
+      objectReference: {fileID: 0}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 5.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.625
+      objectReference: {fileID: 0}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 5.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023771370777315989, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242355505766308097, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242355505766308097, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242355505766308097, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_LocalBounds.m_Center.y
+      value: -0.00000011920929
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242355505766308097, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.x
+      value: 0.9985302
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242355505766308097, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.y
+      value: 0.99853027
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242355505766308097, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4615143154744893295, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
       propertyPath: m_Size.x
       value: 2.625

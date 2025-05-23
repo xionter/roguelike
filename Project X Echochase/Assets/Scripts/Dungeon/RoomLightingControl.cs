@@ -36,6 +36,12 @@ public class RoomLightingControl : MonoBehaviour
             // Плавное появление освещения комнаты
             FadeInRoomLighting();
 
+            //Убедитесь, что игровые объекты декорирования помещения активированы
+            instantiatedRoom.ActivateEnvironmentGameObjects();
+
+            //Исчезают в окружающей среде декорации игровые объекты освещение
+            FadeInEnvironmentLighting();
+
             // Плавное появление освещения дверей комнаты
             FadeInDoors();
 
@@ -77,6 +83,39 @@ public class RoomLightingControl : MonoBehaviour
         instantiatedRoom.decoration2Tilemap.GetComponent<TilemapRenderer>().material = GameResources.Instance.litMaterial;
         instantiatedRoom.frontTilemap.GetComponent<TilemapRenderer>().material = GameResources.Instance.litMaterial;
         instantiatedRoom.minimapTilemap.GetComponent<TilemapRenderer>().material = GameResources.Instance.litMaterial;
+    }
+
+    /// <summary>
+    /// Исчезают в окружающей среде декорации игровые объекты
+    /// </summary>
+    private void FadeInEnvironmentLighting()
+    {
+        Material material = new Material(GameResources.Instance.variableLitShader);
+
+        Environment[] environmentComponents = GetComponentsInChildren<Environment>();
+
+        foreach (Environment environmentComponent in environmentComponents)
+        {
+            if (environmentComponent.spriteRenderer != null)
+                environmentComponent.spriteRenderer.material = material;
+        }
+
+        StartCoroutine(FadeInEnvironmentLightingRoutine(material, environmentComponents));
+    }
+
+    private IEnumerator FadeInEnvironmentLightingRoutine(Material material, Environment[] environmentComponents)
+    {
+        for (float i = 0.05f; i <= 1f; i += Time.deltaTime / Settings.fadeInTime)
+        {
+            material.SetFloat("Alpha_Slider", i);
+            yield return null;
+        }
+
+        foreach (Environment environmentComponent in environmentComponents)
+        {
+            if (environmentComponent.spriteRenderer != null)
+                environmentComponent.spriteRenderer.material = GameResources.Instance.litMaterial;
+        }
     }
 
     /// <summary>

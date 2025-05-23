@@ -48,6 +48,10 @@ MonoBehaviour:
   currentPlayer: {fileID: 11400000, guid: 8aafbe5132efd72668c8782e44e39180, type: 2}
   soundsMasterMixerGroup: {fileID: -4734643798044506327, guid: b88d34b14bd12d44eab08369fc7f06cd, type: 2}
   doorOpenCloseSoundEffect: {fileID: 11400000, guid: 0d85a98d536b158499d084025bbbff1d, type: 2}
+  chestOpen: {fileID: 11400000, guid: cade4f668097ec94083fbd196bb6c9cd, type: 2}
+  healthPickup: {fileID: 11400000, guid: 43571e9e8a0dffa4f91bd95e9206f68b, type: 2}
+  weaponPickup: {fileID: 11400000, guid: bee9d37bc01f797499cc83c415895fb3, type: 2}
+  ammoPickup: {fileID: 11400000, guid: 09036824f10bfba4ab08e3d1ebb2220a, type: 2}
   dimmedMaterial: {fileID: -876546973899608171, guid: a35e9f660aeac4b4188308b3cef079f7, type: 3}
   litMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   variableLitShader: {fileID: -6465566751694194690, guid: 7685fbcb4cb341c4f94321ca17b4b758, type: 3}

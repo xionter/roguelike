@@ -8,10 +8,74 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8306359533571795284, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: destroySoundEffect
+      value: 
+      objectReference: {fileID: 11400000, guid: 1de92ce4eb6724c42bf7f77f4f90077d, type: 2}
+    - target: {fileID: -8306359533571795284, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: startingHealthAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -8271695499279357033, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 1a669451873c1f74d80b7f4c69840163, type: 2}
+    - target: {fileID: -2523825675000158092, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_Size.x
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8072644
+      objectReference: {fileID: 0}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.3405355
+      objectReference: {fileID: 0}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1.125
+      objectReference: {fileID: 0}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1.625
+      objectReference: {fileID: 0}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.125
+      objectReference: {fileID: 0}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.625
+      objectReference: {fileID: 0}
+    - target: {fileID: -1545803051134402241, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242355505766308097, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242355505766308097, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_LocalBounds.m_Center.y
+      value: -0.00000011920929
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242355505766308097, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.x
+      value: 0.9985302
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242355505766308097, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.y
+      value: 0.99853027
+      objectReference: {fileID: 0}
     - target: {fileID: 4615143154744893295, guid: c0702d62f98aabf47b24c06828544f28, type: 3}
       propertyPath: m_Size.x
       value: 1.125

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public static class Settings 
 {
@@ -46,6 +47,10 @@ public static class Settings
 
     //door
     public static int open = Animator.StringToHash("open");
+
+    //ломаемые декорации
+    public static int destroy = Animator.StringToHash("destroy");
+    public static String stateDestroyed = "Destroyed";
     #endregion
 
     #region FIRING CONTROL

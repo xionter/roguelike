@@ -18,6 +18,19 @@ public class InstantiatedRoom : MonoBehaviour
     [HideInInspector] public int[,] aStarMovementPenalty;
     [HideInInspector] public Bounds roomColliderBounds;
 
+    #region Header OBJECT REFERENCES
+
+    [Space(10)]
+    [Header("ССЫЛКИ НА ОБЪЕКТЫ")]
+
+    #endregion Header OBJECT REFERENCES
+
+    #region Tooltip
+    [Tooltip("Заполните игровой объект-заполнитель для child environment")]
+    #endregion Tooltip
+
+    [SerializeField] private GameObject environmentGameObject;
+
     private BoxCollider2D boxCollider2D;
 
     private void Awake()
@@ -292,6 +305,18 @@ public class InstantiatedRoom : MonoBehaviour
         boxCollider2D.enabled = true;
     }
 
+    public void ActivateEnvironmentGameObjects()
+    {
+        if (environmentGameObject != null)
+            environmentGameObject.SetActive(true);
+    }
+
+    public void DeactivateEnvironmentGameObjects()
+    {
+        if (environmentGameObject != null)
+            environmentGameObject.SetActive(false);
+    }
+
     public void LockDoors()
     {
         Door[] doorArray = GetComponentsInChildren<Door>();
@@ -323,4 +348,13 @@ public class InstantiatedRoom : MonoBehaviour
 
         EnableRoomCollider();
     }
+
+    #region Validation
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        HelperUtilities.ValidateCheckNullValue(this, nameof(environmentGameObject), environmentGameObject);
+    }
+#endif
+    #endregion Validation
 }
