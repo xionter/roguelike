@@ -15,6 +15,14 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
 
     #region Tooltip
+
+    [Tooltip("Заполнить игровым объектом меню паузы в иерархии")]
+
+    #endregion Tooltip
+
+    [SerializeField] private GameObject pauseMenu;
+
+    #region Tooltip
     [Tooltip("Заполните компонентом CanvasGroup из FadeScreenUI")]
     #endregion Tooltip
     [SerializeField] private CanvasGroup canvasGroup;
@@ -119,6 +127,59 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
                 break;
 
+            case GameState.playingLevel:
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    PauseGameMenu();
+                }
+
+                break;
+
+            case GameState.engagingEnemies:
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    PauseGameMenu();
+                }
+
+                break;
+
+            case GameState.bossStage:
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    PauseGameMenu();
+                }
+
+
+                break;
+
+
+            case GameState.engagingBoss:
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    PauseGameMenu();
+                }
+
+                break;
+
+
+            case GameState.restartGame:
+
+                RestartGame();
+
+                break;
+
+            case GameState.gamePaused:
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    PauseGameMenu();
+                }
+                break;
+
+
         }
     }
 
@@ -180,4 +241,50 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     {
         return dungeonLevel;
     }
+
+    private void RestartGame()
+    {
+        SceneManager.LoadScene("MainMenuScene");
+    }
+
+
+    public void PauseGameMenu()
+    {
+        if (gameState != GameState.gamePaused)
+        {
+            pauseMenu.SetActive(true);
+            GetPlayer().playerControl.DisablePlayer();
+
+            previousGameState = gameState;
+            gameState = GameState.gamePaused;
+        }
+        else if (gameState == GameState.gamePaused)
+        {
+            pauseMenu.SetActive(false);
+            GetPlayer().playerControl.EnablePlayer();
+
+            gameState = previousGameState;
+            previousGameState = GameState.gamePaused;
+
+        }
+    }
+
+
+
+        #region Validation
+
+#if UNITY_EDITOR
+
+    private void OnValidate()
+    {
+        HelperUtilities.ValidateCheckNullValue(this, nameof(pauseMenu), pauseMenu);
+        //HelperUtilities.ValidateCheckNullValue(this, nameof(messageTextTMP), messageTextTMP);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(canvasGroup), canvasGroup);
+    }
+
+#endif
+
+    #endregion Validation
+
+
 }

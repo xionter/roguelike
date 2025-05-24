@@ -8,15 +8,27 @@ public class SoundEffectManager : SingletonMonobehaviour<SoundEffectManager>
 
     private void Start()
     {
+        if (PlayerPrefs.HasKey("soundsVolume"))
+        {
+            soundsVolume = PlayerPrefs.GetInt("soundsVolume");
+        }
+       
         SetSoundsVolume(soundsVolume);
+
     }
 
+    private void OnDisable()
+    {
+        PlayerPrefs.SetInt("soundsVolume", soundsVolume);
+    }
+
+
     /// <summary>
-    /// Воспроизвести звуковой эффект
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     public void PlaySoundEffect(SoundEffectSO soundEffect)
     {
-        //Воспроизвести звук, используя звуковой игровой объект и компонент из пула объектов
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         SoundEffect sound = (SoundEffect)PoolManager.Instance.ReuseComponent(soundEffect.soundPrefab, Vector3.zero, Quaternion.identity);
         sound.SetSound(soundEffect);
         sound.gameObject.SetActive(true);
@@ -24,7 +36,7 @@ public class SoundEffectManager : SingletonMonobehaviour<SoundEffectManager>
     }
 
     /// <summary>
-    /// Отключить объект звукового эффекта после его воспроизведения, тем самым вернув его в пул объектов
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     private IEnumerator DisableSound(SoundEffect sound, float soundDuration)
     {
@@ -33,7 +45,7 @@ public class SoundEffectManager : SingletonMonobehaviour<SoundEffectManager>
     }
 
     /// <summary>
-    /// Установить громкость звуков
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     private void SetSoundsVolume(int soundsVolume)
     {
@@ -48,4 +60,25 @@ public class SoundEffectManager : SingletonMonobehaviour<SoundEffectManager>
             GameResources.Instance.soundsMasterMixerGroup.audioMixer.SetFloat("soundsVolume", HelperUtilities.LinearToDecibels(soundsVolume));
         }
     }
+
+    public void IncreaseSoundsVolume()
+    {
+        int maxSoundsVolume = 20;
+
+        if (soundsVolume >= maxSoundsVolume) return;
+
+        soundsVolume += 1;
+
+        SetSoundsVolume(soundsVolume); ;
+    }
+
+    public void DecreaseSoundsVolume()
+    {
+        if (soundsVolume == 0) return;
+
+        soundsVolume -= 1;
+
+        SetSoundsVolume(soundsVolume);
+    }
+
 }

@@ -104,6 +104,31 @@ public class GameResources : MonoBehaviour
     #endregion
     public GameObject scorePrefab;
 
+    #region Header MUSIC
+    [Space(10)]
+    [Header("MUSIC")]
+    #endregion Header MUSIC
+    #region Tooltip
+    [Tooltip("Заполните music master mixer group")]
+    #endregion
+    public AudioMixerGroup musicMasterMixerGroup;
+    #region Tooltip
+    [Tooltip("Музыка в главном меню")]
+    #endregion Tooltip
+    public MusicTrackSO mainMenuMusic;
+    #region Tooltip
+    [Tooltip("music on full snapshot")]
+    #endregion Tooltip
+    public AudioMixerSnapshot musicOnFullSnapshot;
+    #region Tooltip
+    [Tooltip("music low snapshot")]
+    #endregion Tooltip
+    public AudioMixerSnapshot musicLowSnapshot;
+    #region Tooltip
+    [Tooltip("music off snapshot")]
+    #endregion Tooltip
+    public AudioMixerSnapshot musicOffSnapshot;
+
 //жду звуки
 /*
     #region Header SOUNDS

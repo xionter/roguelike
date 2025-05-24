@@ -333,6 +333,17 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    public void EnablePlayer()
+    {
+        isPlayerMovementDisabled = false;
+    }
+    public void DisablePlayer()
+    {
+        isPlayerMovementDisabled = true;
+        player.idleEvent.CallIdleEvent();
+    }
+
+
 
     private void SetCurrentWeaponToFirstInTheList()
     {
