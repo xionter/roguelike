@@ -112,7 +112,7 @@ public class Enemy : MonoBehaviour
         this.enemyDetails = enemyDetails;
 
         SetEnemyMovementUpdateFrame(enemySpawnNumber);
-
+    
         SetEnemyStartingHealth(dungeonLevel);
 
         SetEnemyStartingWeapon();
@@ -126,7 +126,7 @@ public class Enemy : MonoBehaviour
     private void SetEnemyMovementUpdateFrame(int enemySpawnNumber)
     {
         // Установка номера кадра, на котором враг должен обновляться
-        //enemyMovementAI.SetUpdateFrameNumber(enemySpawnNumber % Settings.targetFrameRateToSpreadPathfindingOver);
+        enemyMovementAI.SetUpdateFrameNumber(enemySpawnNumber % Settings.targetFrameRateToSpreadPathFindingOver);
     }
 
     /// <summary>

@@ -132,6 +132,8 @@ public class EnemySpawner : SingletonMonobehaviour<EnemySpawner>
 
         enemy.GetComponent<DestroyedEvent>().OnDestroyed += Enemy_OnDestroyed;
     }
+    
+    
 
     private void Enemy_OnDestroyed(DestroyedEvent destroyedEvent, DestroyedEventArgs destroyedEventArgs)
     {
