@@ -5066,7 +5066,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 0.999542
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -5627,6 +5627,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7863437250049947079, guid: a7f4c50f0a1418e7786814e42f9c361c, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863437250049947079, guid: a7f4c50f0a1418e7786814e42f9c361c, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7863437250049947079, guid: a7f4c50f0a1418e7786814e42f9c361c, type: 3}

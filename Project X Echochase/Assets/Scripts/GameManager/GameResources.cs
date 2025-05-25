@@ -131,7 +131,7 @@ public class GameResources : MonoBehaviour
     #region Tooltip
     //[Tooltip("Музыка в главном меню")]
     #endregion Tooltip
-    //public MusicTrackSO mainMenuMusic;
+    public MusicTrackSO mainMenuMusic;
     #region Tooltip
     //[Tooltip("music on full snapshot")]
     #endregion Tooltip
@@ -145,45 +145,10 @@ public class GameResources : MonoBehaviour
     #endregion Tooltip
     public AudioMixerSnapshot musicOffSnapshot;
 
-//жду звуки
-/*
-    #region Header SOUNDS
-    [Space(10)]
-    [Header("SOUNDS")]
-    #endregion Header
-    #region Tooltip
-    [Tooltip("Укажите основную группу микшера для звуков")]
-    #endregion
-    public AudioMixerGroup soundsMasterMixerGroup;
-    #region Tooltip
-    [Tooltip("Звук открытия/закрытия двери")]
-    #endregion Tooltip
-    public SoundEffectSO doorOpenCloseSoundEffect;
-    #region Tooltip
-    [Tooltip("Укажите звуковой эффект переворота стола")]
-    #endregion
-    public SoundEffectSO tableFlip;
-    #region Tooltip
-    [Tooltip("Укажите звуковой эффект открытия сундука")]
-    #endregion
-    public SoundEffectSO chestOpen;
-    #region Tooltip
-    [Tooltip("Укажите звуковой эффект подбора здоровья")]
-    #endregion
-    public SoundEffectSO healthPickup;
-    #region Tooltip
-    [Tooltip("Укажите звуковой эффект подбора оружия")]
-    #endregion
-    public SoundEffectSO weaponPickup;
-    #region Tooltip
-    [Tooltip("Укажите звуковой эффект подбора патронов")]
-    #endregion
-    public SoundEffectSO ammoPickup;
-*/
-    #region Header CHESTS
+
+
     [Space(10)]
     [Header("СУНДУКИ")]
-    #endregion
     #region Tooltip
     [Tooltip("Префаб предмета из сундука")]
     #endregion
