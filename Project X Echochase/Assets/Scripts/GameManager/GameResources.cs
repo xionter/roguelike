@@ -122,7 +122,7 @@ public class GameResources : MonoBehaviour
 
     #region Header MUSIC
     [Space(10)]
-    [Header("MUSIC")]
+    [Header("МУЗЫКА")]
     #endregion Header MUSIC
     #region Tooltip
     [Tooltip("Заполните music master mixer group")]
@@ -133,7 +133,7 @@ public class GameResources : MonoBehaviour
     #endregion Tooltip
     public MusicTrackSO mainMenuMusic;
     #region Tooltip
-    //[Tooltip("music on full snapshot")]
+    [Tooltip("music on full snapshot")]
     #endregion Tooltip
     public AudioMixerSnapshot musicOnFullSnapshot;
     #region Tooltip
@@ -192,6 +192,10 @@ public class GameResources : MonoBehaviour
         HelperUtilities.ValidateCheckEnumerableValues(this, nameof(enemyUnwalkableCollisionTilesArray),
             enemyUnwalkableCollisionTilesArray);
         HelperUtilities.ValidateCheckNullValue(this, nameof(preferredEnemyPathTile), preferredEnemyPathTile);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(musicMasterMixerGroup), musicMasterMixerGroup);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(musicOnFullSnapshot), musicOnFullSnapshot);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(musicLowSnapshot), musicLowSnapshot);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(musicOffSnapshot), musicOffSnapshot);
         HelperUtilities.ValidateCheckNullValue(this, nameof(chestItemPrefab), chestItemPrefab);
         HelperUtilities.ValidateCheckNullValue(this, nameof(heartIcon), heartIcon);
         HelperUtilities.ValidateCheckNullValue(this, nameof(bulletIcon), bulletIcon);
