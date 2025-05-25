@@ -204,19 +204,37 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     private void PlayDungeonLevel()
     {
-        bool dungeonBuiltSucessfully = DungeonBuilder.Instance.GenerateDungeon(dungeonLevel);
+        // Проверяем успешность генерации подземелья
+        bool dungeonBuiltSuccessfully = DungeonBuilder.Instance.GenerateDungeon(dungeonLevel);
 
-        if (!dungeonBuiltSucessfully)
+        if (!dungeonBuiltSuccessfully)
         {
             Debug.LogError("Не удалось построить подземелье из указанных комнат и графов узлов");
+            return; 
         }
 
+        // Убедимся, что текущая комната не null
+        if (currentRoom == null)
+        {
+            return;
+        }
 
         // Вызвать статическое событие, что комната изменилась
         StaticEventHandler.CallRoomChangedEvent(currentRoom);
 
+        // Проверяем, что игрок создан
+        if (player == null || player.gameObject == null)
+        {
+            Debug.LogError("Игрок не инициализирован.");
+            return;
+        }
+
         // Установить игрока примерно в центре комнаты
-        player.gameObject.transform.position = new Vector3((currentRoom.lowerBounds.x + currentRoom.upperBounds.x) / 2f, (currentRoom.lowerBounds.y + currentRoom.upperBounds.y) / 2f, 0f);
+        player.gameObject.transform.position = new Vector3(
+            (currentRoom.lowerBounds.x + currentRoom.upperBounds.x) / 2f,
+            (currentRoom.lowerBounds.y + currentRoom.upperBounds.y) / 2f,
+            0f
+        );
 
         // Получить ближайшую точку появления в комнате, ближайшую к игроку
         player.gameObject.transform.position = HelperUtilities.GetSpawnPositionNearestToPlayer(player.gameObject.transform.position);

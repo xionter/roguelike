@@ -12,8 +12,8 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     private List<RoomTemplateSO> roomTemplateList;
     private RoomNodeTypeListSO roomNodeTypeList;
     private bool dungeonBuildSuccessful;
-    [Header("Резервный шаблон")]
-    [SerializeField] private RoomTemplateSO defaultRoomTemplate;
+    [Header("Резервный обьект комнаты")]
+    [SerializeField] public RoomTemplateSO defaultRoom;
 
     private DungeonLevelSO dungeonLevel;
 
@@ -149,7 +149,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
                 if (roomTemplate == null)
                 {
                     Debug.LogWarning($"[{nameof(DungeonBuilder)}] Нет шаблона для {roomNode.roomNodeType.name}, подставляю defaultRoomTemplate");
-                    roomTemplate = defaultRoomTemplate;
+                    return false;
                 }
 
                 Room room = CreateRoomFromRoomTemplate(roomTemplate, roomNode);

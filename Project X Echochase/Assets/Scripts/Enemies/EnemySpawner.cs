@@ -30,34 +30,45 @@ public class EnemySpawner : SingletonMonobehaviour<EnemySpawner>
         enemiesSpawnedSoFar = 0;
         currentEnemyCount = 0;
 
-        currentRoom = roomChangedEventArgs.room;
+        // Проверяем, существует ли текущая комната
+        if (roomChangedEventArgs.room != null)
+        {
+            currentRoom = roomChangedEventArgs.room;
+        }
+        else
+        {
+            Debug.LogWarning("Текущая комната не определена, используется defaultRoom.");
+            currentRoom = DungeonBuilder.Instance.GetRoomByRoomID(DungeonBuilder.Instance.defaultRoom.guid);
+
+            // Если defaultRoom также не определён, выходим
+            if (currentRoom == null)
+            {
+                Debug.LogError("DefaultRoom не определён. Проверьте настройки DungeonBuilder.");
+                return;
+            }
+        }
 
         MusicManager.Instance.PlayMusic(currentRoom.ambientMusic, 0.2f, 2f);
 
-        // если комната - корридор или вход, то выходим
-        if (currentRoom.roomNodeType.isCorridorEW || currentRoom.roomNodeType.isCorridorNS || currentRoom.roomNodeType.isEntrance) 
+        // Если комната - коридор или вход, выходим
+        if (currentRoom.roomNodeType.isCorridorEW || currentRoom.roomNodeType.isCorridorNS || currentRoom.roomNodeType.isEntrance)
             return;
 
-        // если комната уже была зачищена, то выходим
+        // Если комната уже была зачищена, выходим
         if (currentRoom.isClearedOfEnemies) return;
 
         enemiesToSpawn = currentRoom.GetNumberOfEnemiesToSpawn(GameManager.Instance.GetCurrentDungeonLevel());
-
         roomEnemySpawnParameters = currentRoom.GetRoomEnemySpawnParameters(GameManager.Instance.GetCurrentDungeonLevel());
 
         if (enemiesToSpawn == 0)
         {
             currentRoom.isClearedOfEnemies = true;
-
             return;
         }
 
         enemyMaxConcurrentSpawnNumber = GetConcurrentEnemies();
-
         MusicManager.Instance.PlayMusic(currentRoom.battleMusic, 0.2f, 0.5f);
-
         currentRoom.instantiatedRoom.LockDoors();
-
         SpawnEnemies();
     }
 
