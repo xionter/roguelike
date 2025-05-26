@@ -1658,7 +1658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006d5534dd902e54892ec909ba65768f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultRoomTemplate: {fileID: 11400000, guid: dd45fde284e1b2141b9e711c0896657a, type: 2}
+  defaultRoom: {fileID: 11400000, guid: a497dc160aa9b3348943bcfee0a96eca, type: 2}
 --- !u!4 &741087215
 Transform:
   m_ObjectHideFlags: 0
@@ -5716,6 +5716,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 748154282704239578, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
+      propertyPath: musicVolume
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4284741132209954754, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
       propertyPath: m_Name
       value: MusicManager
@@ -5760,6 +5764,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8493330932828924152, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493330932828924152, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 3881555995806486097, guid: b88d34b14bd12d44eab08369fc7f06cd, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

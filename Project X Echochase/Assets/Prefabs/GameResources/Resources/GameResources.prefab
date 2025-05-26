@@ -63,7 +63,7 @@ MonoBehaviour:
   heartPrefab: {fileID: 3382433886380462954, guid: d1fd4f5171736494295acbe88514c3b7, type: 3}
   ammoIconPrefab: {fileID: 3382433886380462954, guid: b7ffc10fdcd06e963b2a7fd5a8845d5c, type: 3}
   scorePrefab: {fileID: 0}
-  musicMasterMixerGroup: {fileID: 3881555995806486097, guid: b88d34b14bd12d44eab08369fc7f06cd, type: 2}
+  musicMasterMixerGroup: {fileID: -7206380732494497733, guid: b88d34b14bd12d44eab08369fc7f06cd, type: 2}
   mainMenuMusic: {fileID: 0}
   musicOnFullSnapshot: {fileID: 24500006, guid: b88d34b14bd12d44eab08369fc7f06cd, type: 2}
   musicLowSnapshot: {fileID: 8893122114324796974, guid: b88d34b14bd12d44eab08369fc7f06cd, type: 2}

@@ -44,11 +44,6 @@ public static class Settings
     public static int use = Animator.StringToHash("use");
 
     public static float baseSpeedForPlayerAnimations = 8f;
-    
-    #region AUDIO
-    public const float musicFadeOutTime = 0.5f;
-    public const float musicFadeInTime = 0.5f;
-    #endregion
 
     //door
     public static int open = Animator.StringToHash("open");
@@ -75,6 +70,11 @@ public static class Settings
     #region GAMEOBJECT TAGS
     public const string playerTag = "Player";
     public const string playerWeapon = "playerWeapon";
+    #endregion
+
+    #region AUDIO
+    public const float musicFadeOutTime = 0.5f;
+    public const float musicFadeInTime = 0.5f;
     #endregion
 
     #region UI PARAMETERS
