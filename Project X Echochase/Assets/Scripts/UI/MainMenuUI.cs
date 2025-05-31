@@ -16,11 +16,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void PlayGame()
     {
-        // Option 1: Go straight to game
         SceneManager.LoadScene("MainGameScene");
-
-        // Option 2: Play intro cutscene again before game (if desired)
-        SceneManager.LoadScene("IntroCutscene");
     }
 
     public void LoadInitial()
