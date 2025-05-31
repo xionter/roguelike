@@ -279,12 +279,12 @@ public class InstantiatedRoom : MonoBehaviour
                 Door doorComponent = door.GetComponent<Door>();
 
                 // Устанавливаем, является ли дверь частью комнаты босса
-                if (room.roomNodeType.isBossRoom)
-                {
-                    doorComponent.isBossRoomDoor = true;
-
-                    doorComponent.LockDoor();
-                }
+                // if (room.roomNodeType.isBossRoom)
+                // {
+                //     doorComponent.isBossRoomDoor = true;
+                //
+                //     doorComponent.LockDoor();
+                // }
             }
         }
     }
