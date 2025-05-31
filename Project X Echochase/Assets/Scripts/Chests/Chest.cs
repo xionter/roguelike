@@ -114,7 +114,7 @@ public class Chest : MonoBehaviour, IUseable
         animator.SetBool(Settings.use, true);
 
         // саунд эффект
-        //SoundEffectManager.Instance.PlaySoundEffect(GameResources.Instance.chestOpen);
+        SoundEffectManager.Instance.PlaySoundEffect(GameResources.Instance.chestOpen);
 
         // если у игрока уже есть оружие, то ставим wepon в null
         if (weaponDetails != null)
@@ -175,7 +175,7 @@ public class Chest : MonoBehaviour, IUseable
         GameManager.Instance.GetPlayer().health.AddHealth(healthPercent);
 
         // саунд эффект поднятия
-        //SoundEffectManager.Instance.PlaySoundEffect(GameResources.Instance.healthPickup);
+        SoundEffectManager.Instance.PlaySoundEffect(GameResources.Instance.healthPickup);
 
         healthPercent = 0;
 
@@ -204,7 +204,7 @@ public class Chest : MonoBehaviour, IUseable
         player.reloadWeaponEvent.CallReloadWeaponEvent(player.activeWeapon.GetCurrentWeapon(), ammoPercent);
 
         // саунд эффект поднятия
-        //SoundEffectManager.Instance.PlaySoundEffect(GameResources.Instance.ammoPickup);
+        SoundEffectManager.Instance.PlaySoundEffect(GameResources.Instance.ammoPickup);
 
         ammoPercent = 0;
 
@@ -232,7 +232,7 @@ public class Chest : MonoBehaviour, IUseable
             GameManager.Instance.GetPlayer().AddWeaponToPlayer(weaponDetails);
 
             // саунд эффект поднятия
-            //SoundEffectManager.Instance.PlaySoundEffect(GameResources.Instance.weaponPickup);
+            SoundEffectManager.Instance.PlaySoundEffect(GameResources.Instance.weaponPickup);
         }
         else
         {

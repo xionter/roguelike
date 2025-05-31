@@ -5,6 +5,7 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class Health : MonoBehaviour
 {
+    [SerializeField] private HealthBar healthBar;
     private int startingHealth;
     private int currentHealth;
     private HealthEvent healthEvent;
@@ -43,23 +44,23 @@ public class Health : MonoBehaviour
         }
         else if (enemy != null)
         {
-            if (enemy.enemyDetails.isImmuneAfterHit)
-            {
-                isImmuneAfterHit = true;
-                immunityTime = enemy.enemyDetails.hitImmunityTime;
-                spriteRenderer = enemy.spriteRendererArray[0];
-            }
+            // if (enemy.enemyDetails.isImmuneAfterHit)
+            // {
+            //     isImmuneAfterHit = true;
+            //     immunityTime = enemy.enemyDetails.hitImmunityTime;
+            //     spriteRenderer = enemy.spriteRendererArray[0];
+            // }
         }
-/*
-        if (enemy != null && enemy.enemyDetails.isHealthBarDisplayed == true && healthBar != null)
-        {
-            healthBar.EnableHealthBar();
-        }
-        else if (healthBar != null)
-        {
-            healthBar.DisableHealthBar();
-        }
-        */
+        
+        // if (enemy != null && enemy.enemyDetails.isHealthBarDisplayed == true && healthBar != null)
+        // {
+        //     healthBar.EnableHealthBar();
+        // }
+        // else if (healthBar != null)
+        // {
+        //     healthBar.DisableHealthBar();
+        // }
+        
     }
 
     private void CallHealthEvent(int damageAmount)
@@ -80,12 +81,12 @@ public class Health : MonoBehaviour
             CallHealthEvent(damageAmount);
 
             PostHitImmunity();
-            /*
+
             if (healthBar != null)
             {
                 healthBar.SetHealthBarValue((float)currentHealth / (float)startingHealth);
             }
-            */
+
         }
     }
 

@@ -40,7 +40,7 @@ using UnityEngine.Rendering;
 
 
 
-public class Player : MonoBehaviour
+public class  Player : MonoBehaviour
 {
     [HideInInspector] public PlayerDetailsSO playerDetails;
     [HideInInspector] public HealthEvent healthEvent;
@@ -128,7 +128,7 @@ public class Player : MonoBehaviour
     {
         health.SetStartingHealth(playerDetails.playerHealthAmount);
     }
-
+    
     public Vector3 GetPlayerPosition()
     {
         return transform.position;

@@ -15,6 +15,8 @@ MonoBehaviour:
   guid: 921a9c762f8f62c44be739dae8c52515
   prefab: {fileID: 1206501414782452664, guid: fb561dbe90458ad4b88b586fa37e2069, type: 3}
   previousPrefab: {fileID: 1206501414782452664, guid: fb561dbe90458ad4b88b586fa37e2069, type: 3}
+  battleMusic: {fileID: 11400000, guid: 74d5a9d5c6847c647820476da509bb3f, type: 2}
+  ambientMusic: {fileID: 11400000, guid: bf44485e46dbf214e96ad8229af25618, type: 2}
   roomNodeType: {fileID: 11400000, guid: 7806e5341eade8c489ccb851f51ec40f, type: 2}
   lowerBounds: {x: -42, y: -8}
   upperBounds: {x: -4, y: 31}
@@ -45,5 +47,16 @@ MonoBehaviour:
     isUnavailable: 0
   spawnPositionArray:
   - {x: -26, y: 12}
-  enemiesByLevelList: []
-  roomEnemySpawnParametersList: []
+  enemiesByLevelList:
+  - dungeonLevel: {fileID: 11400000, guid: f564593041ee8994fb38aa94bcccc204, type: 2}
+    spawnableObjectRatioList:
+    - dungeonObject: {fileID: 11400000, guid: 2726a8143e1a84a43bbaae049842f036, type: 2}
+      ratio: 1
+  roomEnemySpawnParametersList:
+  - dungeonLevel: {fileID: 11400000, guid: f564593041ee8994fb38aa94bcccc204, type: 2}
+    minTotalEnemiesToSpawn: 1
+    maxTotalEnemiesToSpawn: 1
+    minConcurrentEnemies: 1
+    maxConcurrentEnemies: 1
+    minSpawnInterval: 1
+    maxSpawnInterval: 1

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public static class Settings 
 {
@@ -46,6 +47,10 @@ public static class Settings
 
     //door
     public static int open = Animator.StringToHash("open");
+
+    //ломаемые декорации
+    public static int destroy = Animator.StringToHash("destroy");
+    public static String stateDestroyed = "Destroyed";
     #endregion
 
     #region FIRING CONTROL
@@ -53,9 +58,23 @@ public static class Settings
     // считаем угол от игрока. Если больше, то угол от оружия
     #endregion
 
+    #region AStar Params
+
+    public const int defaultAStarMovementPenalty = 40;
+    public const int preferredPathAStarMovementPenalty = 1;
+    public const int targetFrameRateToSpreadPathFindingOver = 60;
+    public const float playerMoveDistanceToRebuildPath = 3f;
+    public const float enemyPathRebuildCooldown = 2f;
+    #endregion
+
     #region GAMEOBJECT TAGS
     public const string playerTag = "Player";
     public const string playerWeapon = "playerWeapon";
+    #endregion
+
+    #region AUDIO
+    public const float musicFadeOutTime = 0.5f;
+    public const float musicFadeInTime = 0.5f;
     #endregion
 
     #region UI PARAMETERS

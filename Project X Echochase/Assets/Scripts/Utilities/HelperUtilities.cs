@@ -19,7 +19,19 @@ public static class HelperUtilities
 
         worldPosition.z = 0f; 
         return worldPosition; 
-    } 
+    }
+
+    /// <summary>
+    /// Получить нижнюю и верхнюю границы области просмотра камеры
+    /// </summary>
+    public static void CameraWorldPositionBounds(out Vector2Int cameraWorldPositionLowerBounds, out Vector2Int cameraWorldPositionUpperBounds, Camera camera)
+    {
+        Vector3 worldPositionViewportBottomLeft = camera.ViewportToWorldPoint(new Vector3(0f, 0f, 0f));
+        Vector3 worldPositionViewportTopRight = camera.ViewportToWorldPoint(new Vector3(1f, 1f, 0f));
+
+        cameraWorldPositionLowerBounds = new Vector2Int((int)worldPositionViewportBottomLeft.x, (int)worldPositionViewportBottomLeft.y);
+        cameraWorldPositionUpperBounds = new Vector2Int((int)worldPositionViewportTopRight.x, (int)worldPositionViewportTopRight.y);
+    }
 
     /// <summary> 
     /// Получить угол в градусах с направления вектора 
@@ -86,6 +98,18 @@ public static class HelperUtilities
 
         return aimDirection;
     }
+
+    /// <summary>
+    /// Перевести линейную шкалу громкости в децибелы
+    /// </summary>
+    public static float LinearToDecibels(int linear)
+    {
+        float linearScaleRange = 20f;
+
+        // формула для перевода линейной шкалы в логарифмическую шкалу децибел
+        return Mathf.Log10((float)linear / linearScaleRange) * 20f;
+    }
+
     public static bool ValidateCheckNullValue(Object thisObject, string fieldName, UnityEngine.Object objectToCheck) 
     { 
         if (objectToCheck == null) 
@@ -95,6 +119,7 @@ public static class HelperUtilities
         } 
         return false;
     }
+
     /// <summary>
     /// Проверяет если строка пустая
     /// </summary>
@@ -108,6 +133,7 @@ public static class HelperUtilities
 
         return false;
     }
+
     /// <summary>
     /// Список пуст или содержит null значения - возвращает true если есть ошибка
     /// </summary>

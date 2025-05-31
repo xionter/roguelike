@@ -15,7 +15,21 @@ public class InstantiatedRoom : MonoBehaviour
     [HideInInspector] public Tilemap frontTilemap;
     [HideInInspector] public Tilemap collisionTilemap;
     [HideInInspector] public Tilemap minimapTilemap;
+    [HideInInspector] public int[,] aStarMovementPenalty;
     [HideInInspector] public Bounds roomColliderBounds;
+
+    #region Header OBJECT REFERENCES
+
+    [Space(10)]
+    [Header("ССЫЛКИ НА ОБЪЕКТЫ")]
+
+    #endregion Header OBJECT REFERENCES
+
+    #region Tooltip
+    [Tooltip("Заполните игровой объект-заполнитель для child environment")]
+    #endregion Tooltip
+
+    [SerializeField] private GameObject environmentGameObject;
 
     private BoxCollider2D boxCollider2D;
 
@@ -41,6 +55,8 @@ public class InstantiatedRoom : MonoBehaviour
         PopulateTilemapMemberVariables(roomGameobject);
 
         BlockOffUnusedDoorWays();
+
+        AddObstaclesAndPreferredPaths();
 
         AddDoorsToRooms();
 
@@ -191,7 +207,38 @@ public class InstantiatedRoom : MonoBehaviour
             }
         }
     }
+    
+    private void AddObstaclesAndPreferredPaths()
+    {
+        aStarMovementPenalty = new int[room.templateUpperBounds.x - room.templateLowerBounds.x + 1,
+            room.templateUpperBounds.y - room.templateLowerBounds.y + 1];
 
+        for (var x = 0; x < (room.templateUpperBounds.x - room.templateLowerBounds.x + 1); x++)
+        {
+            for (var y = 0; y< (room.templateUpperBounds.y - room.templateLowerBounds.y + 1); y++)
+            {
+                aStarMovementPenalty[x, y] = Settings.defaultAStarMovementPenalty;
+                
+                TileBase tile = collisionTilemap.GetTile(new Vector3Int(x + room.templateLowerBounds.x,
+                    y + room.templateLowerBounds.y, 0));
+
+                foreach (var collisionTile in GameResources.Instance.enemyUnwalkableCollisionTilesArray)
+                {
+                    if (tile == collisionTile)
+                    {
+                        aStarMovementPenalty[x, y] = 0;
+                        break;
+                    }
+                }
+                
+                if (tile == GameResources.Instance.preferredEnemyPathTile)
+                {
+                    aStarMovementPenalty[x, y] = Settings.preferredPathAStarMovementPenalty;
+                }
+            }
+        }
+    }
+    
     /// <summary>
     /// Добавить открывающиеся двери, если это не коридор
     /// </summary>
@@ -242,6 +289,7 @@ public class InstantiatedRoom : MonoBehaviour
         }
     }
 
+
     private void DisableCollisionTilemapRenderer()
     {
         collisionTilemap.gameObject.GetComponent<TilemapRenderer>().enabled = false;
@@ -255,6 +303,18 @@ public class InstantiatedRoom : MonoBehaviour
     public void EnableRoomCollider()
     {
         boxCollider2D.enabled = true;
+    }
+
+    public void ActivateEnvironmentGameObjects()
+    {
+        if (environmentGameObject != null)
+            environmentGameObject.SetActive(true);
+    }
+
+    public void DeactivateEnvironmentGameObjects()
+    {
+        if (environmentGameObject != null)
+            environmentGameObject.SetActive(false);
     }
 
     public void LockDoors()
@@ -288,4 +348,13 @@ public class InstantiatedRoom : MonoBehaviour
 
         EnableRoomCollider();
     }
+
+    #region Validation
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        HelperUtilities.ValidateCheckNullValue(this, nameof(environmentGameObject), environmentGameObject);
+    }
+#endif
+    #endregion Validation
 }

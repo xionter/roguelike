@@ -12,8 +12,8 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     private List<RoomTemplateSO> roomTemplateList;
     private RoomNodeTypeListSO roomNodeTypeList;
     private bool dungeonBuildSuccessful;
-    [Header("Резервный шаблон")]
-    [SerializeField] private RoomTemplateSO defaultRoomTemplate;
+    [Header("Резервный обьект комнаты")]
+    [SerializeField] public RoomTemplateSO defaultRoom;
 
     private DungeonLevelSO dungeonLevel;
 
@@ -149,7 +149,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
                 if (roomTemplate == null)
                 {
                     Debug.LogWarning($"[{nameof(DungeonBuilder)}] Нет шаблона для {roomNode.roomNodeType.name}, подставляю defaultRoomTemplate");
-                    roomTemplate = defaultRoomTemplate;
+                    return false;
                 }
 
                 Room room = CreateRoomFromRoomTemplate(roomTemplate, roomNode);
@@ -429,10 +429,14 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
         room.templateID = roomTemplate.guid;
         room.id = roomNode.id;
         room.prefab = roomTemplate.prefab;
+        room.battleMusic = roomTemplate.battleMusic;
+        room.ambientMusic = roomTemplate.ambientMusic;
         room.roomNodeType = roomTemplate.roomNodeType;
         room.lowerBounds = roomTemplate.lowerBounds;
         room.upperBounds = roomTemplate.upperBounds;
         room.spawnPositionArray = roomTemplate.spawnPositionArray;
+        room.enemiesByLevelList = roomTemplate.enemiesByLevelList;
+        room.roomLevelEnemySpawnParametersList = roomTemplate.roomEnemySpawnParametersList;
         room.templateLowerBounds = roomTemplate.lowerBounds;
         room.templateUpperBounds = roomTemplate.upperBounds;
         
@@ -449,6 +453,10 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
             room.parentRoomID = roomNode.parentRoomNodeIDList[0];
         }
 
+        if (room.GetNumberOfEnemiesToSpawn(GameManager.Instance.GetCurrentDungeonLevel()) == 0)
+        {
+            room.isClearedOfEnemies = true;
+        }
         return room;
     }
     

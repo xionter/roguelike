@@ -24,6 +24,23 @@ public class RoomTemplateSO : ScriptableObject
 
     [HideInInspector] public GameObject previousPrefab; // используется для повторной генерации GUID, если объект был скопирован и префаб изменился
 
+    #region Header ROOM MUSIC
+    [Space(10)]
+    [Header("МУЗЫКА КОМНАТЫ")]
+    #endregion Header ROOM MUSIC
+
+    #region Tooltip
+    [Tooltip("Боевая музыка ScriptableObject, когда комната не очищена от врагов")]
+    #endregion Tooltip
+
+    public MusicTrackSO battleMusic;
+
+    #region Tooltip
+    [Tooltip("Эмбиент-музыка ScriptableObject для случая, когда комната очищена от врагов")]
+    #endregion Tooltip
+
+    public MusicTrackSO ambientMusic;
+
     #region Header ROOM CONFIGURATION
 
     [Space(10)]
@@ -119,6 +136,8 @@ public class RoomTemplateSO : ScriptableObject
         }
 
         HelperUtilities.ValidateCheckNullValue(this, nameof(prefab), prefab);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(battleMusic), battleMusic);
+        HelperUtilities.ValidateCheckNullValue(this, nameof(ambientMusic), ambientMusic);
 
 
 

@@ -14,4 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: SlimeBlockKing Red
   enemyPrefab: {fileID: 7319223158551244009, guid: fdd442992e79132499c80b1a9cfb7fed, type: 3}
-
+  chaseDistance: 50
+  enemyWeapon: {fileID: 11400000, guid: c501a84a1b470b1f3943765535063844, type: 2}
+  firingIntervalMin: 0.1
+  firingIntervalMax: 1
+  firingDurationMin: 1
+  firingDurationMax: 2
+  firingLineOfSightRequired: 0
+  enemyStandardMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  enemyMaterializeTime: 2
+  enemyMaterializeShader: {fileID: -6465566751694194690, guid: 5fec8f8e6ea244648a3c6ede24a56288, type: 3}
+  enemyMaterializeColor: {r: 0.17277712, g: 1.7077296, b: 0.16916189, a: 1}
+  enemyHealthDetailsArray: []
+  isImmuneAfterHit: 0
+  hitImmunityTime: 0
+  isHealthBarDisplayed: 0
