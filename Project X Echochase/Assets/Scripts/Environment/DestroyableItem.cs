@@ -1,22 +1,22 @@
 using System.Collections;
 using UnityEngine;
 
-//Не добавляйте директивы require, так как мы уничтожаем компоненты при уничтожении элемента
+//пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ require, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 [DisallowMultipleComponent]
 public class DestroyableItem : MonoBehaviour
 {
     #region Header HEALTH
-    [Header("ЗДОРОВЬЕ")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
     #endregion Header HEALTH
     #region Tooltip
-    [Tooltip("Каким должно быть начальное здоровье этого разрушаемого предмета")]
+    [Tooltip("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
     #endregion Tooltip
     [SerializeField] private int startingHealthAmount = 1;
     #region SOUND EFFECT
-    [Header("ЗВУКОВОЙ ЭФФЕКТ")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")]
     #endregion SOUND EFFECT
     #region Tooltip
-    [Tooltip("Звуковой эффект при разрушении предмета")]
+    [Tooltip("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
     #endregion Tooltip
     [SerializeField] private SoundEffectSO destroySoundEffect;
     private Animator animator;
@@ -57,25 +57,25 @@ public class DestroyableItem : MonoBehaviour
 
     private IEnumerator PlayAnimation()
     {
-        // Уничтожить триггерный коллайдер
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         Destroy(boxCollider2D);
 
-        // Воспроизвести звуковой эффект
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         if (destroySoundEffect != null)
         {
             SoundEffectManager.Instance.PlaySoundEffect(destroySoundEffect);
         }
 
-        // Запустить анимацию уничтожения
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         animator.SetBool(Settings.destroy, true);
 
-        // Позволить анимации воспроизводиться
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         while (!animator.GetCurrentAnimatorStateInfo(0).IsName(Settings.stateDestroyed))
         {
             yield return null;
         }
 
-        //Затем уничтожить все компоненты, кроме Sprite Renderer, чтобы просто отобразить финальный спрайт в анимации
+        //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ Sprite Renderer, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         Destroy(animator);
         Destroy(receiveContactDamage);
         Destroy(health);

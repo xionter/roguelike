@@ -39575,6 +39575,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1279268514308411793}
     m_Modifications:
+    - target: {fileID: 2619092698861798226, guid: f55973983ca573056a317247dc895632, type: 3}
+      propertyPath: chestSpawnChanceMax
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2619092698861798226, guid: f55973983ca573056a317247dc895632, type: 3}
+      propertyPath: chestSpawnChanceMin
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2619092698861798226, guid: f55973983ca573056a317247dc895632, type: 3}
+      propertyPath: numberOfItemsToSpawnMin
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6143277489455841068, guid: f55973983ca573056a317247dc895632, type: 3}
       propertyPath: m_Name
       value: ChestSpawner_RoomEntry_ChestRoom

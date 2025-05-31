@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f84d3e079db51ac96a432e7a33896d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactDamageAmount: 5
+  contactDamageAmount: 5000
 --- !u!114 &2522254004502982337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11b7e328351bbd94a8dbc78a5a1242a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  light2D: {fileID: 0}
   lightIntensityMin: 0.3
   lightIntensityMax: 0.6
   lightFlickerTimeMin: 0.15
@@ -315,8 +316,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
