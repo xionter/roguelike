@@ -38,7 +38,6 @@ public class IntroCutscene : MonoBehaviour
     private void PlayCutscene()
     {
         isCutscenePlaying = true;
-        
         if (animator != null && !string.IsNullOrEmpty(animationName))
         {
             animator.Play(animationName, -1, 0f);

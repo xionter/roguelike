@@ -16,7 +16,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("MainGameScene");
+        SceneManager.LoadScene("IntroCutscene");
     }
 
     public void LoadInitial()
