@@ -992,7 +992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a81afb45d304479a82f573cf356d86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playButton: {fileID: 0}
+  playButton: {fileID: 1829887713}
   quitButton: {fileID: 0}
   returnToMainMenuButton: {fileID: 0}
 --- !u!1 &1325289113
@@ -1307,63 +1307,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!1001 &1510241954
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4284741132209954754, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
-      propertyPath: m_Name
-      value: MusicManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 7112553133128387563, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7112553133128387563, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7112553133128387563, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7112553133128387563, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7112553133128387563, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7112553133128387563, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7112553133128387563, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7112553133128387563, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7112553133128387563, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7112553133128387563, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
 --- !u!1 &1829887713
 GameObject:
   m_ObjectHideFlags: 0
@@ -1595,5 +1538,4 @@ SceneRoots:
   - {fileID: 1493688535}
   - {fileID: 1206169086}
   - {fileID: 392552833}
-  - {fileID: 1510241954}
   - {fileID: 275455631}
