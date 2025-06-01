@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4922637f808a04e836fdf543da98e4, type: 3}
   m_Name: MovementDetails_Grimonk_Brown
   m_EditorClassIdentifier: 
-  minMoveSpeed: 2
+  minMoveSpeed: 4
   maxMoveSpeed: 5
   rollSpeed: 0
   rollDistance: 0

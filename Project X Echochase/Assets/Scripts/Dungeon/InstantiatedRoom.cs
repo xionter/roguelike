@@ -278,13 +278,14 @@ public class InstantiatedRoom : MonoBehaviour
                 // Получаем компонент двери
                 var doorComponent = door.GetComponent<Door>();
 
-                // Устанавливаем, является ли дверь частью комнаты босса
-                // if (room.roomNodeType.isBossRoom)
-                // {
-                //     doorComponent.isBossRoomDoor = true;
-                //
-                //     doorComponent.LockDoor();
-                // }
+                //Устанавливаем, является ли дверь частью комнаты босса
+                if (room.roomNodeType.isBossRoom)
+                {
+                    //doorComponent.isBossRoomDoor = true;
+                    GameObject skullIcon = Instantiate(GameResources.Instance.minimapSkullPrefab, gameObject.transform);
+                    skullIcon.transform.localPosition = door.transform.localPosition;
+
+                }
             }
         }
     }

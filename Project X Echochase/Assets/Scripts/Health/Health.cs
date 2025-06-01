@@ -5,6 +5,13 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class Health : MonoBehaviour
 {
+    #region Header References
+    [Space(10)]
+    [Header("References")]
+    #endregion
+    #region Tooltip
+    [Tooltip("Populate with the HealthBar component on the HealthBar gameobject")]
+    #endregion
     [SerializeField] private HealthBar healthBar;
     private int startingHealth;
     private int currentHealth;
@@ -44,23 +51,22 @@ public class Health : MonoBehaviour
         }
         else if (enemy != null)
         {
-            // if (enemy.enemyDetails.isImmuneAfterHit)
-            // {
-            //     isImmuneAfterHit = true;
-            //     immunityTime = enemy.enemyDetails.hitImmunityTime;
-            //     spriteRenderer = enemy.spriteRendererArray[0];
-            // }
+             if (enemy.enemyDetails.isImmuneAfterHit)
+             {
+                 isImmuneAfterHit = true;
+                 immunityTime = enemy.enemyDetails.hitImmunityTime;
+                 spriteRenderer = enemy.spriteRendererArray[0];
+             }
         }
         
-        // if (enemy != null && enemy.enemyDetails.isHealthBarDisplayed == true && healthBar != null)
-        // {
-        //     healthBar.EnableHealthBar();
-        // }
-        // else if (healthBar != null)
-        // {
-        //     healthBar.DisableHealthBar();
-        // }
-        
+        if (enemy != null && enemy.enemyDetails.isHealthBarDisplayed == true && healthBar != null)
+        {
+            healthBar.EnableHealthBar();
+        }
+        else if (healthBar != null)
+        {
+            healthBar.DisableHealthBar();
+        }
     }
 
     private void CallHealthEvent(int damageAmount)

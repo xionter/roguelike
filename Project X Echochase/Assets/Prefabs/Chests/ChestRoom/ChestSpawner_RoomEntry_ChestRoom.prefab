@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3935965075616724594, guid: 00d9af4080e3531ebaf83cf738ffe93c, type: 3}
+      propertyPath: chestSpawnChanceMax
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935965075616724594, guid: 00d9af4080e3531ebaf83cf738ffe93c, type: 3}
+      propertyPath: chestSpawnChanceMin
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935965075616724594, guid: 00d9af4080e3531ebaf83cf738ffe93c, type: 3}
+      propertyPath: numberOfItemsToSpawnMin
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935965075616724594, guid: 00d9af4080e3531ebaf83cf738ffe93c, type: 3}
       propertyPath: weaponSpawnByLevelList.Array.data[0].spawnableObjectRatioList.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -18,11 +30,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3935965075616724594, guid: 00d9af4080e3531ebaf83cf738ffe93c, type: 3}
       propertyPath: weaponSpawnByLevelList.Array.data[0].spawnableObjectRatioList.Array.data[1].ratio
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3935965075616724594, guid: 00d9af4080e3531ebaf83cf738ffe93c, type: 3}
       propertyPath: weaponSpawnByLevelList.Array.data[0].spawnableObjectRatioList.Array.data[2].ratio
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3935965075616724594, guid: 00d9af4080e3531ebaf83cf738ffe93c, type: 3}
       propertyPath: weaponSpawnByLevelList.Array.data[0].spawnableObjectRatioList.Array.data[3].ratio
