@@ -168,6 +168,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6601361359431652436, guid: 7d9bf5c8e5746c642a787fa527ac3292, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7697408492666851500, guid: 7d9bf5c8e5746c642a787fa527ac3292, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 2

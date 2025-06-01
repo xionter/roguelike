@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
-
+#endif
 public class RoomNodeSO : ScriptableObject
 {
     [HideInInspector] public string id;
@@ -12,11 +13,11 @@ public class RoomNodeSO : ScriptableObject
     [HideInInspector] public RoomNodeGraphSO roomNodeGraph;
     public RoomNodeTypeSO roomNodeType;
     [HideInInspector] public RoomNodeTypeListSO roomNodeTypeList;
-    
+    [HideInInspector] public Rect rect;
     #region Editor Code
 #if UNITY_EDITOR
     
-    [HideInInspector] public Rect rect;
+    
     [HideInInspector] public bool isLeftClickDragging = false;
     [HideInInspector] public bool isSelected = false; 
     

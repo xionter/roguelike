@@ -1,9 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 public static class ProceduralDungeonGenerator
 {
@@ -25,195 +22,121 @@ public static class ProceduralDungeonGenerator
         }
         graph.roomNodeList.Clear();
         graph.roomNodeDictionary.Clear();
-#if UNITY_EDITOR
 
-
-        AssetDatabase.SaveAssets();
         Random.InitState(System.DateTime.Now.Millisecond);
-        
-        // создаем ноды йоу
-        RoomNodeSO CreateNode(RoomNodeTypeSO type)
+
+        // Создаем ноды
+        RoomNodeSO CreateNode(RoomNodeTypeSO type, RoomNodeGraphSO graph)
         {
             var node = ScriptableObject.CreateInstance<RoomNodeSO>();
-            node.Initialise(new Rect(Vector2.zero, new Vector2(160,75)), graph, type);
+            node.rect = new Rect(Vector2.zero, new Vector2(160, 75));
+            node.roomNodeGraph = graph;
+            node.roomNodeType = type;
+
+            // Генерация уникального идентификатора для узла
+            node.id = System.Guid.NewGuid().ToString();
+
             graph.roomNodeList.Add(node);
             graph.roomNodeDictionary[node.id] = node;
-            AssetDatabase.AddObjectToAsset(node, graph);
+
             return node;
         }
 
-        // Типы
-        var types         = graph.roomNodeTypeList.list;
-        var entranceType  = types.Find(t => t.isEntrance);
-        var bossType      = types.Find(t => t.isBossRoom);
-        var corridorType  = types.Find(t => t.isCorridor);
-        var chestType     = types.Find(t => t.roomNodeTypeName.ToLower().Contains("chest"));
-        var smallType     = types.Find(t => t.roomNodeTypeName.ToLower().Contains("small"));
-        var mediumType    = types.Find(t => t.roomNodeTypeName.ToLower().Contains("med"));
-        var largeType     = types.Find(t => t.roomNodeTypeName.ToLower().Contains("large"));
+        // Типы комнат
+        var types = graph.roomNodeTypeList.list;
+        var entranceType = types.Find(t => t.isEntrance);
+        var bossType = types.Find(t => t.isBossRoom);
+        var corridorType = types.Find(t => t.isCorridor);
+        var chestType = types.Find(t => t.roomNodeTypeName.ToLower().Contains("chest"));
+        var smallType = types.Find(t => t.roomNodeTypeName.ToLower().Contains("small"));
+        var mediumType = types.Find(t => t.roomNodeTypeName.ToLower().Contains("med"));
+        var largeType = types.Find(t => t.roomNodeTypeName.ToLower().Contains("large"));
 
-        // Начало
-        var startNode = CreateNode(entranceType);
-        var openList  = new List<RoomNodeSO> { startNode };
+        // Начальная комната
+        var startNode = CreateNode(entranceType, graph);
+        var openList = new List<RoomNodeSO> { startNode };
         var normalCount = totalRooms - 2;
-        var chestCount  = Random.Range((int)(GetWeights(difficulty)["large"] / 0.2f) + 1, normalCount / 4);
+        var chestCount = Random.Range((int)(GetWeights(difficulty)["large"] / 0.2f) + 1, normalCount / 4);
         normalCount -= chestCount;
-        var weights     = GetWeights(difficulty);
+        var weights = GetWeights(difficulty);
 
-        // Генерация обычных
+        // Генерация обычных комнат
         for (var i = 0; i < normalCount; i++)
         {
-            var parent = openList[Random.Range(0, openList.Count)];
-            var cor    = CreateNode(corridorType);
-            parent.childRoomNodeIDList.Add(cor.id);
-            cor.parentRoomNodeIDList.Add(parent.id);
+            var normalParent = openList[Random.Range(0, openList.Count)];
+            var cor = CreateNode(corridorType, graph);
+            normalParent.childRoomNodeIDList.Add(cor.id);
+            cor.parentRoomNodeIDList.Add(normalParent.id);
 
             var sizeType = SampleRoomType(weights, smallType, mediumType, largeType);
-            var newRoom  = CreateNode(sizeType);
+            var newRoom = CreateNode(sizeType, graph);
             cor.childRoomNodeIDList.Add(newRoom.id);
             newRoom.parentRoomNodeIDList.Add(cor.id);
 
             openList.Add(newRoom);
-            if (parent.childRoomNodeIDList.Count >= Settings.maxChildCorridors)
-                openList.Remove(parent);
+            if (normalParent.childRoomNodeIDList.Count >= Settings.maxChildCorridors)
+                openList.Remove(normalParent);
         }
 
-        // Сундуки
+        // Генерация сундуков
+        for (var i = 0; i < chestCount; i++)
         {
-            for (var i = 0; i < chestCount; i++)
-            {
-                var parent = openList[Random.Range(0, openList.Count)];
-                var cor = CreateNode(corridorType);
-                parent.childRoomNodeIDList.Add(cor.id);
-                cor.parentRoomNodeIDList.Add(parent.id);
+            var chestParent = openList[Random.Range(0, openList.Count)];
+            var cor = CreateNode(corridorType, graph);
+            chestParent.childRoomNodeIDList.Add(cor.id);
+            cor.parentRoomNodeIDList.Add(chestParent.id);
 
-                var chest = CreateNode(chestType);
-                cor.childRoomNodeIDList.Add(chest.id);
-                chest.parentRoomNodeIDList.Add(cor.id);
+            var chest = CreateNode(chestType, graph);
+            cor.childRoomNodeIDList.Add(chest.id);
+            chest.parentRoomNodeIDList.Add(cor.id);
 
-                openList.Remove(parent);
-                openList.Add(chest);
-            }
+            openList.Remove(chestParent);
+            openList.Add(chest);
         }
 
-        // Босс
-        {
-            var candidates = openList.Where(r => GetRoomDepth(r, graph) >= 3).ToList();
-            var parent = candidates.Count > 0
-                ? candidates[Random.Range(0, candidates.Count)]
-                : openList[Random.Range(0, openList.Count)];
+        // Генерация комнаты босса
+        var candidates = openList.Where(r => GetRoomDepth(r, graph) >= 3).ToList();
+        var bossParent = candidates.Count > 0
+            ? candidates[Random.Range(0, candidates.Count)]
+            : openList[Random.Range(0, openList.Count)];
 
-            var cor   = CreateNode(corridorType);
-            parent.childRoomNodeIDList.Add(cor.id);
-            cor.parentRoomNodeIDList.Add(parent.id);
+        var corBoss = CreateNode(corridorType, graph);
+        bossParent.childRoomNodeIDList.Add(corBoss.id);
+        corBoss.parentRoomNodeIDList.Add(bossParent.id);
 
-            var boss  = CreateNode(bossType);
-            cor.childRoomNodeIDList.Add(boss.id);
-            boss.parentRoomNodeIDList.Add(cor.id);
-        }
-
-
-        LayoutGraph(graph);
-
-        EditorUtility.SetDirty(graph);
-        AssetDatabase.SaveAssets();
-        graph.OnValidate();
-#endif
+        var boss = CreateNode(bossType, graph);
+        corBoss.childRoomNodeIDList.Add(boss.id);
+        boss.parentRoomNodeIDList.Add(corBoss.id);
     }
 
-#if UNITY_EDITOR
-
-    private static void LayoutGraph(RoomNodeGraphSO graph)
+    private static Dictionary<string, float> GetWeights(Difficulty difficulty)
     {
 
-        var start = graph.roomNodeList.Find(n => n.roomNodeType.isEntrance);
-        if (start == null) return;
-        var queue = new Queue<RoomNodeSO>();
-        var depth = new Dictionary<string, int>();
-        queue.Enqueue(start);
-        depth[start.id] = 0;
-        while (queue.Count > 0)
+        return difficulty switch
         {
-            var node = queue.Dequeue();
-            var d   = depth[node.id];
-            foreach (var childID in node.childRoomNodeIDList)
-            {
-                if (!depth.ContainsKey(childID))
-                {
-                    depth[childID] = d + 1;
-                    queue.Enqueue(graph.GetRoomNode(childID));
-                }
-            }
-        }
-
-
-        var groups = depth.GroupBy(kv => kv.Value).OrderBy(g => g.Key);
-        float xSpacing = 200f, ySpacing = 150f;
-        foreach (var group in groups)
-        {
-            var count = group.Count();
-            var idx   = 0;
-            foreach (var kv in group)
-            {
-                var node = graph.GetRoomNode(kv.Key);
-                var x  = idx * xSpacing - (count - 1) * xSpacing / 2;
-                var y  = kv.Value * ySpacing;
-                node.rect.position = new Vector2(x, y);
-                EditorUtility.SetDirty(node);
-                idx++;
-            }
-        }
+            Difficulty.Easy => new Dictionary<string, float> { { "small", 0.5f }, { "medium", 0.3f }, { "large", 0.2f } },
+            Difficulty.Medium => new Dictionary<string, float> { { "small", 0.4f }, { "medium", 0.4f }, { "large", 0.2f } },
+            Difficulty.Hard => new Dictionary<string, float> { { "small", 0.3f }, { "medium", 0.5f }, { "large", 0.2f } },
+            _ => new Dictionary<string, float> { { "small", 0.5f }, { "medium", 0.3f }, { "large", 0.2f } }
+        };
     }
-#endif
 
-    private static Dictionary<string, float> GetWeights(Difficulty d)
+    private static RoomNodeTypeSO SampleRoomType(Dictionary<string, float> weights, RoomNodeTypeSO smallType, RoomNodeTypeSO mediumType, RoomNodeTypeSO largeType)
     {
-        switch (d)
-        {
-            case Difficulty.Easy:   return new Dictionary<string, float> {{"small",0.6f},{"med",0.3f},{"large",0.1f}};
-            case Difficulty.Medium: return new Dictionary<string, float> {{"small",0.3f},{"med",0.5f},{"large",0.2f}};
-            case Difficulty.Hard:   return new Dictionary<string, float> {{"small",0.1f},{"med",0.4f},{"large",0.6f}};
-            default:                return new Dictionary<string, float> {{"small",0.3f},{"med",0.4f},{"large",0.3f}};
-        }
+        var randomValue = Random.value;
+        if (randomValue < weights["small"]) return smallType;
+        if (randomValue < weights["small"] + weights["medium"]) return mediumType;
+        return largeType;
     }
 
-    private static RoomNodeTypeSO SampleRoomType(
-        Dictionary<string, float> weights,
-        RoomNodeTypeSO smallType,
-        RoomNodeTypeSO medType,
-        RoomNodeTypeSO largeType)
-    {
-        var total = weights.Values.Sum();
-        var r     = Random.value * total;
-        var acc   = 0f;
-        foreach (var kv in weights)
-        {
-            acc += kv.Value;
-            if (r <= acc)
-            {
-                switch (kv.Key)
-                {
-                    case "small": return smallType;
-                    case "med":   return medType;
-                    case "large": return largeType;
-                }
-            }
-        }
-        return medType;
-    }
-
-
-    private static int GetRoomDepth(RoomNodeSO room, RoomNodeGraphSO graph)
+    private static int GetRoomDepth(RoomNodeSO roomNode, RoomNodeGraphSO graph)
     {
         var depth = 0;
-        var current = room;
-        while (current.parentRoomNodeIDList.Count > 0)
+        var currentNode = roomNode;
+        while (currentNode.parentRoomNodeIDList.Count > 0)
         {
-            var p = graph.GetRoomNode(current.parentRoomNodeIDList[0]);
-            if (p.roomNodeType.isCorridor && p.parentRoomNodeIDList.Count > 0)
-                p = graph.GetRoomNode(p.parentRoomNodeIDList[0]);
             depth++;
-            current = p;
+            currentNode = graph.roomNodeDictionary[currentNode.parentRoomNodeIDList[0]];
         }
         return depth;
     }

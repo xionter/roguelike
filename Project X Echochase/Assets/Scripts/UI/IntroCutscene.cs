@@ -9,7 +9,7 @@ public class IntroCutscene : MonoBehaviour
     [SerializeField] private bool skipCutscene = false;
     
     private bool isCutscenePlaying = false;
-    private float cutsceneDuration = 35f; 
+    private float cutsceneDuration = 50f; 
 
     private void Start()
     {
