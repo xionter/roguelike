@@ -153,7 +153,9 @@ public class EnemySpawner : SingletonMonobehaviour<EnemySpawner>
         currentEnemyCount--;
 
 //       StaticEventHandler.CallPointsScoredEvent(destroyedEventArgs.points);
-
+        if(GameManager.Instance.gameState == GameState.engagingBoss)
+            if(currentEnemyCount <= 0)
+                currentRoom.isClearedOfEnemies = true;
         if (currentEnemyCount <= 0 && enemiesSpawnedSoFar == enemiesToSpawn)
         {
             currentRoom.isClearedOfEnemies = true;
@@ -165,11 +167,11 @@ public class EnemySpawner : SingletonMonobehaviour<EnemySpawner>
                 GameManager.Instance.previousGameState = GameState.engagingEnemies;
             }
 
-            else if (GameManager.Instance.gameState == GameState.engagingBoss)
+            /*else if (GameManager.Instance.gameState == GameState.engagingBoss)
             {
                 GameManager.Instance.gameState = GameState.bossStage;
                 GameManager.Instance.previousGameState = GameState.engagingBoss;
-            }
+            }*/
 
             // разблокировать двери
             currentRoom.instantiatedRoom.UnlockDoors(Settings.doorUnlockDelay);

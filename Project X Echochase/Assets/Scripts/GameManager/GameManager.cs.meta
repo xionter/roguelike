@@ -3,7 +3,10 @@ guid: 49db790d9edd2fe5aa1d33b19ecb08e5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - pauseMenu: {instanceID: 0}
+  - canvasGroup: {instanceID: 0}
+  - dungeonLevel: {fileID: 11400000, guid: f564593041ee8994fb38aa94bcccc204, type: 2}
   executionOrder: -1
   icon: {instanceID: 0}
   userData: 

@@ -152,7 +152,6 @@ public class GameManager : SingletonMonobehaviour<GameManager>
                     PauseGameMenu();
                 }
 
-
                 break;
 
 
@@ -162,14 +161,11 @@ public class GameManager : SingletonMonobehaviour<GameManager>
                 {
                     PauseGameMenu();
                 }
-
                 break;
 
 
             case GameState.restartGame:
-
                 RestartGame();
-
                 break;
 
             case GameState.gamePaused:
@@ -179,7 +175,10 @@ public class GameManager : SingletonMonobehaviour<GameManager>
                 }
                 break;
 
-
+            case GameState.gameWon:
+                if (previousGameState != GameState.gameWon)
+                    GameWon();
+                break;
         }
     }
 
@@ -187,12 +186,14 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     {
         // Подписаться на событие изменения комнаты
         StaticEventHandler.OnRoomChanged += StaticEventHandler_OnRoomChanged;
+        StaticEventHandler.OnRoomEnemiesDefeated += StaticEventHandler_OnRoomEnemiesDefeated;
     }
 
     private void OnDisable()
     {
         // Отписаться от события изменения комнаты
         StaticEventHandler.OnRoomChanged -= StaticEventHandler_OnRoomChanged;
+        StaticEventHandler.OnRoomEnemiesDefeated -= StaticEventHandler_OnRoomEnemiesDefeated;
     }
 
 
@@ -200,6 +201,41 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     {
         SetCurrentRoom(roomChangedEventArgs.room);
     }
+    private void StaticEventHandler_OnRoomEnemiesDefeated(RoomEnemiesDefeatedArgs roomEnemiesDefeatedArgs)
+    {
+        RoomEnemiesDefeated();
+    }
+
+    private void RoomEnemiesDefeated()
+    {
+        bool isDungeonClearOfRegularEnemies = true;
+        bossRoom = null;
+
+        foreach (KeyValuePair<string, Room> keyValuePair in DungeonBuilder.Instance.dungeonBuilderRoomDictionary)
+        {
+            if (keyValuePair.Value.roomNodeType.isBossRoom)
+            {
+                bossRoom = keyValuePair.Value.instantiatedRoom;
+                continue;
+            }
+
+            if (!keyValuePair.Value.isClearedOfEnemies)
+            {
+                isDungeonClearOfRegularEnemies = false;
+                break;
+            }
+        }
+
+        if ((isDungeonClearOfRegularEnemies && bossRoom == null) || (isDungeonClearOfRegularEnemies && bossRoom.room.isClearedOfEnemies))
+        {
+            gameState = GameState.gameWon;
+        }
+        else if (isDungeonClearOfRegularEnemies)
+        {
+            gameState = GameState.bossStage;
+        }
+    }
+
 
 
     private void PlayDungeonLevel()
@@ -258,6 +294,14 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     public DungeonLevelSO GetCurrentDungeonLevel()
     {
         return dungeonLevel;
+    }
+
+    private void GameWon()
+    {
+        previousGameState = GameState.gameWon;
+
+        GetPlayer().playerControl.DisablePlayer();
+        gameState = GameState.restartGame;
     }
 
     private void RestartGame()
