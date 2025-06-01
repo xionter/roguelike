@@ -41,6 +41,14 @@ public class MusicManager : SingletonMonobehaviour<MusicManager>
     {
         StartCoroutine(PlayMusicRoutine(musicTrack, fadeOutTime, fadeInTime));
     }
+    public bool IsPlaying(AudioClip clip) 
+    {
+        return currentAudioClip == clip;
+    }
+    public bool IsPlayingTrack(MusicTrackSO musicTrack)
+    {
+        return currentAudioClip == musicTrack.musicClip;
+    }
 
     private IEnumerator PlayMusicRoutine(MusicTrackSO musicTrack, float fadeOutTime, float fadeInTime)
     {
