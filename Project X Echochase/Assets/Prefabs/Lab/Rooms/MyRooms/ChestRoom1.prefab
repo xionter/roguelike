@@ -40118,7 +40118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2619092698861798226, guid: f55973983ca573056a317247dc895632, type: 3}
       propertyPath: chestSpawnChanceMin
-      value: 55
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2619092698861798226, guid: f55973983ca573056a317247dc895632, type: 3}
       propertyPath: numberOfItemsToSpawnMin
