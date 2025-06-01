@@ -11,11 +11,11 @@ public static class HelperUtilities
     /// </summary> 
     public static Vector3 GetMouseWorldPosition() { 
         if (mainCamera == null) mainCamera = Camera.main; 
-        Vector3 mouseScreenPosition = Input.mousePosition; 
+        var mouseScreenPosition = Input.mousePosition; 
         // Ограничиваем позицию размером экрана
         mouseScreenPosition.x = Mathf.Clamp(mouseScreenPosition.x, 0f, Screen.width); 
         mouseScreenPosition.y = Mathf.Clamp(mouseScreenPosition.y, 0f, Screen.height); 
-        Vector3 worldPosition = mainCamera.ScreenToWorldPoint(mouseScreenPosition); 
+        var worldPosition = mainCamera.ScreenToWorldPoint(mouseScreenPosition); 
 
         worldPosition.z = 0f; 
         return worldPosition; 
@@ -26,8 +26,8 @@ public static class HelperUtilities
     /// </summary>
     public static void CameraWorldPositionBounds(out Vector2Int cameraWorldPositionLowerBounds, out Vector2Int cameraWorldPositionUpperBounds, Camera camera)
     {
-        Vector3 worldPositionViewportBottomLeft = camera.ViewportToWorldPoint(new Vector3(0f, 0f, 0f));
-        Vector3 worldPositionViewportTopRight = camera.ViewportToWorldPoint(new Vector3(1f, 1f, 0f));
+        var worldPositionViewportBottomLeft = camera.ViewportToWorldPoint(new Vector3(0f, 0f, 0f));
+        var worldPositionViewportTopRight = camera.ViewportToWorldPoint(new Vector3(1f, 1f, 0f));
 
         cameraWorldPositionLowerBounds = new Vector2Int((int)worldPositionViewportBottomLeft.x, (int)worldPositionViewportBottomLeft.y);
         cameraWorldPositionUpperBounds = new Vector2Int((int)worldPositionViewportTopRight.x, (int)worldPositionViewportTopRight.y);
@@ -50,7 +50,7 @@ public static class HelperUtilities
     /// </summary>
     public static Vector3 GetDirectionVectorFromAngle(float angle)
     {
-        Vector3 directionVector = new Vector3(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle), 0f);
+        var directionVector = new Vector3(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle), 0f);
         return directionVector;
     }
 
@@ -104,7 +104,7 @@ public static class HelperUtilities
     /// </summary>
     public static float LinearToDecibels(int linear)
     {
-        float linearScaleRange = 20f;
+        var linearScaleRange = 20f;
 
         // формула для перевода линейной шкалы в логарифмическую шкалу децибел
         return Mathf.Log10((float)linear / linearScaleRange) * 20f;
@@ -169,7 +169,7 @@ public static class HelperUtilities
 
     public static bool ValidateCheckPositiveValue(Object thisObject, string fieldName, int valueToCheck, bool isZeroAllowed) 
     {
-        bool error = false; 
+        var error = false; 
         
         if (isZeroAllowed) 
         { 
@@ -195,7 +195,7 @@ public static class HelperUtilities
     /// </summary>
     public static bool ValidateCheckPositiveValue(Object thisObject, string fieldName, float valueToCheck, bool isZeroAllowed)
     {
-        bool error = false;
+        var error = false;
 
         if (isZeroAllowed)
         {
@@ -222,7 +222,7 @@ public static class HelperUtilities
     /// </summary>
     public static bool ValidateCheckPositiveRange(Object thisObject, string fieldNameMinimum, float valueToCheckMinimum, string fieldNameMaximum, float valueToCheckMaximum, bool isZeroAllowed)
     {
-        bool error = false;
+        var error = false;
         if (valueToCheckMinimum > valueToCheckMaximum)
         {
             Debug.Log(fieldNameMinimum + " must be less than or equal to " + fieldNameMaximum + " in object " + thisObject.name.ToString());
@@ -238,16 +238,16 @@ public static class HelperUtilities
 
     public static Vector3 GetSpawnPositionNearestToPlayer(Vector3 playerPosition)
     {
-        Room currentRoom = GameManager.Instance.GetCurrentRoom();
-        Grid grid = currentRoom.instantiatedRoom.grid;
+        var currentRoom = GameManager.Instance.GetCurrentRoom();
+        var grid = currentRoom.instantiatedRoom.grid;
 
-        Vector3 nearestSpawnPosition = new Vector3(10000f, 10000f, 0f);
+        var nearestSpawnPosition = new Vector3(10000f, 10000f, 0f);
 
         // проходим по всем спавн позициям
-        foreach (Vector2Int spawnPositionGrid in currentRoom.spawnPositionArray)
+        foreach (var spawnPositionGrid in currentRoom.spawnPositionArray)
         {
             // spawn grid -> world position
-            Vector3 spawnPositionWorld = grid.CellToWorld((Vector3Int)spawnPositionGrid);
+            var spawnPositionWorld = grid.CellToWorld((Vector3Int)spawnPositionGrid);
 
             if (Vector3.Distance(spawnPositionWorld, playerPosition) < Vector3.Distance(nearestSpawnPosition, playerPosition))
             {

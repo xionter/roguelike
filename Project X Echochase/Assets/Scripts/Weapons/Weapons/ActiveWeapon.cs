@@ -59,7 +59,7 @@ public class ActiveWeapon : MonoBehaviour
         // если есть спрайт и полигон коллайдер, то ставим physics shape
         if (weaponPolygonCollider2D != null && weaponSpriteRenderer.sprite != null)
         {
-            List<Vector2> spritePhysicsShapePointsList = new List<Vector2>();
+            var spritePhysicsShapePointsList = new List<Vector2>();
             weaponSpriteRenderer.sprite.GetPhysicsShape(0, spritePhysicsShapePointsList);
 
             weaponPolygonCollider2D.points = spritePhysicsShapePointsList.ToArray();

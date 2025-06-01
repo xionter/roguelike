@@ -34,13 +34,13 @@ public class AmmoHitEffect : MonoBehaviour
 
     private void SetHitEffectColorGradient(Gradient gradient)
     {
-        ParticleSystem.ColorOverLifetimeModule colorOverLifetimeModule = ammoHitEffectParticleSystem.colorOverLifetime;
+        var colorOverLifetimeModule = ammoHitEffectParticleSystem.colorOverLifetime;
         colorOverLifetimeModule.color = gradient;
     }
 
     private void SetHitEffectParticleStartingValues(float duration, float startParticleSize, float startParticleSpeed, float startLifetime, float effectGravity, int maxParticles)
     {
-        ParticleSystem.MainModule mainModule = ammoHitEffectParticleSystem.main;
+        var mainModule = ammoHitEffectParticleSystem.main;
 
         mainModule.duration = duration;
 
@@ -57,9 +57,9 @@ public class AmmoHitEffect : MonoBehaviour
 
     private void SetHitEffectParticleEmission(int emissionRate, float burstParticleNumber)
     {
-        ParticleSystem.EmissionModule emissionModule = ammoHitEffectParticleSystem.emission;
+        var emissionModule = ammoHitEffectParticleSystem.emission;
 
-        ParticleSystem.Burst burst = new ParticleSystem.Burst(0f, burstParticleNumber);
+        var burst = new ParticleSystem.Burst(0f, burstParticleNumber);
         emissionModule.SetBurst(0, burst);
 
         emissionModule.rateOverTime = emissionRate;
@@ -67,31 +67,31 @@ public class AmmoHitEffect : MonoBehaviour
 
     private void SetHitEffectParticleSprite(Sprite sprite)
     {
-        ParticleSystem.TextureSheetAnimationModule textureSheetAnimationModule = ammoHitEffectParticleSystem.textureSheetAnimation;
+        var textureSheetAnimationModule = ammoHitEffectParticleSystem.textureSheetAnimation;
 
         textureSheetAnimationModule.SetSprite(0, sprite);
     }
 
     private void SetHitEffectVelocityOverLifeTime(Vector3 minVelocity, Vector3 maxVelocity)
     {
-        ParticleSystem.VelocityOverLifetimeModule velocityOverLifetimeModule = ammoHitEffectParticleSystem.velocityOverLifetime;
+        var velocityOverLifetimeModule = ammoHitEffectParticleSystem.velocityOverLifetime;
 
         // мин макс скорость по X
-        ParticleSystem.MinMaxCurve minMaxCurveX = new ParticleSystem.MinMaxCurve();
+        var minMaxCurveX = new ParticleSystem.MinMaxCurve();
         minMaxCurveX.mode = ParticleSystemCurveMode.TwoConstants;
         minMaxCurveX.constantMin = minVelocity.x;
         minMaxCurveX.constantMax = maxVelocity.x;
         velocityOverLifetimeModule.x = minMaxCurveX;
 
         // мин макс скорость по Y
-        ParticleSystem.MinMaxCurve minMaxCurveY = new ParticleSystem.MinMaxCurve();
+        var minMaxCurveY = new ParticleSystem.MinMaxCurve();
         minMaxCurveY.mode = ParticleSystemCurveMode.TwoConstants;
         minMaxCurveY.constantMin = minVelocity.y;
         minMaxCurveY.constantMax = maxVelocity.y;
         velocityOverLifetimeModule.y = minMaxCurveY;
 
         // мин макс скорость по Z
-        ParticleSystem.MinMaxCurve minMaxCurveZ = new ParticleSystem.MinMaxCurve();
+        var minMaxCurveZ = new ParticleSystem.MinMaxCurve();
         minMaxCurveZ.mode = ParticleSystemCurveMode.TwoConstants;
         minMaxCurveZ.constantMin = minVelocity.z;
         minMaxCurveZ.constantMax = maxVelocity.z;

@@ -93,9 +93,9 @@ public class EnemySpawner : SingletonMonobehaviour<EnemySpawner>
 
     private IEnumerator SpawnEnemiesRoutine()
     {
-        Grid grid = currentRoom.instantiatedRoom.grid;
+        var grid = currentRoom.instantiatedRoom.grid;
 
-        RandomSpawnableObject<EnemyDetailsSO> randomEnemyHelperClass = new RandomSpawnableObject<EnemyDetailsSO>(currentRoom.enemiesByLevelList);
+        var randomEnemyHelperClass = new RandomSpawnableObject<EnemyDetailsSO>(currentRoom.enemiesByLevelList);
 
         if (currentRoom.spawnPositionArray.Length > 0)
         {
@@ -106,7 +106,7 @@ public class EnemySpawner : SingletonMonobehaviour<EnemySpawner>
                     yield return null;
                 }
 
-                Vector3Int cellPosition = (Vector3Int)currentRoom.spawnPositionArray[Random.Range(0, currentRoom.spawnPositionArray.Length)];
+                var cellPosition = (Vector3Int)currentRoom.spawnPositionArray[Random.Range(0, currentRoom.spawnPositionArray.Length)];
 
                 CreateEnemy(randomEnemyHelperClass.GetItem(), grid.CellToWorld(cellPosition));
 
@@ -135,9 +135,9 @@ public class EnemySpawner : SingletonMonobehaviour<EnemySpawner>
 
         currentEnemyCount++;
 
-        DungeonLevelSO dungeonLevel = GameManager.Instance.GetCurrentDungeonLevel();
+        var dungeonLevel = GameManager.Instance.GetCurrentDungeonLevel();
 
-        GameObject enemy = Instantiate(enemyDetails.enemyPrefab, position, Quaternion.identity, transform);
+        var enemy = Instantiate(enemyDetails.enemyPrefab, position, Quaternion.identity, transform);
 
         enemy.GetComponent<Enemy>().EnemyInitialization(enemyDetails, enemiesSpawnedSoFar, dungeonLevel);
 

@@ -63,7 +63,7 @@ public class Chest : MonoBehaviour, IUseable
 
     private IEnumerator MaterializeChest()
     {
-        SpriteRenderer[] spriteRendererArray = new SpriteRenderer[] { spriteRenderer };
+        var spriteRendererArray = new SpriteRenderer[] { spriteRenderer };
 
         yield return StartCoroutine(materializeEffect.MaterializeRoutine(GameResources.Instance.materializeShader, materializeColor, materializeTime, spriteRendererArray, GameResources.Instance.litMaterial));
 
@@ -198,7 +198,7 @@ public class Chest : MonoBehaviour, IUseable
         // проверка, что предмет есть и материализован
         if (chestItem == null || !chestItem.isItemMaterialized) return;
 
-        Player player = GameManager.Instance.GetPlayer();
+        var player = GameManager.Instance.GetPlayer();
 
         // добавить патронов текущему оружию
         player.reloadWeaponEvent.CallReloadWeaponEvent(player.activeWeapon.GetCurrentWeapon(), ammoPercent);

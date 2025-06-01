@@ -159,9 +159,9 @@ public class WeaponStatusUI : MonoBehaviour
     {
         ClearAmmoLoadedIcons();
 
-        for (int i = 0; i < weapon.weaponClipRemainingAmmo; i++)
+        for (var i = 0; i < weapon.weaponClipRemainingAmmo; i++)
         {
-            GameObject ammoIcon = Instantiate(GameResources.Instance.ammoIconPrefab, ammoHolderTransform);
+            var ammoIcon = Instantiate(GameResources.Instance.ammoIconPrefab, ammoHolderTransform);
 
             ammoIcon.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, Settings.uiAmmoIconSpacing * i);
 
@@ -171,7 +171,7 @@ public class WeaponStatusUI : MonoBehaviour
 
     private void ClearAmmoLoadedIcons()
     {
-        foreach (GameObject ammoIcon in ammoIconList)
+        foreach (var ammoIcon in ammoIconList)
         {
             Destroy(ammoIcon);
         }
@@ -197,7 +197,7 @@ public class WeaponStatusUI : MonoBehaviour
 
         while (currentWeapon.isWeaponReloading)
         {
-            float barFill = currentWeapon.weaponReloadTimer / currentWeapon.weaponDetails.weaponReloadTime;
+            var barFill = currentWeapon.weaponReloadTimer / currentWeapon.weaponDetails.weaponReloadTime;
 
             reloadBar.transform.localScale = new Vector3(barFill, 1f, 1f);
 

@@ -56,8 +56,8 @@ namespace UnityEditor
             if (coordinateBrush.z != 0)
             {
                 var zPosition = new Vector3Int(position.min.x, position.min.y, coordinateBrush.z);
-                BoundsInt newPosition = new BoundsInt(zPosition, position.size);
-                Vector3[] cellLocals = new Vector3[]
+                var newPosition = new BoundsInt(zPosition, position.size);
+                var cellLocals = new Vector3[]
                 {
                     grid.CellToLocal(new Vector3Int(newPosition.min.x, newPosition.min.y, newPosition.min.z)),
                     grid.CellToLocal(new Vector3Int(newPosition.max.x, newPosition.min.y, newPosition.min.z)),
@@ -69,8 +69,8 @@ namespace UnityEditor
 
                 Handles.color = Color.blue;
 
-                int i = 0;
-                for (int j = cellLocals.Length - 1; i < cellLocals.Length; j = i++)
+                var i = 0;
+                for (var j = cellLocals.Length - 1; i < cellLocals.Length; j = i++)
                 {
                     Handles.DrawLine(cellLocals[j], cellLocals[i]);
                 }
@@ -82,7 +82,7 @@ namespace UnityEditor
                 labelText += " Size: " + new Vector2Int(position.size.x, position.size.y);
             }
 
-            GUIStyle myStyle = new GUIStyle();
+            var myStyle = new GUIStyle();
             myStyle.normal.textColor = Color.white;
 
 

@@ -62,24 +62,24 @@ public class EnemyWeaponAI : MonoBehaviour
     private void FireWeapon()
     {
         // расстояние до игрока
-        Vector3 playerDirectionVector = GameManager.Instance.GetPlayer().GetPlayerPosition() - transform.position;
+        var playerDirectionVector = GameManager.Instance.GetPlayer().GetPlayerPosition() - transform.position;
 
         //направление от weaponShootPosition до игрока
-        Vector3 weaponDirection = (GameManager.Instance.GetPlayer().GetPlayerPosition() - weaponShootPosition.position);
+        var weaponDirection = (GameManager.Instance.GetPlayer().GetPlayerPosition() - weaponShootPosition.position);
 
         // угол от оружия до игрока
-        float weaponAngleDegrees = HelperUtilities.GetAngleFromVector(weaponDirection);
+        var weaponAngleDegrees = HelperUtilities.GetAngleFromVector(weaponDirection);
 
         // угол от врага до игрока
-        float enemyAngleDegrees = HelperUtilities.GetAngleFromVector(playerDirectionVector);
+        var enemyAngleDegrees = HelperUtilities.GetAngleFromVector(playerDirectionVector);
 
-        AimDirection enemyAimDirection = HelperUtilities.GetAimDirection(enemyAngleDegrees);
+        var enemyAimDirection = HelperUtilities.GetAimDirection(enemyAngleDegrees);
 
         enemy.aimWeaponEvent.CallAimWeaponEvent(enemyAimDirection, enemyAngleDegrees, weaponAngleDegrees, weaponDirection);
 
         if (enemyDetails.enemyWeapon != null)
         {
-            float enemyAmmoRange = enemyDetails.enemyWeapon.weaponCurrentAmmo.ammoRange;
+            var enemyAmmoRange = enemyDetails.enemyWeapon.weaponCurrentAmmo.ammoRange;
 
             // Is the player in range
             if (playerDirectionVector.magnitude <= enemyAmmoRange)
@@ -96,7 +96,7 @@ public class EnemyWeaponAI : MonoBehaviour
 
     private bool IsPlayerInLineOfSight(Vector3 weaponDirection, float enemyAmmoRange)
     {
-        RaycastHit2D raycastHit2D = Physics2D.Raycast(weaponShootPosition.position, (Vector2)weaponDirection, enemyAmmoRange, layerMask);
+        var raycastHit2D = Physics2D.Raycast(weaponShootPosition.position, (Vector2)weaponDirection, enemyAmmoRange, layerMask);
 
         if (raycastHit2D && raycastHit2D.transform.CompareTag(Settings.playerTag))
             return true;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Minimap : MonoBehaviour
 {
     #region Tooltip
-    [Tooltip("Заполните дочерним игровым объектом MinimapPlayer")]
+    [Tooltip("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ MinimapPlayer")]
     #endregion Tooltip
 
     [SerializeField] private GameObject miniMapPlayer;
@@ -16,12 +16,12 @@ public class Minimap : MonoBehaviour
     {
         playerTransform = GameManager.Instance.GetPlayer().transform;
 
-        //Заполнить игрока как цель камеры Cinemachine
-        CinemachineVirtualCamera cinemachineVirtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Cinemachine
+        var cinemachineVirtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
         cinemachineVirtualCamera.Follow = playerTransform;
 
-        //Установить значок игрока на миникарте
-        SpriteRenderer spriteRenderer = miniMapPlayer.GetComponent<SpriteRenderer>();
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        var spriteRenderer = miniMapPlayer.GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
         {
             spriteRenderer.sprite = GameManager.Instance.GetPlayerMiniMapIcon();
@@ -30,7 +30,7 @@ public class Minimap : MonoBehaviour
 
     private void Update()
     {
-        //Перемещайте игрока-миникарты, чтобы следовать за игроком
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (playerTransform != null && miniMapPlayer != null)
         {
             miniMapPlayer.transform.position = playerTransform.position;

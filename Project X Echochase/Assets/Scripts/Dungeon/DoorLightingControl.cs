@@ -17,13 +17,13 @@ public class DoorLightingControl : MonoBehaviour
     /// </summary>
     public void FadeInDoor(Door door)
     {
-        Material material = new Material(GameResources.Instance.variableLitShader);
+        var material = new Material(GameResources.Instance.variableLitShader);
 
         if (!isLit)
         {
-            SpriteRenderer[] spriteRendererArray = GetComponentsInParent<SpriteRenderer>();
+            var spriteRendererArray = GetComponentsInParent<SpriteRenderer>();
 
-            foreach (SpriteRenderer spriteRenderer in spriteRendererArray)
+            foreach (var spriteRenderer in spriteRendererArray)
             {
                 StartCoroutine(FadeInDoorRoutine(spriteRenderer, material));
             }
@@ -36,7 +36,7 @@ public class DoorLightingControl : MonoBehaviour
     {
         spriteRenderer.material = material;
 
-        for (float i = 0.05f; i <= 1f; i += Time.deltaTime / Settings.fadeInTime)
+        for (var i = 0.05f; i <= 1f; i += Time.deltaTime / Settings.fadeInTime)
         {
             material.SetFloat("Alpha_Slider", i);
             yield return null;

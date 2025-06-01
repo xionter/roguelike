@@ -26,7 +26,7 @@ public class PoolManager : SingletonMonobehaviour<PoolManager>
         objectPoolTransform = this.gameObject.transform;
 
         // Создание пулов объектов при старте
-        for (int i = 0; i < poolArray.Length; i++)
+        for (var i = 0; i < poolArray.Length; i++)
         {
             CreatePool(poolArray[i].prefab, poolArray[i].poolSize, poolArray[i].componentType);
         }
@@ -38,11 +38,11 @@ public class PoolManager : SingletonMonobehaviour<PoolManager>
     /// </summary>
     private void CreatePool(GameObject prefab, int poolSize, string componentType)
     {
-        int poolKey = prefab.GetInstanceID();
+        var poolKey = prefab.GetInstanceID();
 
-        string prefabName = prefab.name; // получить имя префаба
+        var prefabName = prefab.name; // получить имя префаба
 
-        GameObject parentGameObject = new GameObject(prefabName + "Anchor"); // создать родительский объект для дочерних объектов
+        var parentGameObject = new GameObject(prefabName + "Anchor"); // создать родительский объект для дочерних объектов
 
         parentGameObject.transform.SetParent(objectPoolTransform);
 
@@ -50,9 +50,9 @@ public class PoolManager : SingletonMonobehaviour<PoolManager>
         {
             poolDictionary.Add(poolKey, new Queue<Component>());
 
-            for (int i = 0; i < poolSize; i++)
+            for (var i = 0; i < poolSize; i++)
             {
-                GameObject newObject = Instantiate(prefab, parentGameObject.transform) as GameObject;
+                var newObject = Instantiate(prefab, parentGameObject.transform) as GameObject;
 
                 newObject.SetActive(false);
 
@@ -68,12 +68,12 @@ public class PoolManager : SingletonMonobehaviour<PoolManager>
     /// </summary>
     public Component ReuseComponent(GameObject prefab, Vector3 position, Quaternion rotation)
     {
-        int poolKey = prefab.GetInstanceID();
+        var poolKey = prefab.GetInstanceID();
 
         if (poolDictionary.ContainsKey(poolKey))
         {
             // Получить объект из очереди пула
-            Component componentToReuse = GetComponentFromPool(poolKey);
+            var componentToReuse = GetComponentFromPool(poolKey);
 
             ResetObject(position, rotation, componentToReuse, prefab);
 
@@ -91,7 +91,7 @@ public class PoolManager : SingletonMonobehaviour<PoolManager>
     /// </summary>
     private Component GetComponentFromPool(int poolKey)
     {
-        Component componentToReuse = poolDictionary[poolKey].Dequeue();
+        var componentToReuse = poolDictionary[poolKey].Dequeue();
         poolDictionary[poolKey].Enqueue(componentToReuse);
 
         if (componentToReuse.gameObject.activeSelf == true)

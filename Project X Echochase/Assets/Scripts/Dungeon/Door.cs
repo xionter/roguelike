@@ -46,7 +46,7 @@ public class Door : MonoBehaviour
         animator.SetBool(Settings.open, isOpen);
     }
 
-    public void OpenDoor()
+    private void OpenDoor()
     {
         if (!isOpen)
         {

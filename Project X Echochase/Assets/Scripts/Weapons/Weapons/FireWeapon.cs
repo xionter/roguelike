@@ -127,7 +127,7 @@ public class FireWeapon : MonoBehaviour
     /// </summary>
     private void FireAmmo(float aimAngle, float weaponAimAngle, Vector3 weaponAimDirectionVector)
     {
-        AmmoDetailsSO currentAmmo = activeWeapon.GetCurrentAmmo();
+        var currentAmmo = activeWeapon.GetCurrentAmmo();
 
         if (currentAmmo != null)
         {
@@ -140,10 +140,10 @@ public class FireWeapon : MonoBehaviour
     /// </summary>
     private IEnumerator FireAmmoRoutine(AmmoDetailsSO currentAmmo, float aimAngle, float weaponAimAngle, Vector3 weaponAimDirectionVector)
     {
-        int ammoCounter = 0;
+        var ammoCounter = 0;
 
         // Рандомное число пуль
-        int ammoPerShot = Random.Range(currentAmmo.ammoSpawnAmountMin, currentAmmo.ammoSpawnAmountMax + 1);
+        var ammoPerShot = Random.Range(currentAmmo.ammoSpawnAmountMin, currentAmmo.ammoSpawnAmountMax + 1);
 
         // Получить рандомный промежуток времени между патронами
         float ammoSpawnInterval;
@@ -162,11 +162,11 @@ public class FireWeapon : MonoBehaviour
             ammoCounter++;
 
             // подгрузить ammoPrefab из массива
-            GameObject ammoPrefab = currentAmmo.ammoPrefabArray[Random.Range(0, currentAmmo.ammoPrefabArray.Length)];
+            var ammoPrefab = currentAmmo.ammoPrefabArray[Random.Range(0, currentAmmo.ammoPrefabArray.Length)];
 
-            float ammoSpeed = Random.Range(currentAmmo.ammoSpeedMin, currentAmmo.ammoSpeedMax);
+            var ammoSpeed = Random.Range(currentAmmo.ammoSpeedMin, currentAmmo.ammoSpeedMax);
 
-            IFireable ammo = (IFireable)PoolManager.Instance.ReuseComponent(ammoPrefab, activeWeapon.GetShootPosition(), Quaternion.identity);
+            var ammo = (IFireable)PoolManager.Instance.ReuseComponent(ammoPrefab, activeWeapon.GetShootPosition(), Quaternion.identity);
 
             ammo.InitialiseAmmo(currentAmmo, aimAngle, weaponAimAngle, ammoSpeed, weaponAimDirectionVector);
 
@@ -214,7 +214,7 @@ public class FireWeapon : MonoBehaviour
     {
         if (activeWeapon.GetCurrentWeapon().weaponDetails.weaponShootEffect != null && activeWeapon.GetCurrentWeapon().weaponDetails.weaponShootEffect.weaponShootEffectPrefab != null)
         {
-            WeaponShootEffect weaponShootEffect = (WeaponShootEffect)PoolManager.Instance.ReuseComponent(activeWeapon.GetCurrentWeapon().weaponDetails.weaponShootEffect.weaponShootEffectPrefab, activeWeapon.GetShootEffectPosition(), Quaternion.identity);
+            var weaponShootEffect = (WeaponShootEffect)PoolManager.Instance.ReuseComponent(activeWeapon.GetCurrentWeapon().weaponDetails.weaponShootEffect.weaponShootEffectPrefab, activeWeapon.GetShootEffectPosition(), Quaternion.identity);
 
             weaponShootEffect.SetShootEffect(activeWeapon.GetCurrentWeapon().weaponDetails.weaponShootEffect, aimAngle);
 

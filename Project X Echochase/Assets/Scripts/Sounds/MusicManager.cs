@@ -86,7 +86,7 @@ public class MusicManager : SingletonMonobehaviour<MusicManager>
 
     public void IncreaseMusicVolume()
     {
-        int maxMusicVolume = 20;
+        var maxMusicVolume = 20;
 
         if (musicVolume >= maxMusicVolume) return;
 
@@ -104,9 +104,9 @@ public class MusicManager : SingletonMonobehaviour<MusicManager>
         SetMusicVolume(musicVolume);
     }
 
-    public void SetMusicVolume(int musicVolume)
+    private void SetMusicVolume(int musicVolume)
     {
-        float muteDecibels = -80f;
+        var muteDecibels = -80f;
 
         if (musicVolume == 0)
         {

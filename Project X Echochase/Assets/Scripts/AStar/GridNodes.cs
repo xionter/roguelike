@@ -13,9 +13,9 @@ public class GridNodes
         this.height = height;
         gridNode = new Node[width, height];
         
-        for (int x = 0; x < width; x++)
+        for (var x = 0; x < width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (var y = 0; y < height; y++)
             {
                 gridNode[x, y] = new Node(new Vector2Int(x, y));
             }

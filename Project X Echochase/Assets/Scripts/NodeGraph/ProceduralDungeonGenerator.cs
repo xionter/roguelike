@@ -205,7 +205,7 @@ public static class ProceduralDungeonGenerator
 
     private static int GetRoomDepth(RoomNodeSO room, RoomNodeGraphSO graph)
     {
-        int depth = 0;
+        var depth = 0;
         var current = room;
         while (current.parentRoomNodeIDList.Count > 0)
         {

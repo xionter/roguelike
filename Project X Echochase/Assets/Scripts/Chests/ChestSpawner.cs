@@ -127,9 +127,9 @@ public class ChestSpawner : MonoBehaviour
         // должен ли сундук появится на основе указанного шанса
         if (!RandomSpawnChest()) return;
 
-        GetItemsToSpawn(out int ammoNum, out int healthNum, out int weaponNum);
+        GetItemsToSpawn(out var ammoNum, out var healthNum, out var weaponNum);
 
-        GameObject chestGameObject = Instantiate(chestPrefab, this.transform);
+        var chestGameObject = Instantiate(chestPrefab, this.transform);
 
         if (chestSpawnPosition == ChestSpawnPosition.atSpawnerPosition)
         {
@@ -137,14 +137,14 @@ public class ChestSpawner : MonoBehaviour
         }
         else if (chestSpawnPosition == ChestSpawnPosition.atPlayerPosition)
         {
-            Vector3 spawnPosition = HelperUtilities.GetSpawnPositionNearestToPlayer(GameManager.Instance.GetPlayer().transform.position);
+            var spawnPosition = HelperUtilities.GetSpawnPositionNearestToPlayer(GameManager.Instance.GetPlayer().transform.position);
 
-            Vector3 variation = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0);
+            var variation = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0);
 
             chestGameObject.transform.position = spawnPosition + variation;
         }
 
-        Chest chest = chestGameObject.GetComponent<Chest>();
+        var chest = chestGameObject.GetComponent<Chest>();
 
         if (chestSpawnEvent == ChestSpawnEvent.onRoomEntry)
         {
@@ -161,10 +161,10 @@ public class ChestSpawner : MonoBehaviour
 
     private bool RandomSpawnChest()
     {
-        int chancePercent = Random.Range(chestSpawnChanceMin, chestSpawnChanceMax + 1);
+        var chancePercent = Random.Range(chestSpawnChanceMin, chestSpawnChanceMax + 1);
 
         // проверка, что перезаписанный шанс был установлен для текущего уровня
-        foreach (RangeByLevel rangeByLevel in chestSpawnChanceByLevelList)
+        foreach (var rangeByLevel in chestSpawnChanceByLevelList)
         {
             if (rangeByLevel.dungeonLevel == GameManager.Instance.GetCurrentDungeonLevel())
             {
@@ -173,7 +173,7 @@ public class ChestSpawner : MonoBehaviour
             }
         }
 
-        int randomPercent = Random.Range(1, 100 + 1);
+        var randomPercent = Random.Range(1, 100 + 1);
 
         if (randomPercent <= chancePercent)
         {
@@ -194,7 +194,7 @@ public class ChestSpawner : MonoBehaviour
         health = 0;
         weapons = 0;
 
-        int numberOfItemsToSpawn = Random.Range(numberOfItemsToSpawnMin, numberOfItemsToSpawnMax + 1);
+        var numberOfItemsToSpawn = Random.Range(numberOfItemsToSpawnMin, numberOfItemsToSpawnMax + 1);
 
         int choice;
 
@@ -227,7 +227,7 @@ public class ChestSpawner : MonoBehaviour
     {
         if (ammoNumber == 0) return 0;
 
-        foreach (RangeByLevel spawnPercentByLevel in ammoSpawnByLevelList)
+        foreach (var spawnPercentByLevel in ammoSpawnByLevelList)
         {
             if (spawnPercentByLevel.dungeonLevel == GameManager.Instance.GetCurrentDungeonLevel())
             {
@@ -242,7 +242,7 @@ public class ChestSpawner : MonoBehaviour
     {
         if (healthNumber == 0) return 0;
 
-        foreach (RangeByLevel spawnPercentByLevel in healthSpawnByLevelList)
+        foreach (var spawnPercentByLevel in healthSpawnByLevelList)
         {
             if (spawnPercentByLevel.dungeonLevel == GameManager.Instance.GetCurrentDungeonLevel())
             {
@@ -260,9 +260,9 @@ public class ChestSpawner : MonoBehaviour
 
         // Создание экземпляра класса, используемого для выбора случайного элемента из списка на основе
         // относительных "соотношений" элементов
-        RandomSpawnableObject<WeaponDetailsSO> weaponRandom = new RandomSpawnableObject<WeaponDetailsSO>(weaponSpawnByLevelList);
+        var weaponRandom = new RandomSpawnableObject<WeaponDetailsSO>(weaponSpawnByLevelList);
 
-        WeaponDetailsSO weaponDetails = weaponRandom.GetItem();
+        var weaponDetails = weaponRandom.GetItem();
 
         return weaponDetails;
     }
@@ -279,7 +279,7 @@ public class ChestSpawner : MonoBehaviour
         {
             HelperUtilities.ValidateCheckEnumerableValues(this, nameof(chestSpawnChanceByLevelList), chestSpawnChanceByLevelList);
 
-            foreach (RangeByLevel rangeByLevel in chestSpawnChanceByLevelList)
+            foreach (var rangeByLevel in chestSpawnChanceByLevelList)
             {
                 HelperUtilities.ValidateCheckNullValue(this, nameof(rangeByLevel.dungeonLevel), rangeByLevel.dungeonLevel);
                 HelperUtilities.ValidateCheckPositiveRange(this, nameof(rangeByLevel.min), rangeByLevel.min, nameof(rangeByLevel.max), rangeByLevel.max, true);
@@ -290,11 +290,11 @@ public class ChestSpawner : MonoBehaviour
 
         if (weaponSpawnByLevelList != null && weaponSpawnByLevelList.Count > 0)
         {
-            foreach (SpawnableObjectsByLevel<WeaponDetailsSO> weaponDetailsByLevel in weaponSpawnByLevelList)
+            foreach (var weaponDetailsByLevel in weaponSpawnByLevelList)
             {
                 HelperUtilities.ValidateCheckNullValue(this, nameof(weaponDetailsByLevel.dungeonLevel), weaponDetailsByLevel.dungeonLevel);
 
-                foreach (SpawnableObjectRatio<WeaponDetailsSO> weaponRatio in weaponDetailsByLevel.spawnableObjectRatioList)
+                foreach (var weaponRatio in weaponDetailsByLevel.spawnableObjectRatioList)
                 {
                     HelperUtilities.ValidateCheckNullValue(this, nameof(weaponRatio.dungeonObject), weaponRatio.dungeonObject);
 
@@ -307,7 +307,7 @@ public class ChestSpawner : MonoBehaviour
         {
             HelperUtilities.ValidateCheckEnumerableValues(this, nameof(healthSpawnByLevelList), healthSpawnByLevelList);
 
-            foreach (RangeByLevel rangeByLevel in healthSpawnByLevelList)
+            foreach (var rangeByLevel in healthSpawnByLevelList)
             {
                 HelperUtilities.ValidateCheckNullValue(this, nameof(rangeByLevel.dungeonLevel), rangeByLevel.dungeonLevel);
                 HelperUtilities.ValidateCheckPositiveRange(this, nameof(rangeByLevel.min), rangeByLevel.min, nameof(rangeByLevel.max), rangeByLevel.max, true);
@@ -317,7 +317,7 @@ public class ChestSpawner : MonoBehaviour
         if (ammoSpawnByLevelList != null && ammoSpawnByLevelList.Count > 0)
         {
             HelperUtilities.ValidateCheckEnumerableValues(this, nameof(ammoSpawnByLevelList), ammoSpawnByLevelList);
-            foreach (RangeByLevel rangeByLevel in ammoSpawnByLevelList)
+            foreach (var rangeByLevel in ammoSpawnByLevelList)
             {
                 HelperUtilities.ValidateCheckNullValue(this, nameof(rangeByLevel.dungeonLevel), rangeByLevel.dungeonLevel);
                 HelperUtilities.ValidateCheckPositiveRange(this, nameof(rangeByLevel.min), rangeByLevel.min, nameof(rangeByLevel.max), rangeByLevel.max, true);

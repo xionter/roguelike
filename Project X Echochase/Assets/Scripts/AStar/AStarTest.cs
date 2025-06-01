@@ -49,7 +49,7 @@ public class AStarTest : MonoBehaviour
     /// </summary>
     private void SetUpPathTilemap()
     {
-        Transform tilemapCloneTransform = instantiatedRoom.transform.Find("Grid/Tilemap4_Front(Clone)");
+        var tilemapCloneTransform = instantiatedRoom.transform.Find("Grid/Tilemap4_Front(Clone)");
 
         // Если передний тайлмап не был клонирован, то клонировать его
         if (tilemapCloneTransform == null)
@@ -163,7 +163,7 @@ public class AStarTest : MonoBehaviour
         // Очистить путь
         if (pathStack == null) return;
 
-        foreach (Vector3 worldPosition in pathStack)
+        foreach (var worldPosition in pathStack)
         {
             pathTilemap.SetTile(grid.WorldToCell(worldPosition), null);
         }
@@ -186,7 +186,7 @@ public class AStarTest : MonoBehaviour
 
         if (pathStack == null) return;
 
-        foreach (Vector3 worldPosition in pathStack)
+        foreach (var worldPosition in pathStack)
         {
             pathTilemap.SetTile(grid.WorldToCell(worldPosition), startPathTile);
         }

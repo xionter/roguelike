@@ -5,16 +5,16 @@ using UnityEngine;
 public class ActivateRooms : MonoBehaviour
 {
     #region Header POPULATE WITH MINIMAP CAMERA
-    [Header("ЗАПОЛНИТЬ С ПОМОЩЬЮ КАМЕРЫ МИНИКАРТЫ")]
+    [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
     #endregion Header
     [SerializeField] private Camera miniMapCamera;
 
     private Camera cameraMain;
 
-    //Start вызывается перед первым обновлением кадра
+    //Start пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     private void Start()
     {
-        //Кэш main камеры
+        //пїЅпїЅпїЅ main пїЅпїЅпїЅпїЅпїЅпїЅ
         cameraMain = Camera.main;
 
         InvokeRepeating("EnableRooms", 0.5f, 0.75f);
@@ -22,24 +22,24 @@ public class ActivateRooms : MonoBehaviour
 
     private void EnableRooms()
     {
-        HelperUtilities.CameraWorldPositionBounds(out Vector2Int miniMapCameraWorldPositionLowerBounds,
-                out Vector2Int miniMapCameraWorldPositionUpperBounds, miniMapCamera);
+        HelperUtilities.CameraWorldPositionBounds(out var miniMapCameraWorldPositionLowerBounds,
+                out var miniMapCameraWorldPositionUpperBounds, miniMapCamera);
 
-        HelperUtilities.CameraWorldPositionBounds(out Vector2Int mainCameraWorldPositionLowerBounds,
-                out Vector2Int mainCameraWorldPositionUpperBounds, cameraMain);
+        HelperUtilities.CameraWorldPositionBounds(out var mainCameraWorldPositionLowerBounds,
+                out var mainCameraWorldPositionUpperBounds, cameraMain);
 
-        //Пройдемся по комнатам подземелья
-        foreach (KeyValuePair<string, Room> keyValuePair in DungeonBuilder.Instance.dungeonBuilderRoomDictionary)
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        foreach (var keyValuePair in DungeonBuilder.Instance.dungeonBuilderRoomDictionary)
         {
-            Room room = keyValuePair.Value;
+            var room = keyValuePair.Value;
 
-            //Если комната находится в области просмотра камеры miniMap, то активируйте игровой объект комнаты
+            //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ miniMap, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             if ((room.lowerBounds.x <= miniMapCameraWorldPositionUpperBounds.x && room.lowerBounds.y <= miniMapCameraWorldPositionUpperBounds.y) &&
                 (room.upperBounds.x >= miniMapCameraWorldPositionLowerBounds.x && room.upperBounds.y >= miniMapCameraWorldPositionLowerBounds.y))
             {
                 room.instantiatedRoom.gameObject.SetActive(true);
 
-                //Если комната находится в пределах области обзора основной камеры, то активируйте игровой объект окружения
+                //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 if ((room.lowerBounds.x <= mainCameraWorldPositionUpperBounds.x && room.lowerBounds.y <= mainCameraWorldPositionUpperBounds.y) &&
                 (room.upperBounds.x >= mainCameraWorldPositionLowerBounds.x && room.upperBounds.y >= mainCameraWorldPositionLowerBounds.y))
                 {

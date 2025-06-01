@@ -146,7 +146,7 @@ public class RoomTemplateSO : ScriptableObject
             HelperUtilities.ValidateCheckEnumerableValues(this, nameof(enemiesByLevelList), enemiesByLevelList);
             HelperUtilities.ValidateCheckEnumerableValues(this, nameof(roomEnemySpawnParametersList), roomEnemySpawnParametersList);
 
-            foreach (RoomEnemySpawnParameters roomEnemySpawnParameters in roomEnemySpawnParametersList)
+            foreach (var roomEnemySpawnParameters in roomEnemySpawnParametersList)
             {
                 HelperUtilities.ValidateCheckNullValue(this, nameof(roomEnemySpawnParameters.dungeonLevel), roomEnemySpawnParameters.dungeonLevel);
 
@@ -162,17 +162,17 @@ public class RoomTemplateSO : ScriptableObject
                   roomEnemySpawnParameters.minConcurrentEnemies, nameof(roomEnemySpawnParameters.maxConcurrentEnemies),
                   roomEnemySpawnParameters.maxConcurrentEnemies, false);
 
-                bool isEnemyTypesListForDungeonLevel = false;
+                var isEnemyTypesListForDungeonLevel = false;
 
                 // проверка типов врагов
-                foreach (SpawnableObjectsByLevel<EnemyDetailsSO> dungeonObjectsByLevel in enemiesByLevelList)
+                foreach (var dungeonObjectsByLevel in enemiesByLevelList)
                 {
                     if (dungeonObjectsByLevel.dungeonLevel == roomEnemySpawnParameters.dungeonLevel && dungeonObjectsByLevel.spawnableObjectRatioList.Count > 0)
                         isEnemyTypesListForDungeonLevel = true;
 
                     HelperUtilities.ValidateCheckNullValue(this, nameof(dungeonObjectsByLevel.dungeonLevel), dungeonObjectsByLevel.dungeonLevel);
 
-                    foreach (SpawnableObjectRatio<EnemyDetailsSO> dungeonObjectRatio in dungeonObjectsByLevel.spawnableObjectRatioList)
+                    foreach (var dungeonObjectRatio in dungeonObjectsByLevel.spawnableObjectRatioList)
                     {
                         HelperUtilities.ValidateCheckNullValue(this, nameof(dungeonObjectRatio.dungeonObject), dungeonObjectRatio.dungeonObject);
 

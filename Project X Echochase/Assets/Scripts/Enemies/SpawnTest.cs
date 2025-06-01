@@ -29,7 +29,7 @@ public class SpawnTest : MonoBehaviour
     {
         if (instantiatedEnemyList != null && instantiatedEnemyList.Count > 0)
         {
-            foreach (GameObject enemy in instantiatedEnemyList)
+            foreach (var enemy in instantiatedEnemyList)
             {
                 Destroy(enemy);
             }
@@ -38,7 +38,7 @@ public class SpawnTest : MonoBehaviour
             Debug.LogError("roomChangedEventArgs.room is null!");
             return;
         }
-        RoomTemplateSO roomTemplate = DungeonBuilder.Instance.GetRoomTemplate(roomChangedEventArgs.room.templateID);
+        var roomTemplate = DungeonBuilder.Instance.GetRoomTemplate(roomChangedEventArgs.room.templateID);
 
         if (roomTemplate != null)
         {
@@ -55,7 +55,7 @@ public class SpawnTest : MonoBehaviour
             { 
                 Destroy(instantiatedEnemy);
             }
-            EnemyDetailsSO enemyDetails = randomEnemyHelperClass.GetItem();
+            var enemyDetails = randomEnemyHelperClass.GetItem();
             if (enemyDetails != null)
             {
                 Debug.Log(HelperUtilities.GetSpawnPositionNearestToPlayer(HelperUtilities.GetMouseWorldPosition()));

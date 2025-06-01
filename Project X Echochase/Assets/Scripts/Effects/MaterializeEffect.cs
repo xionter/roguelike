@@ -7,17 +7,17 @@ public class MaterializeEffect : MonoBehaviour
 
     public IEnumerator MaterializeRoutine(Shader materializeShader, Color materializeColor, float materializeTime, SpriteRenderer[] spriteRendererArray, Material normalMaterial)
     {
-        Material materializeMaterial = new Material(materializeShader);
+        var materializeMaterial = new Material(materializeShader);
 
         materializeMaterial.SetColor("_EmissionColor", materializeColor);
 
         // установка materialize material в renderer
-        foreach (SpriteRenderer spriteRenderer in spriteRendererArray)
+        foreach (var spriteRenderer in spriteRendererArray)
         {
             spriteRenderer.material = materializeMaterial;
         }
 
-        float dissolveAmount = 0f;
+        var dissolveAmount = 0f;
 
         // materialize enemy
         while (dissolveAmount < 1f)
@@ -32,7 +32,7 @@ public class MaterializeEffect : MonoBehaviour
 
 
         // установка стандартного материала в renderer
-        foreach (SpriteRenderer spriteRenderer in spriteRendererArray)
+        foreach (var spriteRenderer in spriteRendererArray)
         {
             spriteRenderer.material = normalMaterial;
         }
