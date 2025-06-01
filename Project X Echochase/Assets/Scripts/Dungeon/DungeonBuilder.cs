@@ -53,7 +53,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
         {
             dungeonBuildAttempts++;
 
-            var roomNodeGraph = GetRandomRoomNodeGraph(currentDungeonLevel.roomNodeGraph);
+            var roomNodeGraph = GetRandomRoomNodeGraph();
             
             var dungeonRebuildAttemptsForNodeGraph = 0;
             dungeonBuildSuccessful = false;
@@ -460,17 +460,14 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
         return room;
     }
     
-    private RoomNodeGraphSO GetRandomRoomNodeGraph(RoomNodeGraphSO roomNodeGraph)
+    private RoomNodeGraphSO GetRandomRoomNodeGraph()
     {
-        // Возвращаем граф узлов комнат
-        roomNodeGraph = ScriptableObject.CreateInstance<RoomNodeGraphSO>();
-        var path = $"Assets/ScriptableObjectAssets/Dungeon/Level_Graph.asset";
-        if (string.IsNullOrEmpty(AssetDatabase.GetAssetPath(roomNodeGraph)))
-        {
-            AssetDatabase.CreateAsset(roomNodeGraph, path);
-            AssetDatabase.SaveAssets();
-        }
-        ProceduralDungeonGenerator.GenerateDungeon(roomNodeGraph, 10, ProceduralDungeonGenerator.Difficulty.Medium);
+        // Создаём новый граф узлов комнат
+        var roomNodeGraph = ScriptableObject.CreateInstance<RoomNodeGraphSO>();
+
+        // Генерация подземелья
+        ProceduralDungeonGenerator.GenerateDungeon(roomNodeGraph, 13, ProceduralDungeonGenerator.Difficulty.Medium);
+
         return roomNodeGraph;
     }
     
