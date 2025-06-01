@@ -16,10 +16,11 @@ MonoBehaviour:
   isPlayerAmmo: 0
   ammoSprite: {fileID: 21300000, guid: 2b3ac346d0db3f14bba71234592e0515, type: 3}
   ammoPrefabArray:
-  - {fileID: 5201712444714649251, guid: 82fbfe1a122653c809d066fcfd5b487d, type: 3}
+  - {fileID: 5201712444714649251, guid: 369f334cee05897a9b8fd763c6a6f067, type: 3}
   ammoMaterial: {fileID: 2100000, guid: a8f373dc317a30d40a68b73a78ce1d09, type: 2}
   ammoChargeTime: 0
   ammoChargeMaterial: {fileID: 2100000, guid: 33a55999e44f4724191171c59fc64319, type: 2}
+  ammoHitEffect: {fileID: 0}
   ammoDamage: 6
   ammoSpeedMin: 8
   ammoSpeedMax: 11

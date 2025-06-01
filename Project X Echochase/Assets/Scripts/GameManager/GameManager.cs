@@ -244,7 +244,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         var dungeonBuiltSuccessfully = DungeonBuilder.Instance.GenerateDungeon(dungeonLevel);
 
         if (!dungeonBuiltSuccessfully)
-        {
+        {   
             Debug.LogError("Не удалось построить подземелье из указанных комнат и графов узлов");
             return; 
         }

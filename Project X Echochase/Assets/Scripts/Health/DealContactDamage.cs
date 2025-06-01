@@ -21,6 +21,7 @@ public class DealContactDamage : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (isColliding) return;
 
         ContactDamage(collision);
@@ -28,6 +29,7 @@ public class DealContactDamage : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+
         if (isColliding) return;
 
         ContactDamage(collision);
@@ -35,17 +37,18 @@ public class DealContactDamage : MonoBehaviour
 
     private void ContactDamage(Collider2D collision)
     {
-        // если объект не в указанном слое, то возврат
-        var collisionObjectLayerMask = (1 << collision.gameObject.layer);
+
+        int collisionObjectLayerMask = (1 << collision.gameObject.layer);
 
         if ((layerMask.value & collisionObjectLayerMask) == 0)
             return;
 
-        var receiveContactDamage = collision.gameObject.GetComponent<ReceiveContactDamage>();
+        ReceiveContactDamage receiveContactDamage = collision.gameObject.GetComponent<ReceiveContactDamage>();
 
         if (receiveContactDamage != null)
         {
             isColliding = true;
+
 
             Invoke("ResetContactCollision", Settings.contactDamageCollisionResetDelay);
 
