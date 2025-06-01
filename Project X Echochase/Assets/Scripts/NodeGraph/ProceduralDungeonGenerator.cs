@@ -111,7 +111,7 @@ public static class ProceduralDungeonGenerator
 
     private static Dictionary<string, float> GetWeights(Difficulty difficulty)
     {
-        // Пример реализации метода GetWeights
+
         return difficulty switch
         {
             Difficulty.Easy => new Dictionary<string, float> { { "small", 0.5f }, { "medium", 0.3f }, { "large", 0.2f } },
@@ -123,7 +123,6 @@ public static class ProceduralDungeonGenerator
 
     private static RoomNodeTypeSO SampleRoomType(Dictionary<string, float> weights, RoomNodeTypeSO smallType, RoomNodeTypeSO mediumType, RoomNodeTypeSO largeType)
     {
-        // Пример реализации метода SampleRoomType
         var randomValue = Random.value;
         if (randomValue < weights["small"]) return smallType;
         if (randomValue < weights["small"] + weights["medium"]) return mediumType;
@@ -132,7 +131,6 @@ public static class ProceduralDungeonGenerator
 
     private static int GetRoomDepth(RoomNodeSO roomNode, RoomNodeGraphSO graph)
     {
-        // Пример реализации метода GetRoomDepth
         var depth = 0;
         var currentNode = roomNode;
         while (currentNode.parentRoomNodeIDList.Count > 0)

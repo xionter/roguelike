@@ -4,15 +4,8 @@ using UnityEngine;
 
 [RequireComponent(typeof(Enemy))]
 [DisallowMultipleComponent]
-
 public class EnemyMovementAI : MonoBehaviour
 {
-    #region Tooltip
-
-    [Tooltip("MovementDetailsSO должен содержать скорость движения врага")]
-
-    #endregion Tooltip
-
     [SerializeField] private MovementDetailsSO movementDetails;
     private Enemy enemy;
     private Stack<Vector3> movementSteps = new Stack<Vector3>();
@@ -20,22 +13,22 @@ public class EnemyMovementAI : MonoBehaviour
     private Coroutine moveEnemyRoutine;
     private float currentEnemyPathRebuildCooldown;
     private WaitForFixedUpdate waitForFixedUpdate;
-    [HideInInspector] public float moveSpeed;
+    public float moveSpeed;
     private bool chasePlayer = false;
-    [HideInInspector] public int updateFrameNumber = 1;
-
+    private int updateFrameNumber = 1;
+    private Player player;
 
     private void Awake()
     {
         enemy = GetComponent<Enemy>();
-
         moveSpeed = movementDetails.GetMoveSpeed();
+        waitForFixedUpdate = new WaitForFixedUpdate();
     }
 
     private void Start()
     {
-        waitForFixedUpdate = new WaitForFixedUpdate();
-        playerReferencePosition = GameManager.Instance.GetPlayer().GetPlayerPosition();
+        player = GameManager.Instance.GetPlayer();
+        playerReferencePosition = player.GetPlayerPosition();
     }
 
     private void Update()
@@ -47,24 +40,17 @@ public class EnemyMovementAI : MonoBehaviour
     {
         currentEnemyPathRebuildCooldown -= Time.deltaTime;
 
-        if (!chasePlayer && Vector3.Distance(transform.position, GameManager.Instance.GetPlayer().GetPlayerPosition()) <
-            enemy.enemyDetails.chaseDistance)
+        if (!chasePlayer && Vector3.Distance(transform.position, player.GetPlayerPosition()) < enemy.enemyDetails.chaseDistance)
         {
             chasePlayer = true;
         }
 
-        if (!chasePlayer)
-            return;
+        if (!chasePlayer || Time.frameCount % Settings.targetFrameRateToSpreadPathFindingOver != updateFrameNumber) return;
 
-        if (Time.frameCount % Settings.targetFrameRateToSpreadPathFindingOver != updateFrameNumber) return;
-        
-        if (currentEnemyPathRebuildCooldown <= 0f ||
-            (Vector3.Distance(playerReferencePosition, GameManager.Instance.GetPlayer().GetPlayerPosition()) >
-             Settings.playerMoveDistanceToRebuildPath))
+        if (currentEnemyPathRebuildCooldown <= 0f || Vector3.Distance(playerReferencePosition, player.GetPlayerPosition()) > Settings.playerMoveDistanceToRebuildPath)
         {
-            currentEnemyPathRebuildCooldown = Settings.playerMoveDistanceToRebuildPath;
-
-            playerReferencePosition = GameManager.Instance.GetPlayer().GetPlayerPosition();
+            currentEnemyPathRebuildCooldown = Settings.enemyPathRebuildCooldown;
+            playerReferencePosition = player.GetPlayerPosition();
 
             CreatePath();
 
@@ -80,7 +66,7 @@ public class EnemyMovementAI : MonoBehaviour
             }
         }
     }
-    
+
     private IEnumerator MoveEnemyRoutine(Stack<Vector3> movementSteps)
     {
         while (movementSteps.Count > 0)
@@ -96,21 +82,14 @@ public class EnemyMovementAI : MonoBehaviour
             }
 
             yield return waitForFixedUpdate;
-        } 
+        }
 
         enemy.idleEvent.CallIdleEvent();
     }
 
-    public void SetUpdateFrameNumber(int updateFrameNumber)
-    {
-        this.updateFrameNumber = updateFrameNumber;
-    }
-
-
     private void CreatePath()
     {
         var currentRoom = GameManager.Instance.GetCurrentRoom();
-
         var grid = currentRoom.instantiatedRoom.grid;
 
         var enemyGridPosition = grid.WorldToCell(transform.position);
@@ -130,56 +109,39 @@ public class EnemyMovementAI : MonoBehaviour
 
     private Vector3Int GetNearestNonObstaclePlayerPosition(Room currentRoom)
     {
-        var playerPosition = GameManager.Instance.GetPlayer().GetPlayerPosition();
-        
+        var playerPosition = player.GetPlayerPosition();
         var playerCellPosition = currentRoom.instantiatedRoom.grid.WorldToCell(playerPosition);
-        
+
         var adjustedPlayerCellPosition = new Vector2Int(playerCellPosition.x - currentRoom.templateLowerBounds.x,
             playerCellPosition.y - currentRoom.templateLowerBounds.y);
-        
-        var obstacle = currentRoom.instantiatedRoom.aStarMovementPenalty[adjustedPlayerCellPosition.x,
-            adjustedPlayerCellPosition.y];
 
-        if (obstacle != 0)
+        if (currentRoom.instantiatedRoom.aStarMovementPenalty[adjustedPlayerCellPosition.x, adjustedPlayerCellPosition.y] != 0)
         {
             return playerCellPosition;
         }
 
-        for (var i = -1; i <= 1; i++)
+        foreach (var offset in new[] { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right })
         {
-            for (var j = -1; j <= 1; j++)
+            var neighborPosition = adjustedPlayerCellPosition + offset;
+
+            if (currentRoom.instantiatedRoom.aStarMovementPenalty[neighborPosition.x, neighborPosition.y] != 0)
             {
-                if (j == 0 && i == 0)
-                    continue;
-                try
-                {
-                    obstacle = currentRoom.instantiatedRoom.aStarMovementPenalty[
-                        adjustedPlayerCellPosition.x + i,
-                        adjustedPlayerCellPosition.y + j];
-                    if (obstacle != 0) return new Vector3Int(playerCellPosition.x + i,
-                        playerCellPosition.y + j, 0 );
-                }
-                catch
-                {
-                    continue;
-                }
+                return new Vector3Int(playerCellPosition.x + offset.x, playerCellPosition.y + offset.y, 0);
             }
         }
+
         return playerCellPosition;
     }
 
-    
-    #region Validation
+    public void SetUpdateFrameNumber(int updateFrameNumber)
+    {
+        this.updateFrameNumber = updateFrameNumber;
+    }
 
 #if UNITY_EDITOR
-
     private void OnValidate()
     {
         HelperUtilities.ValidateCheckNullValue(this, nameof(movementDetails), movementDetails);
     }
-    
 #endif
-    
-    #endregion
-    
 }

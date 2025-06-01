@@ -552,7 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa55d9a705668ea9a39ed02197f84cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 8496790876557379738, guid: 41fb3c54511bdfa5aa8142bbed263175, type: 3}
+  healthBar: {fileID: 6158401510032160851}
   isDamageable: 1
   enemy: {fileID: 0}
 --- !u!114 &-8153860813993155753
@@ -1086,3 +1086,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4544001290095899132, guid: 41fb3c54511bdfa5aa8142bbed263175, type: 3}
   m_PrefabInstance: {fileID: 2350214641462390985}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6158401510032160851 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8496790876557379738, guid: 41fb3c54511bdfa5aa8142bbed263175, type: 3}
+  m_PrefabInstance: {fileID: 2350214641462390985}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2edf83aa0060094396a6721a367c030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
