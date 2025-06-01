@@ -98,7 +98,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     private void InstantiatePlayer()
     {
         // Создать объект игрока
-        GameObject playerGameObject = Instantiate(playerDetails.playerPrefab);
+        var playerGameObject = Instantiate(playerDetails.playerPrefab);
 
         // Инициализировать игрока
         player = playerGameObject.GetComponent<Player>();
@@ -205,7 +205,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     private void PlayDungeonLevel()
     {
         // Проверяем успешность генерации подземелья
-        bool dungeonBuiltSuccessfully = DungeonBuilder.Instance.GenerateDungeon(dungeonLevel);
+        var dungeonBuiltSuccessfully = DungeonBuilder.Instance.GenerateDungeon(dungeonLevel);
 
         if (!dungeonBuiltSuccessfully)
         {

@@ -34,7 +34,7 @@ public class Room
 
     public int GetNumberOfEnemiesToSpawn(DungeonLevelSO dungeonLevel)
     {
-        foreach (RoomEnemySpawnParameters roomEnemySpawnParameters in roomLevelEnemySpawnParametersList)
+        foreach (var roomEnemySpawnParameters in roomLevelEnemySpawnParametersList)
         {
             if (roomEnemySpawnParameters.dungeonLevel == dungeonLevel)
             {
@@ -47,7 +47,7 @@ public class Room
 
     public RoomEnemySpawnParameters GetRoomEnemySpawnParameters(DungeonLevelSO dungeonLevel)
     {
-        foreach (RoomEnemySpawnParameters roomEnemySpawnParameters in roomLevelEnemySpawnParametersList)
+        foreach (var roomEnemySpawnParameters in roomLevelEnemySpawnParametersList)
         {
             if (roomEnemySpawnParameters.dungeonLevel == dungeonLevel)
             {

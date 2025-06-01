@@ -50,9 +50,9 @@ public class PlayerControl : MonoBehaviour
 
     private void SetStartingWeapon()
     {
-        int index = 1;
+        var index = 1;
 
-        foreach (Weapon weapon in player.weaponList)
+        foreach (var weapon in player.weaponList)
         {
             if (weapon.weaponDetails == player.playerDetails.startingWeapon)
             {
@@ -86,12 +86,12 @@ public class PlayerControl : MonoBehaviour
     /// </summary> 
     private void MovementInput() 
     { 
-        float horizontalMovement = Input.GetAxisRaw("Horizontal");
-        float verticalMovement = Input.GetAxisRaw("Vertical");
-        bool rightMouseButtonDown = Input.GetMouseButtonDown(1);
+        var horizontalMovement = Input.GetAxisRaw("Horizontal");
+        var verticalMovement = Input.GetAxisRaw("Vertical");
+        var rightMouseButtonDown = Input.GetMouseButtonDown(1);
 
         // Вектор напрвления исходя из инпута
-        Vector2 direction = new Vector2(horizontalMovement, verticalMovement);
+        var direction = new Vector2(horizontalMovement, verticalMovement);
 
         // Для диагонального напрвления (пифагорейское приближение)
         if (horizontalMovement != 0f && verticalMovement != 0f)
@@ -134,11 +134,11 @@ public class PlayerControl : MonoBehaviour
     private IEnumerator PlayerRollRoutine(Vector3 direction)
     {
         //minDistance, чтобы решить, когда выходить из цикла
-        float minDistance = 0.2f;
+        var minDistance = 0.2f;
 
         isPlayerRolling = true;
 
-        Vector3 targetPosition = player.transform.position + (Vector3)direction * movementDetails.rollDistance;
+        var targetPosition = player.transform.position + (Vector3)direction * movementDetails.rollDistance;
 
         while (Vector3.Distance(player.transform.position, targetPosition) > minDistance)
         {
@@ -210,12 +210,12 @@ public class PlayerControl : MonoBehaviour
     private void AimWeaponInput(out Vector3 weaponDirection, out float weaponAngleDegrees, out float playerAngleDegrees, out AimDirection 
             playerAimDirection) 
     {
-        Vector3 mouseWorldPosition = HelperUtilities.GetMouseWorldPosition(); 
+        var mouseWorldPosition = HelperUtilities.GetMouseWorldPosition(); 
         // посчитать вектора напрвления курсора от позиции выстрела
         weaponDirection = (mouseWorldPosition - player.activeWeapon.GetShootPosition()); 
 
         // Вычислить вектор направления курсора мыши от позиции трансформации игрока
-        Vector3 playerDirection = (mouseWorldPosition - transform.position); 
+        var playerDirection = (mouseWorldPosition - transform.position); 
 
         // угол от оружия до курсора 
         weaponAngleDegrees = HelperUtilities.GetAngleFromVector(weaponDirection); 
@@ -248,7 +248,7 @@ public class PlayerControl : MonoBehaviour
     private void SwitchWeaponInput()
 {
     // переключение по колёсику мыши
-    float scrollDelta = Input.mouseScrollDelta.y;
+    var scrollDelta = Input.mouseScrollDelta.y;
     if (scrollDelta < 0f) PreviousWeapon();
     if (scrollDelta > 0f) NextWeapon();
 
@@ -297,7 +297,7 @@ public class PlayerControl : MonoBehaviour
 
     private void ReloadWeaponInput()
     {
-        Weapon currentWeapon = player.activeWeapon.GetCurrentWeapon();
+        var currentWeapon = player.activeWeapon.GetCurrentWeapon();
 
         if (currentWeapon.isWeaponReloading) return;
 
@@ -316,14 +316,14 @@ public class PlayerControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            float useItemRadius = 2f;
+            var useItemRadius = 2f;
 
             // получить любой Usebale айтем рядом
-            Collider2D[] collider2DArray = Physics2D.OverlapCircleAll(player.GetPlayerPosition(), useItemRadius);
+            var collider2DArray = Physics2D.OverlapCircleAll(player.GetPlayerPosition(), useItemRadius);
 
-            foreach (Collider2D collider2D in collider2DArray)
+            foreach (var collider2D in collider2DArray)
             {
-                IUseable iUseable = collider2D.GetComponent<IUseable>();
+                var iUseable = collider2D.GetComponent<IUseable>();
 
                 if (iUseable != null)
                 {
@@ -347,15 +347,15 @@ public class PlayerControl : MonoBehaviour
 
     private void SetCurrentWeaponToFirstInTheList()
     {
-        List<Weapon> tempWeaponList = new List<Weapon>();
+        var tempWeaponList = new List<Weapon>();
 
-        Weapon currentWeapon = player.weaponList[currentWeaponIndex - 1];
+        var currentWeapon = player.weaponList[currentWeaponIndex - 1];
         currentWeapon.weaponListPosition = 1;
         tempWeaponList.Add(currentWeapon);
 
-        int index = 2;
+        var index = 2;
 
-        foreach (Weapon weapon in player.weaponList)
+        foreach (var weapon in player.weaponList)
         {
             if (weapon == currentWeapon) continue;
 

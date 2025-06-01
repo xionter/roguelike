@@ -73,9 +73,9 @@ public class ReloadWeapon : MonoBehaviour
 
         if (topUpAmmoPercent != 0)
         {
-            int ammoIncrease = Mathf.RoundToInt((weapon.weaponDetails.weaponAmmoCapacity * topUpAmmoPercent) / 100f);
+            var ammoIncrease = Mathf.RoundToInt((weapon.weaponDetails.weaponAmmoCapacity * topUpAmmoPercent) / 100f);
 
-            int totalAmmo = weapon.weaponRemainingAmmo + ammoIncrease;
+            var totalAmmo = weapon.weaponRemainingAmmo + ammoIncrease;
 
             if (totalAmmo > weapon.weaponDetails.weaponAmmoCapacity)
             {

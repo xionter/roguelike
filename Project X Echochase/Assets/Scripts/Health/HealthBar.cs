@@ -18,7 +18,7 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private GameObject healthBar;
 
     /// <summary>
-    /// Enable the health bar
+    /// Включить полоску здоровья
     /// </summary>
     public void EnableHealthBar()
     {
@@ -26,7 +26,7 @@ public class HealthBar : MonoBehaviour
     }
 
     /// <summary>
-    /// Disable the health bar
+    /// Выключить полоску здоровья
     /// </summary>
     public void DisableHealthBar()
     {
@@ -34,7 +34,7 @@ public class HealthBar : MonoBehaviour
     }
 
     /// <summary>
-    /// Set health bar value with health percent between 0 and 1
+    /// Поставить значения полоски в процентах
     /// </summary>
     public void SetHealthBarValue(float healthPercent)
     {

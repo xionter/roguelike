@@ -65,12 +65,12 @@ public class DungeonLevelSO : ScriptableObject
 
         
         
-        bool isEWCorridor = false;
-        bool isNSCorridor = false;
-        bool isEntrance = false;
+        var isEWCorridor = false;
+        var isNSCorridor = false;
+        var isEntrance = false;
         
 
-        foreach (RoomTemplateSO roomTemplateSO in roomTemplateList)
+        foreach (var roomTemplateSO in roomTemplateList)
         {
             if (roomTemplateSO == null)
                 return;
@@ -103,7 +103,7 @@ public class DungeonLevelSO : ScriptableObject
         
         
         
-        foreach (RoomNodeSO roomNodeSO in roomNodeGraph.roomNodeList)
+        foreach (var roomNodeSO in roomNodeGraph.roomNodeList)
         {
             if (roomNodeSO == null)
                 continue;
@@ -112,9 +112,9 @@ public class DungeonLevelSO : ScriptableObject
             if (roomNodeSO.roomNodeType.isEntrance || roomNodeSO.roomNodeType.isCorridorEW || roomNodeSO.roomNodeType.isCorridorNS || roomNodeSO.roomNodeType.isCorridor || roomNodeSO.roomNodeType.isNone)
                 continue;
 
-            bool isRoomNodeTypeFound = false;
+            var isRoomNodeTypeFound = false;
 
-            foreach (RoomTemplateSO roomTemplateSO in roomTemplateList)
+            foreach (var roomTemplateSO in roomTemplateList)
             {
                  if (roomTemplateSO == null)
                      continue;

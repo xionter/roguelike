@@ -29,7 +29,7 @@ public class SoundEffectManager : SingletonMonobehaviour<SoundEffectManager>
     public void PlaySoundEffect(SoundEffectSO soundEffect)
     {
         //������������� ����, ��������� �������� ������� ������ � ��������� �� ���� ��������
-        SoundEffect sound = (SoundEffect)PoolManager.Instance.ReuseComponent(soundEffect.soundPrefab, Vector3.zero, Quaternion.identity);
+        var sound = (SoundEffect)PoolManager.Instance.ReuseComponent(soundEffect.soundPrefab, Vector3.zero, Quaternion.identity);
         sound.SetSound(soundEffect);
         sound.gameObject.SetActive(true);
         StartCoroutine(DisableSound(sound, soundEffect.soundEffectClip.length));
@@ -49,7 +49,7 @@ public class SoundEffectManager : SingletonMonobehaviour<SoundEffectManager>
     /// </summary>
     private void SetSoundsVolume(int soundsVolume)
     {
-        float muteDecibels = -80f;
+        var muteDecibels = -80f;
 
         if (soundsVolume == 0)
         {
@@ -63,7 +63,7 @@ public class SoundEffectManager : SingletonMonobehaviour<SoundEffectManager>
 
     public void IncreaseSoundsVolume()
     {
-        int maxSoundsVolume = 20;
+        var maxSoundsVolume = 20;
 
         if (soundsVolume >= maxSoundsVolume) return;
 

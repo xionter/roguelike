@@ -28,7 +28,7 @@ public class ChestItem : MonoBehaviour
 
     private IEnumerator MaterializeItem(Color materializeColor, string text)
     {
-        SpriteRenderer[] spriteRendererArray = new SpriteRenderer[] { spriteRenderer };
+        var spriteRendererArray = new SpriteRenderer[] { spriteRenderer };
 
         yield return StartCoroutine(materializeEffect.MaterializeRoutine(GameResources.Instance.materializeShader, materializeColor, 1f, spriteRendererArray, GameResources.Instance.litMaterial));
 

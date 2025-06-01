@@ -70,7 +70,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
-        bool isRolling = false;
+        var isRolling = false;
 
         if (player != null)
             isRolling = player.playerControl.isPlayerRolling;
@@ -108,7 +108,7 @@ public class Health : MonoBehaviour
 
     private IEnumerator PostHitImmunityRoutine(float immunityTime, SpriteRenderer spriteRenderer)
     {
-        int iterations = Mathf.RoundToInt(immunityTime / spriteFlashInterval / 2f);
+        var iterations = Mathf.RoundToInt(immunityTime / spriteFlashInterval / 2f);
         isDamageable = false;
         while (iterations > 0)
         {
@@ -138,9 +138,9 @@ public class Health : MonoBehaviour
 
     public void AddHealth(int healthPercent)
     {
-        int healthIncrease = Mathf.RoundToInt((startingHealth * healthPercent) / 100f);
+        var healthIncrease = Mathf.RoundToInt((startingHealth * healthPercent) / 100f);
 
-        int totalHealth = currentHealth + healthIncrease;
+        var totalHealth = currentHealth + healthIncrease;
 
         if (totalHealth > startingHealth)
         {

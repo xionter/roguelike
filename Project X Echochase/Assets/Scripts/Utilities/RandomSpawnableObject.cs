@@ -22,19 +22,19 @@ public class RandomSpawnableObject<T>
 
     public T GetItem()
     {
-        int upperBoundary = -1;
+        var upperBoundary = -1;
         ratioValueTotal = 0;
         chanceBoundariesList.Clear();
-        T spawnableObject = default(T);
+        var spawnableObject = default(T);
 
-        foreach (SpawnableObjectsByLevel<T> spawnableObjectsByLevel in spawnableObjectsByLevelList)
+        foreach (var spawnableObjectsByLevel in spawnableObjectsByLevelList)
         {
             // проверка для текущего уровня
             if (spawnableObjectsByLevel.dungeonLevel == GameManager.Instance.GetCurrentDungeonLevel())
             {
-                foreach (SpawnableObjectRatio<T> spawnableObjectRatio in spawnableObjectsByLevel.spawnableObjectRatioList)
+                foreach (var spawnableObjectRatio in spawnableObjectsByLevel.spawnableObjectRatioList)
                 {
-                    int lowerBoundary = upperBoundary + 1;
+                    var lowerBoundary = upperBoundary + 1;
 
                     upperBoundary = lowerBoundary + spawnableObjectRatio.ratio - 1;
 
@@ -48,10 +48,10 @@ public class RandomSpawnableObject<T>
 
         if (chanceBoundariesList.Count == 0) return default(T);
 
-        int lookUpValue = Random.Range(0, ratioValueTotal);
+        var lookUpValue = Random.Range(0, ratioValueTotal);
 
         // проход по списку, чтобы найти соотвествующие детали
-        foreach (chanceBoundaries spawnChance in chanceBoundariesList)
+        foreach (var spawnChance in chanceBoundariesList)
         {
             if (lookUpValue >= spawnChance.lowBoundaryValue && lookUpValue <= spawnChance.highBoundaryValue)
             {

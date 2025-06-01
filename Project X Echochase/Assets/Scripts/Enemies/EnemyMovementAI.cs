@@ -85,7 +85,7 @@ public class EnemyMovementAI : MonoBehaviour
     {
         while (movementSteps.Count > 0)
         {
-            Vector3 nextPosition = movementSteps.Pop();
+            var nextPosition = movementSteps.Pop();
 
             while (Vector3.Distance(nextPosition, transform.position) > 0.2f)
             {
@@ -105,16 +105,16 @@ public class EnemyMovementAI : MonoBehaviour
     {
         this.updateFrameNumber = updateFrameNumber;
     }
-    
-    
-    public void CreatePath()
+
+
+    private void CreatePath()
     {
-        Room currentRoom = GameManager.Instance.GetCurrentRoom();
+        var currentRoom = GameManager.Instance.GetCurrentRoom();
 
-        Grid grid = currentRoom.instantiatedRoom.grid;
+        var grid = currentRoom.instantiatedRoom.grid;
 
-        Vector3Int enemyGridPosition = grid.WorldToCell(transform.position);
-        Vector3Int playerGridPosition = GetNearestNonObstaclePlayerPosition(currentRoom);
+        var enemyGridPosition = grid.WorldToCell(transform.position);
+        var playerGridPosition = GetNearestNonObstaclePlayerPosition(currentRoom);
 
         movementSteps = AStar.BuildPath(currentRoom, enemyGridPosition, playerGridPosition);
 
@@ -130,11 +130,11 @@ public class EnemyMovementAI : MonoBehaviour
 
     private Vector3Int GetNearestNonObstaclePlayerPosition(Room currentRoom)
     {
-        Vector3 playerPosition = GameManager.Instance.GetPlayer().GetPlayerPosition();
+        var playerPosition = GameManager.Instance.GetPlayer().GetPlayerPosition();
         
-        Vector3Int playerCellPosition = currentRoom.instantiatedRoom.grid.WorldToCell(playerPosition);
+        var playerCellPosition = currentRoom.instantiatedRoom.grid.WorldToCell(playerPosition);
         
-        Vector2Int adjustedPlayerCellPosition = new Vector2Int(playerCellPosition.x - currentRoom.templateLowerBounds.x,
+        var adjustedPlayerCellPosition = new Vector2Int(playerCellPosition.x - currentRoom.templateLowerBounds.x,
             playerCellPosition.y - currentRoom.templateLowerBounds.y);
         
         var obstacle = currentRoom.instantiatedRoom.aStarMovementPenalty[adjustedPlayerCellPosition.x,

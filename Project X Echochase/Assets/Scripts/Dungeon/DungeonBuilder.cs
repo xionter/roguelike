@@ -46,16 +46,16 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
         LoadRoomTemplatesIntoDictionary();
 
         dungeonBuildSuccessful = false;
-        int dungeonBuildAttempts = 0;
+        var dungeonBuildAttempts = 0;
 
         // Пытаемся построить подземелье, пока не получится или не достигнем максимального количества попыток
         while (!dungeonBuildSuccessful && dungeonBuildAttempts < Settings.maxDungeonBuildAttempts)
         {
             dungeonBuildAttempts++;
 
-            RoomNodeGraphSO roomNodeGraph = GetRandomRoomNodeGraph(currentDungeonLevel.roomNodeGraph);
+            var roomNodeGraph = GetRandomRoomNodeGraph(currentDungeonLevel.roomNodeGraph);
             
-            int dungeonRebuildAttemptsForNodeGraph = 0;
+            var dungeonRebuildAttemptsForNodeGraph = 0;
             dungeonBuildSuccessful = false;
 
             // Пытаемся построить подземелье для текущего графа комнат
@@ -84,7 +84,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
         roomTemplateDictionary.Clear();
 
         // Загружаем шаблоны комнат в словарь
-        foreach (RoomTemplateSO roomTemplate in roomTemplateList)
+        foreach (var roomTemplate in roomTemplateList)
         {
             if (!roomTemplateDictionary.ContainsKey(roomTemplate.guid))
             {
@@ -100,10 +100,10 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     private bool AttemptToBuildRandomDungeon(RoomNodeGraphSO roomNodeGraph)
     {
         // Создаём очередь для обработки комнат
-        Queue<RoomNodeSO> openRoomNodeQueue = new Queue<RoomNodeSO>();
+        var openRoomNodeQueue = new Queue<RoomNodeSO>();
 
         // Добавляем начальную комнату
-        RoomNodeSO entranceNode = roomNodeGraph.GetRoomNode(roomNodeTypeList.list.Find(x => x.isEntrance));
+        var entranceNode = roomNodeGraph.GetRoomNode(roomNodeTypeList.list.Find(x => x.isEntrance));
 
         if (entranceNode != null)
         {
@@ -115,7 +115,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
             return false;  
         }
         
-        bool noRoomOverlaps = true;
+        var noRoomOverlaps = true;
         
         noRoomOverlaps = ProcessRoomsInOpenRoomNodeQueue(roomNodeGraph, openRoomNodeQueue, noRoomOverlaps);
 
@@ -134,10 +134,10 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
         while (openRoomNodeQueue.Count > 0 && noRoomOverlaps == true)
         {
             // Получаем следующую комнату из очереди
-            RoomNodeSO roomNode = openRoomNodeQueue.Dequeue();
+            var roomNode = openRoomNodeQueue.Dequeue();
 
             // Добавляем дочерние узлы в очередь из графа комнат (связанные с этим родительским узлом)
-            foreach (RoomNodeSO childRoomNode in roomNodeGraph.GetChildRoomNodes(roomNode))
+            foreach (var childRoomNode in roomNodeGraph.GetChildRoomNodes(roomNode))
             {
                 openRoomNodeQueue.Enqueue(childRoomNode);
             }
@@ -145,14 +145,14 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
             // Если комната является входом, отмечаем её как размещённую и добавляем в словарь комнат
             if (roomNode.roomNodeType.isEntrance)
             {
-                RoomTemplateSO roomTemplate = GetRandomRoomTemplate(roomNode.roomNodeType);
+                var roomTemplate = GetRandomRoomTemplate(roomNode.roomNodeType);
                 if (roomTemplate == null)
                 {
                     Debug.LogWarning($"[{nameof(DungeonBuilder)}] Нет шаблона для {roomNode.roomNodeType.name}, подставляю defaultRoomTemplate");
                     return false;
                 }
 
-                Room room = CreateRoomFromRoomTemplate(roomTemplate, roomNode);
+                var room = CreateRoomFromRoomTemplate(roomTemplate, roomNode);
 
                 room.isPositioned = true;
 
@@ -162,7 +162,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
             else
             {
                 // Получаем родительскую комнату для узла
-                Room parentRoom = dungeonBuilderRoomDictionary[roomNode.parentRoomNodeIDList[0]];
+                var parentRoom = dungeonBuilderRoomDictionary[roomNode.parentRoomNodeIDList[0]];
 
                 // Проверяем, можно ли разместить комнату без пересечений
                 noRoomOverlaps = CanPlaceRoomWithNoOverlaps(roomNode, parentRoom);
@@ -174,24 +174,24 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     
     private bool CanPlaceRoomWithNoOverlaps(RoomNodeSO roomNode, Room parentRoom)
     {
-        bool roomOverlaps = true;
+        var roomOverlaps = true;
         
         while (roomOverlaps)
         {
             // Получаем список доступных дверных проёмов родительской комнаты
-            List<DoorWay> unconnectedAvailableParentDoorways = GetUnconnectedAvailableDoorways(parentRoom.doorWayList).ToList();
+            var unconnectedAvailableParentDoorways = GetUnconnectedAvailableDoorways(parentRoom.doorWayList).ToList();
 
             if (unconnectedAvailableParentDoorways.Count == 0)
             {
                 return false; 
             }
 
-            DoorWay doorwayParent = unconnectedAvailableParentDoorways[UnityEngine.Random.Range(0, unconnectedAvailableParentDoorways.Count)];
+            var doorwayParent = unconnectedAvailableParentDoorways[UnityEngine.Random.Range(0, unconnectedAvailableParentDoorways.Count)];
 
             // Получаем случайный шаблон комнаты, соответствующий родительской комнате
-            RoomTemplateSO roomtemplate = GetRandomTemplateForRoomConsistentWithParent(roomNode, doorwayParent);
+            var roomtemplate = GetRandomTemplateForRoomConsistentWithParent(roomNode, doorwayParent);
 
-            Room room = CreateRoomFromRoomTemplate(roomtemplate, roomNode);
+            var room = CreateRoomFromRoomTemplate(roomtemplate, roomNode);
 
             // Если удалось разместить комнату
             if (PlaceTheRoom(parentRoom, doorwayParent, room))
@@ -249,7 +249,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     private bool PlaceTheRoom(Room parentRoom, DoorWay doorwayParent, Room room)
     {
         // Получаем текущую позицию дверного проёма комнаты
-        DoorWay doorway = GetOppositeDoorway(doorwayParent, room.doorWayList);
+        var doorway = GetOppositeDoorway(doorwayParent, room.doorWayList);
 
         // Возвращаемся, если в комнате нет дверного проёма, противоположного родительскому
         if (doorway == null)
@@ -261,9 +261,9 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
         }
 
         // Вычисляем позицию родительского дверного проёма в "мировых" координатах
-        Vector2Int parentDoorwayPosition = parentRoom.lowerBounds + doorwayParent.position - parentRoom.templateLowerBounds;
+        var parentDoorwayPosition = parentRoom.lowerBounds + doorwayParent.position - parentRoom.templateLowerBounds;
 
-        Vector2Int adjustment = Vector2Int.zero;
+        var adjustment = Vector2Int.zero;
 
         // Вычисляем смещение позиции на основе ориентации дверного проёма комнаты, которую пытаемся подключить
         switch (doorway.orientation)
@@ -295,7 +295,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
         room.lowerBounds = parentDoorwayPosition + adjustment + room.templateLowerBounds - doorway.position;
         room.upperBounds = room.lowerBounds + room.templateUpperBounds - room.templateLowerBounds;
 
-        Room overlappingRoom = CheckForRoomOverlap(room);
+        var overlappingRoom = CheckForRoomOverlap(room);
 
         if (overlappingRoom == null)
         {
@@ -321,7 +321,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     private DoorWay GetOppositeDoorway(DoorWay parentDoorway, List<DoorWay> doorwayList)
     {
         // Ищем противоположный дверной проём
-        foreach (DoorWay doorwayToCheck in doorwayList)
+        foreach (var doorwayToCheck in doorwayList)
         {
             if (parentDoorway.orientation == Orientation.east && doorwayToCheck.orientation == Orientation.west)
             {
@@ -347,9 +347,9 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     private Room CheckForRoomOverlap(Room roomToTest)
     {
         // Проверяем, пересекается ли комната с другими
-        foreach (KeyValuePair<string, Room> keyvaluepair in dungeonBuilderRoomDictionary)
+        foreach (var keyvaluepair in dungeonBuilderRoomDictionary)
         {
-            Room room = keyvaluepair.Value;
+            var room = keyvaluepair.Value;
 
             if (room.id == roomToTest.id || !room.isPositioned)
                 continue;
@@ -366,10 +366,10 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     private bool IsOverLappingRoom(Room room1, Room room2)
     {
         // Проверяем пересечение по оси X
-        bool isOverlappingX = IsOverLappingInterval(room1.lowerBounds.x, room1.upperBounds.x, room2.lowerBounds.x, room2.upperBounds.x);
+        var isOverlappingX = IsOverLappingInterval(room1.lowerBounds.x, room1.upperBounds.x, room2.lowerBounds.x, room2.upperBounds.x);
 
         // Проверяем пересечение по оси Y
-        bool isOverlappingY = IsOverLappingInterval(room1.lowerBounds.y, room1.upperBounds.y, room2.lowerBounds.y, room2.upperBounds.y);
+        var isOverlappingY = IsOverLappingInterval(room1.lowerBounds.y, room1.upperBounds.y, room2.lowerBounds.y, room2.upperBounds.y);
 
         if (isOverlappingX && isOverlappingY)
         {
@@ -391,10 +391,10 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     
     private RoomTemplateSO GetRandomRoomTemplate(RoomNodeTypeSO roomNodeType)
     {
-        List<RoomTemplateSO> matchingRoomTemplateList = new List<RoomTemplateSO>();
+        var matchingRoomTemplateList = new List<RoomTemplateSO>();
 
         // Перебираем список шаблонов комнат
-        foreach (RoomTemplateSO roomTemplate in roomTemplateList)
+        foreach (var roomTemplate in roomTemplateList)
         {
             // Добавляем подходящие шаблоны комнат
             if (roomTemplate.roomNodeType == roomNodeType)
@@ -414,7 +414,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     private IEnumerable<DoorWay> GetUnconnectedAvailableDoorways(List<DoorWay> roomDoorwayList)
     {
         // Перебираем список дверных проёмов
-        foreach (DoorWay doorway in roomDoorwayList)
+        foreach (var doorway in roomDoorwayList)
         {
             if (!doorway.isConnected && !doorway.isUnavailable)
                 yield return doorway;
@@ -424,7 +424,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     private Room CreateRoomFromRoomTemplate(RoomTemplateSO roomTemplate, RoomNodeSO roomNode)
     {
         // Инициализируем комнату из шаблона
-        Room room = new Room();
+        var room = new Room();
         
         room.templateID = roomTemplate.guid;
         room.id = roomNode.id;
@@ -464,7 +464,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     {
         // Возвращаем граф узлов комнат
         roomNodeGraph = ScriptableObject.CreateInstance<RoomNodeGraphSO>();
-        string path = $"Assets/ScriptableObjectAssets/Dungeon/Level_Graph.asset";
+        var path = $"Assets/ScriptableObjectAssets/Dungeon/Level_Graph.asset";
         if (string.IsNullOrEmpty(AssetDatabase.GetAssetPath(roomNodeGraph)))
         {
             AssetDatabase.CreateAsset(roomNodeGraph, path);
@@ -476,11 +476,11 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     
     private List<DoorWay> CopyDoorwayList(List<DoorWay> oldDoorwayList)
     {
-        List<DoorWay> newDoorwayList = new List<DoorWay>();
+        var newDoorwayList = new List<DoorWay>();
 
-        foreach (DoorWay doorway in oldDoorwayList)
+        foreach (var doorway in oldDoorwayList)
         {
-            DoorWay newDoorway = new DoorWay();
+            var newDoorway = new DoorWay();
 
             newDoorway.position = doorway.position;
             newDoorway.orientation = doorway.orientation;
@@ -499,9 +499,9 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     
     private List<string> CopyStringList(List<string> oldStringList)
     {
-        List<string> newStringList = new List<string>();
+        var newStringList = new List<string>();
 
-        foreach (string stringValue in oldStringList)
+        foreach (var stringValue in oldStringList)
         {
             newStringList.Add(stringValue);
         }
@@ -512,18 +512,18 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     private void InstantiateRoomGameobjects()
     {
         // Перебираем все комнаты подземелья
-        foreach (KeyValuePair<string, Room> keyvaluepair in dungeonBuilderRoomDictionary)
+        foreach (var keyvaluepair in dungeonBuilderRoomDictionary)
         {
-            Room room = keyvaluepair.Value;
+            var room = keyvaluepair.Value;
 
             // Вычисляем позицию комнаты (учитываем смещение нижних границ шаблона комнаты)
-            Vector3 roomPosition = new Vector3(room.lowerBounds.x - room.templateLowerBounds.x, room.lowerBounds.y - room.templateLowerBounds.y, 0f);
+            var roomPosition = new Vector3(room.lowerBounds.x - room.templateLowerBounds.x, room.lowerBounds.y - room.templateLowerBounds.y, 0f);
 
             // Создаём экземпляр комнаты
-            GameObject roomGameobject = Instantiate(room.prefab, roomPosition, Quaternion.identity, transform);
+            var roomGameobject = Instantiate(room.prefab, roomPosition, Quaternion.identity, transform);
 
             // Получаем компонент InstantiatedRoom из созданного экземпляра
-            InstantiatedRoom instantiatedRoom = roomGameobject.GetComponentInChildren<InstantiatedRoom>();
+            var instantiatedRoom = roomGameobject.GetComponentInChildren<InstantiatedRoom>();
 
             instantiatedRoom.room = room;
 
@@ -537,7 +537,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     
     public RoomTemplateSO GetRoomTemplate(string roomTemplateID)
     {
-        if (roomTemplateDictionary.TryGetValue(roomTemplateID, out RoomTemplateSO roomTemplate))
+        if (roomTemplateDictionary.TryGetValue(roomTemplateID, out var roomTemplate))
         {
             return roomTemplate;
         }
@@ -549,7 +549,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     
     public Room GetRoomByRoomID(string roomID)
     {
-        if (dungeonBuilderRoomDictionary.TryGetValue(roomID, out Room room))
+        if (dungeonBuilderRoomDictionary.TryGetValue(roomID, out var room))
         {
             return room;
         }
@@ -563,9 +563,9 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
     {
         if (dungeonBuilderRoomDictionary.Count > 0)
         {
-            foreach (KeyValuePair<string, Room> keyvaluepair in dungeonBuilderRoomDictionary)
+            foreach (var keyvaluepair in dungeonBuilderRoomDictionary)
             {
-                Room room = keyvaluepair.Value;
+                var room = keyvaluepair.Value;
 
                 if (room.instantiatedRoom != null)
                 {

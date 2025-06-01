@@ -40,7 +40,7 @@ public class Ammo : MonoBehaviour, IFireable
         // Не двигать патрон, если movement был переопределён
         if (!overrideAmmoMovement)
         {
-            Vector3 distanceVector = fireDirectionVector * ammoSpeed * Time.deltaTime;
+            var distanceVector = fireDirectionVector * ammoSpeed * Time.deltaTime;
 
             transform.position += distanceVector;
 
@@ -74,9 +74,9 @@ public class Ammo : MonoBehaviour, IFireable
 
     private void DealDamage(Collider2D collision)
     {
-        Health health = collision.GetComponent<Health>();
+        var health = collision.GetComponent<Health>();
 
-        bool enemyHit = false;
+        var enemyHit = false;
 
         if (health != null)
         {
@@ -165,10 +165,10 @@ public class Ammo : MonoBehaviour, IFireable
 
     private void SetFireDirection(AmmoDetailsSO ammoDetails, float aimAngle, float weaponAimAngle, Vector3 weaponAimDirectionVector)
     {
-        float randomSpread = Random.Range(ammoDetails.ammoSpreadMin, ammoDetails.ammoSpreadMax);
+        var randomSpread = Random.Range(ammoDetails.ammoSpreadMin, ammoDetails.ammoSpreadMax);
 
         // 1 или -1
-        int spreadToggle = Random.Range(0, 2) * 2 - 1;
+        var spreadToggle = Random.Range(0, 2) * 2 - 1;
 
         if (weaponAimDirectionVector.magnitude < Settings.useAimAngleDistance)
         {
@@ -196,7 +196,7 @@ public class Ammo : MonoBehaviour, IFireable
     {
         if (ammoDetails.ammoHitEffect != null && ammoDetails.ammoHitEffect.ammoHitEffectPrefab != null)
         {
-            AmmoHitEffect ammoHitEffect = (AmmoHitEffect)PoolManager.Instance.ReuseComponent(ammoDetails.ammoHitEffect.ammoHitEffectPrefab, transform.position, Quaternion.identity);
+            var ammoHitEffect = (AmmoHitEffect)PoolManager.Instance.ReuseComponent(ammoDetails.ammoHitEffect.ammoHitEffectPrefab, transform.position, Quaternion.identity);
 
             ammoHitEffect.SetHitEffect(ammoDetails.ammoHitEffect);
 
@@ -206,7 +206,7 @@ public class Ammo : MonoBehaviour, IFireable
     }
 
 
-    public void SetAmmoMaterial(Material material)
+    private void SetAmmoMaterial(Material material)
     {
         spriteRenderer.material = material;
     }

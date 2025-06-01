@@ -57,7 +57,7 @@ public class IntroCutscene : MonoBehaviour
         SceneManager.LoadScene("MainGameScene");
     }
 
-    public void SkipCutscene()
+    private void SkipCutscene()
     {
         if (!isCutscenePlaying) return;
         

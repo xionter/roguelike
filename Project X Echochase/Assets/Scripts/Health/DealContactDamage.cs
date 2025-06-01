@@ -36,12 +36,12 @@ public class DealContactDamage : MonoBehaviour
     private void ContactDamage(Collider2D collision)
     {
         // если объект не в указанном слое, то возврат
-        int collisionObjectLayerMask = (1 << collision.gameObject.layer);
+        var collisionObjectLayerMask = (1 << collision.gameObject.layer);
 
         if ((layerMask.value & collisionObjectLayerMask) == 0)
             return;
 
-        ReceiveContactDamage receiveContactDamage = collision.gameObject.GetComponent<ReceiveContactDamage>();
+        var receiveContactDamage = collision.gameObject.GetComponent<ReceiveContactDamage>();
 
         if (receiveContactDamage != null)
         {

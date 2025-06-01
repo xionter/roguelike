@@ -100,7 +100,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void EnemyDestroyed()
     {
-        DestroyedEvent destroyedEvent = GetComponent<DestroyedEvent>();
+        var destroyedEvent = GetComponent<DestroyedEvent>();
         destroyedEvent.CallDestroyedEvent(false, health.GetStartingHealth());
     }
 
@@ -135,7 +135,7 @@ public class Enemy : MonoBehaviour
     private void SetEnemyStartingHealth(DungeonLevelSO dungeonLevel)
     {
         // Получение здоровья врага для уровня подземелья
-        foreach (EnemyHealthDetails enemyHealthDetails in enemyDetails.enemyHealthDetailsArray)
+        foreach (var enemyHealthDetails in enemyDetails.enemyHealthDetailsArray)
         {
             if (enemyHealthDetails.dungeonLevel == dungeonLevel)
             {
@@ -154,7 +154,7 @@ public class Enemy : MonoBehaviour
         // Обработка, если у врага есть оружие
         if (enemyDetails.enemyWeapon != null)
         {
-            Weapon weapon = new Weapon() { weaponDetails = enemyDetails.enemyWeapon, weaponReloadTimer = 0f, weaponClipRemainingAmmo = enemyDetails.enemyWeapon.weaponClipAmmoCapacity, weaponRemainingAmmo = enemyDetails.enemyWeapon.weaponAmmoCapacity, isWeaponReloading = false };
+            var weapon = new Weapon() { weaponDetails = enemyDetails.enemyWeapon, weaponReloadTimer = 0f, weaponClipRemainingAmmo = enemyDetails.enemyWeapon.weaponClipAmmoCapacity, weaponRemainingAmmo = enemyDetails.enemyWeapon.weaponAmmoCapacity, isWeaponReloading = false };
 
             // Установка оружия для врага
             setActiveWeaponEvent.CallSetActiveWeaponEvent(weapon);

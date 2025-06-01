@@ -118,7 +118,7 @@ public class  Player : MonoBehaviour
     {
         weaponList.Clear();
 
-        foreach (WeaponDetailsSO weaponDetails in playerDetails.startingWeaponList)
+        foreach (var weaponDetails in playerDetails.startingWeaponList)
         {
             AddWeaponToPlayer(weaponDetails);
         }
@@ -136,7 +136,7 @@ public class  Player : MonoBehaviour
 
     public Weapon AddWeaponToPlayer(WeaponDetailsSO weaponDetails)
     {
-        Weapon weapon = new Weapon() { weaponDetails = weaponDetails, weaponReloadTimer = 0f, weaponClipRemainingAmmo = weaponDetails.weaponClipAmmoCapacity, weaponRemainingAmmo = weaponDetails.weaponAmmoCapacity, isWeaponReloading = false };
+        var weapon = new Weapon() { weaponDetails = weaponDetails, weaponReloadTimer = 0f, weaponClipRemainingAmmo = weaponDetails.weaponClipAmmoCapacity, weaponRemainingAmmo = weaponDetails.weaponAmmoCapacity, isWeaponReloading = false };
 
         // добавление оружия в список
         weaponList.Add(weapon);
@@ -154,7 +154,7 @@ public class  Player : MonoBehaviour
     public bool IsWeaponHeldByPlayer(WeaponDetailsSO weaponDetails)
     {
 
-        foreach (Weapon weapon in weaponList)
+        foreach (var weapon in weaponList)
         {
             if (weapon.weaponDetails == weaponDetails) return true;
         }

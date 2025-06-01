@@ -37,13 +37,13 @@ public class WeaponShootEffect : MonoBehaviour
 
     private void SetShootEffectColorGradient(Gradient gradient)
     {
-        ParticleSystem.ColorOverLifetimeModule colorOverLifetimeModule = shootEffectParticleSystem.colorOverLifetime;
+        var colorOverLifetimeModule = shootEffectParticleSystem.colorOverLifetime;
         colorOverLifetimeModule.color = gradient;
     }
 
     private void SetShootEffectParticleStartingValues(float duration, float startParticleSize, float startParticleSpeed, float startLifetime, float effectGravity, int maxParticles)
     {
-        ParticleSystem.MainModule mainModule = shootEffectParticleSystem.main;
+        var mainModule = shootEffectParticleSystem.main;
 
         mainModule.duration = duration;
 
@@ -61,9 +61,9 @@ public class WeaponShootEffect : MonoBehaviour
 
     private void SetShootEffectParticleEmission(int emissionRate, float burstParticleNumber)
     {
-        ParticleSystem.EmissionModule emissionModule = shootEffectParticleSystem.emission;
+        var emissionModule = shootEffectParticleSystem.emission;
 
-        ParticleSystem.Burst burst = new ParticleSystem.Burst(0f, burstParticleNumber);
+        var burst = new ParticleSystem.Burst(0f, burstParticleNumber);
         emissionModule.SetBurst(0, burst);
 
         emissionModule.rateOverTime = emissionRate;
@@ -71,7 +71,7 @@ public class WeaponShootEffect : MonoBehaviour
 
     private void SetShootEffectParticleSprite(Sprite sprite)
     {
-        ParticleSystem.TextureSheetAnimationModule textureSheetAnimationModule = shootEffectParticleSystem.textureSheetAnimation;
+        var textureSheetAnimationModule = shootEffectParticleSystem.textureSheetAnimation;
 
         textureSheetAnimationModule.SetSprite(0, sprite);
 
@@ -84,24 +84,24 @@ public class WeaponShootEffect : MonoBehaviour
 
     private void SetShootEffectVelocityOverLifeTime(Vector3 minVelocity, Vector3 maxVelocity)
     {
-        ParticleSystem.VelocityOverLifetimeModule velocityOverLifetimeModule = shootEffectParticleSystem.velocityOverLifetime;
+        var velocityOverLifetimeModule = shootEffectParticleSystem.velocityOverLifetime;
 
         // мин макс скорость по X
-        ParticleSystem.MinMaxCurve minMaxCurveX = new ParticleSystem.MinMaxCurve();
+        var minMaxCurveX = new ParticleSystem.MinMaxCurve();
         minMaxCurveX.mode = ParticleSystemCurveMode.TwoConstants;
         minMaxCurveX.constantMin = minVelocity.x;
         minMaxCurveX.constantMax = maxVelocity.x;
         velocityOverLifetimeModule.x = minMaxCurveX;
 
         // мин макс скорость по Y
-        ParticleSystem.MinMaxCurve minMaxCurveY = new ParticleSystem.MinMaxCurve();
+        var minMaxCurveY = new ParticleSystem.MinMaxCurve();
         minMaxCurveY.mode = ParticleSystemCurveMode.TwoConstants;
         minMaxCurveY.constantMin = minVelocity.y;
         minMaxCurveY.constantMax = maxVelocity.y;
         velocityOverLifetimeModule.y = minMaxCurveY;
 
         // мин макс скорость по Z
-        ParticleSystem.MinMaxCurve minMaxCurveZ = new ParticleSystem.MinMaxCurve();
+        var minMaxCurveZ = new ParticleSystem.MinMaxCurve();
         minMaxCurveZ.mode = ParticleSystemCurveMode.TwoConstants;
         minMaxCurveZ.constantMin = minVelocity.z;
         minMaxCurveZ.constantMax = maxVelocity.z;

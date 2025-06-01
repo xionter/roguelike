@@ -63,7 +63,7 @@ public class RoomLightingControl : MonoBehaviour
     private IEnumerator FadeInRoomLightingRoutine(InstantiatedRoom instantiatedRoom)
     {
         // Создание нового материала для плавного появления
-        Material material = new Material(GameResources.Instance.variableLitShader);
+        var material = new Material(GameResources.Instance.variableLitShader);
 
         instantiatedRoom.groundTilemap.GetComponent<TilemapRenderer>().material = material;
         instantiatedRoom.decoration1Tilemap.GetComponent<TilemapRenderer>().material = material;
@@ -71,7 +71,7 @@ public class RoomLightingControl : MonoBehaviour
         instantiatedRoom.frontTilemap.GetComponent<TilemapRenderer>().material = material;
         instantiatedRoom.minimapTilemap.GetComponent<TilemapRenderer>().material = material;
 
-        for (float i = 0.05f; i <= 1f; i += Time.deltaTime / Settings.fadeInTime)
+        for (var i = 0.05f; i <= 1f; i += Time.deltaTime / Settings.fadeInTime)
         {
             material.SetFloat("Alpha_Slider", i);
             yield return null;
@@ -90,11 +90,11 @@ public class RoomLightingControl : MonoBehaviour
     /// </summary>
     private void FadeInEnvironmentLighting()
     {
-        Material material = new Material(GameResources.Instance.variableLitShader);
+        var material = new Material(GameResources.Instance.variableLitShader);
 
-        Environment[] environmentComponents = GetComponentsInChildren<Environment>();
+        var environmentComponents = GetComponentsInChildren<Environment>();
 
-        foreach (Environment environmentComponent in environmentComponents)
+        foreach (var environmentComponent in environmentComponents)
         {
             if (environmentComponent.spriteRenderer != null)
                 environmentComponent.spriteRenderer.material = material;
@@ -105,13 +105,13 @@ public class RoomLightingControl : MonoBehaviour
 
     private IEnumerator FadeInEnvironmentLightingRoutine(Material material, Environment[] environmentComponents)
     {
-        for (float i = 0.05f; i <= 1f; i += Time.deltaTime / Settings.fadeInTime)
+        for (var i = 0.05f; i <= 1f; i += Time.deltaTime / Settings.fadeInTime)
         {
             material.SetFloat("Alpha_Slider", i);
             yield return null;
         }
 
-        foreach (Environment environmentComponent in environmentComponents)
+        foreach (var environmentComponent in environmentComponents)
         {
             if (environmentComponent.spriteRenderer != null)
                 environmentComponent.spriteRenderer.material = GameResources.Instance.litMaterial;
@@ -123,11 +123,11 @@ public class RoomLightingControl : MonoBehaviour
     /// </summary>
     private void FadeInDoors()
     {
-        Door[] doorArray = GetComponentsInChildren<Door>();
+        var doorArray = GetComponentsInChildren<Door>();
 
-        foreach (Door door in doorArray)
+        foreach (var door in doorArray)
         {
-            DoorLightingControl doorLightingControl = door.GetComponentInChildren<DoorLightingControl>();
+            var doorLightingControl = door.GetComponentInChildren<DoorLightingControl>();
 
             doorLightingControl.FadeInDoor(door);
         }

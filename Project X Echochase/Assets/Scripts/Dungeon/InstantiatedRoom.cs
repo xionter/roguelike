@@ -66,7 +66,7 @@ public class InstantiatedRoom : MonoBehaviour
     private void BlockOffUnusedDoorWays()
     {
         // Проходим по всем дверным проёмам
-        foreach (DoorWay doorway in room.doorWayList)
+        foreach (var doorway in room.doorWayList)
         {
             if (doorway.isConnected)
                 continue;
@@ -131,15 +131,15 @@ public class InstantiatedRoom : MonoBehaviour
     /// </summary>
     private void BlockDoorwayHorizontally(Tilemap tilemap, DoorWay doorway)
     {
-        Vector2Int startPosition = doorway.doorwayStartCopyPosition;
+        var startPosition = doorway.doorwayStartCopyPosition;
 
         // Проходим по всем тайлам для копирования
-        for (int xPos = 0; xPos < doorway.doorwayCopyTileWidth; xPos++)
+        for (var xPos = 0; xPos < doorway.doorwayCopyTileWidth; xPos++)
         {
-            for (int yPos = 0; yPos < doorway.doorwayCopyTileHeight; yPos++)
+            for (var yPos = 0; yPos < doorway.doorwayCopyTileHeight; yPos++)
             {
                 // Получаем поворот тайла, который копируем
-                Matrix4x4 transformMatrix = tilemap.GetTransformMatrix(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0));
+                var transformMatrix = tilemap.GetTransformMatrix(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0));
 
                 // Копируем тайл
                 tilemap.SetTile(new Vector3Int(startPosition.x + 1 + xPos, startPosition.y - yPos, 0), tilemap.GetTile(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0)));
@@ -155,15 +155,15 @@ public class InstantiatedRoom : MonoBehaviour
     /// </summary>
     private void BlockDoorwayVertically(Tilemap tilemap, DoorWay doorway)
     {
-        Vector2Int startPosition = doorway.doorwayStartCopyPosition;
+        var startPosition = doorway.doorwayStartCopyPosition;
 
         // Проходим по всем тайлам для копирования
-        for (int yPos = 0; yPos < doorway.doorwayCopyTileHeight; yPos++)
+        for (var yPos = 0; yPos < doorway.doorwayCopyTileHeight; yPos++)
         {
-            for (int xPos = 0; xPos < doorway.doorwayCopyTileWidth; xPos++)
+            for (var xPos = 0; xPos < doorway.doorwayCopyTileWidth; xPos++)
             {
                 // Получаем поворот тайла, который копируем
-                Matrix4x4 transformMatrix = tilemap.GetTransformMatrix(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0));
+                var transformMatrix = tilemap.GetTransformMatrix(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0));
 
                 // Копируем тайл
                 tilemap.SetTile(new Vector3Int(startPosition.x + xPos, startPosition.y - 1 - yPos, 0), tilemap.GetTile(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0)));
@@ -178,8 +178,8 @@ public class InstantiatedRoom : MonoBehaviour
     {
         grid = roomGameobject.GetComponentInChildren<Grid>();
 
-        Tilemap[] tilemaps = grid.GetComponentsInChildren<Tilemap>();
-        foreach (Tilemap tilemap in tilemaps)
+        var tilemaps = grid.GetComponentsInChildren<Tilemap>();
+        foreach (var tilemap in tilemaps)
         {
             if (tilemap.CompareTag("groundTilemap"))
             {
@@ -219,7 +219,7 @@ public class InstantiatedRoom : MonoBehaviour
             {
                 aStarMovementPenalty[x, y] = Settings.defaultAStarMovementPenalty;
                 
-                TileBase tile = collisionTilemap.GetTile(new Vector3Int(x + room.templateLowerBounds.x,
+                var tile = collisionTilemap.GetTile(new Vector3Int(x + room.templateLowerBounds.x,
                     y + room.templateLowerBounds.y, 0));
 
                 foreach (var collisionTile in GameResources.Instance.enemyUnwalkableCollisionTilesArray)
@@ -246,11 +246,11 @@ public class InstantiatedRoom : MonoBehaviour
     {
         if (room.roomNodeType.isCorridorEW || room.roomNodeType.isCorridorNS) return;
 
-        foreach (DoorWay doorway in room.doorWayList)
+        foreach (var doorway in room.doorWayList)
         {
             if (doorway.doorPrefab != null && doorway.isConnected)
             {
-                float tileDistance = Settings.tileSizePixels / Settings.pixelsPerUnit;
+                var tileDistance = Settings.tileSizePixels / Settings.pixelsPerUnit;
 
                 GameObject door = null;
 
@@ -276,7 +276,7 @@ public class InstantiatedRoom : MonoBehaviour
                 }
 
                 // Получаем компонент двери
-                Door doorComponent = door.GetComponent<Door>();
+                var doorComponent = door.GetComponent<Door>();
 
                 // Устанавливаем, является ли дверь частью комнаты босса
                 // if (room.roomNodeType.isBossRoom)
@@ -295,12 +295,12 @@ public class InstantiatedRoom : MonoBehaviour
         collisionTilemap.gameObject.GetComponent<TilemapRenderer>().enabled = false;
     }
 
-    public void DisableRoomCollider()
+    private void DisableRoomCollider()
     {
         boxCollider2D.enabled = false;
     }
 
-    public void EnableRoomCollider()
+    private void EnableRoomCollider()
     {
         boxCollider2D.enabled = true;
     }
@@ -319,9 +319,9 @@ public class InstantiatedRoom : MonoBehaviour
 
     public void LockDoors()
     {
-        Door[] doorArray = GetComponentsInChildren<Door>();
+        var doorArray = GetComponentsInChildren<Door>();
 
-        foreach (Door door in doorArray)
+        foreach (var door in doorArray)
         {
             door.LockDoor();
         }
@@ -339,9 +339,9 @@ public class InstantiatedRoom : MonoBehaviour
         if (doorUnlockDelay > 0f)
             yield return new WaitForSeconds(doorUnlockDelay);
 
-        Door[] doorArray = GetComponentsInChildren<Door>();
+        var doorArray = GetComponentsInChildren<Door>();
 
-        foreach (Door door in doorArray)
+        foreach (var door in doorArray)
         {
             door.UnlockDoor();
         }
