@@ -10,6 +10,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void Start()
     {
+        MusicManager.Instance.PlayMusic(GameResources.Instance.mainMenuMusic, 0f, 2f);
         returnToMainMenuButton.SetActive(false);
         playButton.SetActive(true);
     }
