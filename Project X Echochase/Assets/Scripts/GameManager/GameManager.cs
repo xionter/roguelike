@@ -124,7 +124,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
                 PlayDungeonLevel();
 
                 gameState = GameState.playingLevel;
-
+                RoomEnemiesDefeated();
                 break;
 
             case GameState.playingLevel:
@@ -213,26 +213,31 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
         foreach (KeyValuePair<string, Room> keyValuePair in DungeonBuilder.Instance.dungeonBuilderRoomDictionary)
         {
-            if (keyValuePair.Value.roomNodeType.isBossRoom)
+            Room room = keyValuePair.Value;
+
+            if (room.roomNodeType.isBossRoom)
             {
-                bossRoom = keyValuePair.Value.instantiatedRoom;
+                bossRoom = room.instantiatedRoom;
                 continue;
             }
 
-            if (!keyValuePair.Value.isClearedOfEnemies)
+            if (!room.isClearedOfEnemies)
             {
                 isDungeonClearOfRegularEnemies = false;
-                break;
             }
         }
 
-        if ((isDungeonClearOfRegularEnemies && bossRoom == null) || (isDungeonClearOfRegularEnemies && bossRoom.room.isClearedOfEnemies))
+        if (bossRoom != null && bossRoom.room.isClearedOfEnemies)
         {
             gameState = GameState.gameWon;
         }
-        else if (isDungeonClearOfRegularEnemies)
+        else if (isDungeonClearOfRegularEnemies && bossRoom != null)
         {
             gameState = GameState.bossStage;
+        }
+        else if (isDungeonClearOfRegularEnemies && bossRoom == null)
+        {
+            gameState = GameState.gameWon;
         }
     }
 

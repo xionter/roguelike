@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3935965075616724594, guid: 00d9af4080e3531ebaf83cf738ffe93c, type: 3}
       propertyPath: numberOfItemsToSpawnMin
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3935965075616724594, guid: 00d9af4080e3531ebaf83cf738ffe93c, type: 3}
       propertyPath: ammoSpawnByLevelList.Array.data[0].max
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: a411035d5d3921363ad4843e35d2e699, type: 2}
     - target: {fileID: 5154079344257878540, guid: 00d9af4080e3531ebaf83cf738ffe93c, type: 3}
       propertyPath: m_Name
-      value: ChestSpawner_RoomEntry_LargeRoom
+      value: ChestSpawner_RoomEntry_MediumRoom
       objectReference: {fileID: 0}
     - target: {fileID: 7517421725387555506, guid: 00d9af4080e3531ebaf83cf738ffe93c, type: 3}
       propertyPath: m_LocalPosition.x
