@@ -128,7 +128,12 @@ public class Chest : MonoBehaviour, IUseable
 
     private void UpdateChestState()
     {
-        if (healthPercent != 0)
+        if (weaponDetails != null)
+        {
+            chestState = ChestState.weaponItem;
+            InstantiateWeaponItem();
+        }
+        else if (healthPercent != 0)
         {
             chestState = ChestState.healthItem;
             InstantiateHealthItem();
@@ -137,11 +142,6 @@ public class Chest : MonoBehaviour, IUseable
         {
             chestState = ChestState.ammoItem;
             InstantiateAmmoItem();
-        }
-        else if (weaponDetails != null)
-        {
-            chestState = ChestState.weaponItem;
-            InstantiateWeaponItem();
         }
         else
         {
