@@ -1997,11 +1997,11 @@ PrefabInstance:
     - target: {fileID: 8493330932828924152, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
       propertyPath: m_Resource
       value: 
-      objectReference: {fileID: 8300000, guid: ec72bc8a1cd4b5940a0fc92c2c35b30b, type: 3}
+      objectReference: {fileID: 8300000, guid: c5717d1c54260f944a78a7c6646ce860, type: 3}
     - target: {fileID: 8493330932828924152, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: ec72bc8a1cd4b5940a0fc92c2c35b30b, type: 3}
+      objectReference: {fileID: 8300000, guid: c5717d1c54260f944a78a7c6646ce860, type: 3}
     - target: {fileID: 8493330932828924152, guid: a5fc88221a1ad502ca4dde012171d8aa, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
