@@ -30,22 +30,15 @@ MonoBehaviour:
     isConnected: 0
     isUnavailable: 0
   spawnPositionArray:
-  - {x: -56, y: 53}
-  - {x: -28, y: 53}
-  - {x: -3, y: 53}
-  - {x: -56, y: 13}
-  - {x: -28, y: 13}
-  - {x: -3, y: 13}
-  - {x: -56, y: -27}
-  - {x: -28, y: -27}
-  - {x: -3, y: -27}
+  - {x: -27, y: 11}
+  - {x: -31, y: 11}
   enemiesByLevelList:
   - dungeonLevel: {fileID: 11400000, guid: f564593041ee8994fb38aa94bcccc204, type: 2}
     spawnableObjectRatioList:
+    - dungeonObject: {fileID: 11400000, guid: ffd2aa2d495d0854b9cd94cce4f5f0ae, type: 2}
+      ratio: 2
     - dungeonObject: {fileID: 11400000, guid: 73e97604b2f058349a53c226d672db6d, type: 2}
-      ratio: 1
-    - dungeonObject: {fileID: 11400000, guid: 73e97604b2f058349a53c226d672db6d, type: 2}
-      ratio: 1
+      ratio: 2
   roomEnemySpawnParametersList:
   - dungeonLevel: {fileID: 11400000, guid: f564593041ee8994fb38aa94bcccc204, type: 2}
     minTotalEnemiesToSpawn: 2
