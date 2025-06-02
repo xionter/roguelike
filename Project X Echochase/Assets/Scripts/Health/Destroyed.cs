@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 [RequireComponent(typeof(DestroyedEvent))]
@@ -27,8 +28,10 @@ public class Destroyed : MonoBehaviour
     private void DestroyedEvent_OnDestroyed(DestroyedEvent destroyedEvent, DestroyedEventArgs destroyedEventArgs)
     {
         if (destroyedEventArgs.playerDied)
+        {
             gameObject.SetActive(false);
-
+            SceneManager.LoadScene("MainMenuScene");
+        }
         else
             Destroy(gameObject);
     }
