@@ -86,16 +86,15 @@ public class Chest : MonoBehaviour, IUseable
                 OpenChest();
                 break;
 
+            case ChestState.weaponItem:
+                CollectWeaponItem();
+                break;
             case ChestState.healthItem:
                 CollectHealthItem();
                 break;
 
             case ChestState.ammoItem:
                 CollectAmmoItem();
-                break;
-
-            case ChestState.weaponItem:
-                CollectWeaponItem();
                 break;
 
             case ChestState.empty:
