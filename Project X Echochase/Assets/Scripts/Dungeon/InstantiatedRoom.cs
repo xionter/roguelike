@@ -284,7 +284,13 @@ public class InstantiatedRoom : MonoBehaviour
                     //doorComponent.isBossRoomDoor = true;
                     GameObject skullIcon = Instantiate(GameResources.Instance.minimapSkullPrefab, gameObject.transform);
                     skullIcon.transform.localPosition = door.transform.localPosition;
-
+                }
+                
+                if (room.roomNodeType.isChestRoom)
+                {
+                    // Устанавливаем, что это комната с сундуком
+                    GameObject chestIcon = Instantiate(GameResources.Instance.minimapChestPrefab, gameObject.transform);
+                    chestIcon.transform.localPosition = door.transform.localPosition;
                 }
             }
         }

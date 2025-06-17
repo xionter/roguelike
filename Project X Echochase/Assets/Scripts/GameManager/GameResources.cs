@@ -170,7 +170,12 @@ public class GameResources : MonoBehaviour
     [Tooltip("Префаб черепа для миникарты")]
     #endregion
     public GameObject minimapSkullPrefab;
-
+    
+    #region Tooltip
+    [Tooltip("Префаб сундука для миникарты")]
+    #endregion
+    public GameObject minimapChestPrefab;
+    
     #region Validation
 #if UNITY_EDITOR
     private void OnValidate()

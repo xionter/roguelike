@@ -33,7 +33,12 @@ public class RoomNodeTypeSO : ScriptableObject
     [Header("Один тип должен быть None (не назначен)")]
     #endregion Header
     public bool isNone;
+    #region Header
 
+    [Header("Один тип должен быть сундуком")]
+
+    #endregion Header
+    public bool isChestRoom;
     #region Validation
 #if UNITY_EDITOR
     private void OnValidate()
