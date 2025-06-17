@@ -466,7 +466,7 @@ public class DungeonBuilder : SingletonMonobehaviour<DungeonBuilder>
         var roomNodeGraph = ScriptableObject.CreateInstance<RoomNodeGraphSO>();
 
         // Генерация подземелья
-        ProceduralDungeonGenerator.GenerateDungeon(roomNodeGraph, 13, ProceduralDungeonGenerator.Difficulty.Medium);
+        ProceduralDungeonGenerator.GenerateDungeon(roomNodeGraph, 10, ProceduralDungeonGenerator.Difficulty.Easy);
 
         return roomNodeGraph;
     }

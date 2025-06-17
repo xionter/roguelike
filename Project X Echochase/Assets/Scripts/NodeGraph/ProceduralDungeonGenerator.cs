@@ -56,7 +56,7 @@ public static class ProceduralDungeonGenerator
         var startNode = CreateNode(entranceType, graph);
         var openList = new List<RoomNodeSO> { startNode };
         var normalCount = totalRooms - 2;
-        var chestCount = Random.Range((int)(GetWeights(difficulty)["large"] / 0.2f) + 1, normalCount / 4);
+        var chestCount = Random.Range(1, normalCount / 4);
         normalCount -= chestCount;
         var weights = GetWeights(difficulty);
 
@@ -81,7 +81,19 @@ public static class ProceduralDungeonGenerator
         // Генерация сундуков
         for (var i = 0; i < chestCount; i++)
         {
-            var chestParent = openList[Random.Range(0, openList.Count)];
+            RoomNodeSO chestParent;
+
+            if (i == 0)
+            {
+                // Первая комната с сундуком создаётся рядом с начальной комнатой
+                chestParent = startNode;
+            }
+            else
+            {
+                // Остальные сундуки генерируются как обычно
+                chestParent = openList[Random.Range(0, openList.Count)];
+            }
+
             var cor = CreateNode(corridorType, graph);
             chestParent.childRoomNodeIDList.Add(cor.id);
             cor.parentRoomNodeIDList.Add(chestParent.id);
@@ -90,7 +102,10 @@ public static class ProceduralDungeonGenerator
             cor.childRoomNodeIDList.Add(chest.id);
             chest.parentRoomNodeIDList.Add(cor.id);
 
-            openList.Remove(chestParent);
+            if (i != 0) // Удаляем из openList только для остальных сундуков
+            {
+                openList.Remove(chestParent);
+            }
             openList.Add(chest);
         }
 
