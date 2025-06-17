@@ -20,3 +20,4 @@ MonoBehaviour:
   isEntrance: 0
   isBossRoom: 0
   isNone: 0
+  isChestRoom: 1

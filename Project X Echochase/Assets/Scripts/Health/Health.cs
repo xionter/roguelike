@@ -62,6 +62,7 @@ public class Health : MonoBehaviour
         if (enemy != null && enemy.enemyDetails.isHealthBarDisplayed == true && healthBar != null)
         {
             healthBar.EnableHealthBar();
+            healthBar.SetHealthBarValue(1);   
         }
         else if (healthBar != null)
         {
